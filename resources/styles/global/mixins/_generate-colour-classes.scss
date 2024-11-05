@@ -1,0 +1,26 @@
+@use "sass:color";
+
+@mixin generate_colour_classes($name, $hex) {
+  .#{$name} {
+    color: $hex;
+  }
+
+  .fill-#{$name} {
+    fill: $hex;
+  }
+
+  .border-#{$name} {
+    border-color: $hex;
+  }
+
+  @media screen {
+    .bg-#{$name} {
+      background-color: $hex;
+
+      ::selection {
+        @include text_contrast(color.invert($hex));
+        background: color.invert($hex);
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+@use "sass:color";
+@use "sass:math";
+
+@mixin text-contrast($n, $dark: $black, $light: $white, $cutoff: 1.667) {
+  $brightness: math.round((color.red($n) * 299) + (color.green($n) * 587) + math.div((color.blue($n) * 114), 1000));
+  $light-color: math.round((color.red($white) * 299) + (color.green($white) * 587) + math.div((color.blue($white) * 114), 1000));
+
+  @if abs($brightness) < (math.div($light-color, $cutoff)) {
+    color: $light;
+  }
+
+  @else {
+    color: $dark;
+  }
+}
