@@ -44,6 +44,26 @@ if (! function_exists('\Roots\bootloader')) {
 
 /*
 |--------------------------------------------------------------------------
+| Autoload PSR-4 files
+|--------------------------------------------------------------------------
+*/
+
+function autoload_psr4($name) {
+    $path = __dir__ . '/app/' . $name . '/*.php';
+    $namespace = 'App\\' . $name;
+
+    foreach(glob($path) as $filename) {
+        $class = $namespace . '\\' . basename($filename, '.php');
+        new $class();
+    }
+}
+
+autoload_psr4('PostTypes');
+autoload_psr4('ACF');
+autoload_psr4('Admin');
+
+/*
+|--------------------------------------------------------------------------
 | Register Sage Theme Files
 |--------------------------------------------------------------------------
 |
