@@ -12,14 +12,14 @@ class JSON
 
     public function save( $path )
     {
-        $path = get_stylesheet_directory() . '/acf-json';
+        $path = get_stylesheet_directory() . '/resources/acf';
         return $path;
     }
 
     public function load( $paths )
     {
         unset($paths[0]);
-        $paths[] = get_stylesheet_directory() . '/acf-json';
+        $paths[] = get_stylesheet_directory() . '/resources/acf';
         return $paths;
     }
 }
