@@ -23,3 +23,13 @@ html {
   white-space: nowrap;
   width: 1px;
 }
+
+img {
+  max-width: 100%;
+  height: auto;
+  transition: all 300ms ease;
+
+  &.lazy {
+    filter: blur(0.25em);
+  }
+}

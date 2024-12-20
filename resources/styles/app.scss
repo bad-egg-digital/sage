@@ -9,8 +9,18 @@
 @import "plugins/contact-form-7";
 @import "plugins/mce";
 
+// Sections
+@import "sections/header";
+@import "sections/footer";
+
+// Components
+@import "components/forms";
+@import "components/button";
+@import "components/card";
+
+// Blocks
+@import "blocks/BadExample";
+
 // Page Styles
 @import "views/page";
 
-// Component Styles
-@import "components/card";

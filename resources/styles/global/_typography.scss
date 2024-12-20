@@ -135,3 +135,13 @@ hr {
     }
   }
 }
+
+.align {
+  &-centre {
+    text-align: center;
+  }
+
+  &-right {
+    text-align: right;
+  }
+}

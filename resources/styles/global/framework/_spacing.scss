@@ -1,3 +1,28 @@
+.brand {
+  display: block;
+  width: $brandWidth;
+  height: $brandHeight;
+
+  svg,
+  img {
+    display: block;
+    width: $brandWidth;
+    height: $brandHeight;
+  }
+
+  .knockout & {
+    @media screen {
+      .fill-primary {
+        fill: $white;
+      }
+
+      .fill-grey {
+        fill: rgba($white, 0.8);
+      }
+    }
+  }
+}
+
 .container {
   width: 90%;
   margin: auto;
@@ -9,19 +34,11 @@
 }
 
 .section {
-  padding: $sectionSmall;
+  padding: $sectionMedium 0;
 
-  @media (min-width: $screen-md) {
-    padding: $sectionMedium;
-  }
-
-  @media (min-width: $screen-lg) {
-    padding: $sectionLarge;
-  }
-
-  &-small { padding: $sectionSmall; }
-  &-medium { padding: $sectionMedium; }
-  &-large { padding: $sectionLarge; }
+  &-small { padding: $sectionSmall 0; }
+  &-medium { padding: $sectionMedium 0; }
+  &-large { padding: $sectionLarge 0; }
 
   &-zero-top { padding-top: 0; }
   &-zero-bottom { padding-bottom: 0; }
@@ -32,6 +49,16 @@
 
   &-small { padding: $innerSmall; }
   &-large { padding: $innerLarge; }
+
+  &-zero-x {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  &-zero-y {
+    padding-top: 0;
+    padding-top: 0;
+  }
 }
 
 .rounded {
