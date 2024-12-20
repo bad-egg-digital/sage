@@ -1,0 +1,118 @@
+{
+    "key": "group_clone_button",
+    "title": "Clone: Button",
+    "fields": [
+        {
+            "key": "field_672d3d7b2c273",
+            "label": "Link",
+            "name": "link",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "40",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
+            "key": "field_673529a2a37a1",
+            "label": "Class",
+            "name": "class",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "20",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_672d3db22c274",
+            "label": "Colour",
+            "name": "colour",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "20",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "primary": "<i class=\"fas fa-circle\" style=\"color: #7A74A6\"><\/i> Kimberly",
+                "secondary": "<i class=\"fas fa-circle\" style=\"color: #9C729E\"><\/i> Trendy Pink",
+                "tertiary": "<i class=\"fas fa-circle\" style=\"color: #B8728B\"><\/i> Turkish Rose",
+                "quaternary": "<i class=\"fas fa-circle\" style=\"color: #5875A0\"><\/i> Waikawa Gray",
+                "quinary": "<i class=\"fas fa-circle\" style=\"color: #4298B7\"><\/i> Boston Blue",
+                "black": "<i class=\"fas fa-circle\" style=\"color: #000000\"><\/i> Black",
+                "0": "<i class=\"fas fa-circle\" style=\"color: #FFFFFF\"><\/i> White"
+            },
+            "default_value": 0,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 1,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_672d3dc52c275",
+            "label": "Style",
+            "name": "style",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "20",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "0": "Solid",
+                "outline": "Outline"
+            },
+            "default_value": 0,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "widget",
+                "operator": "==",
+                "value": "rss"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1731537485
+}

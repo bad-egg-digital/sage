@@ -39,7 +39,8 @@
     }
   },
   "require": {
-    "php": ">=8.1"
+    "php": ">=8.1",
+    "ourcodeworld/name-that-color": "dev-master"
   },
   "require-dev": {
     "laravel/pint": "^1.13"

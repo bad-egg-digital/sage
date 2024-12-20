@@ -122,3 +122,20 @@ add_action('widgets_init', function () {
         'id' => 'sidebar-footer',
     ] + $config);
 });
+
+add_filter('admin_post_thumbnail_size', function(){
+    return "medium";
+});
+
+add_action( 'init', __NAMESPACE__ . '\\cors', 15 );
+function cors() {
+
+    if(WP_ENV == 'development'):
+        header( 'Access-Control-Allow-Origin: *' );
+    endif;
+
+}
+
+$image_srcset = new Utilities\ImageSrcset;
+$image_srcset->add(['name' => 'hero', 'width' => 1920, 'height' => 1000]);
+add_image_size('lazy', 50, 50);

@@ -1,14 +1,56 @@
 <?php
 
 namespace App\ACF;
+use ourcodeworld\NameThatColor\ColorInterpreter as NameThatColor;
+use App\Utilities;
 
 class Dynamic
 {
     public function __construct()
     {
+        add_filter('acf/load_field/name=colour',                [ $this, 'load_colours'   ]);
+        add_filter('acf/load_field/name=bg_colour',             [ $this, 'load_colours'   ]);
+        add_filter('acf/load_field/name=tint',                  [ $this, 'load_tints'   ]);
+        add_filter('acf/load_field/name=bg_tint',               [ $this, 'load_tints'   ]);
         add_filter('acf/load_field/name=fontawesome_regular',   [ $this, 'load_fontawesome_regular_icons' ]);
         add_filter('acf/load_field/name=fontawesome_solid',     [ $this, 'load_fontawesome_solid_icons'   ]);
         add_filter('acf/load_field/name=fontawesome_brands',    [ $this, 'load_fontawesome_brand_icons'   ]);
+    }
+
+    public function load_colours( $field )
+    {
+        $colour = new Utilities\Colour;
+        $NameThatColour = new NameThatColor;
+
+        $colours = $colour->values();
+
+        $field['choices'] = [];
+
+        foreach($colours as $slug => $hex):
+            $field['choices'][$slug] = '<i class="fas fa-circle" style="color: '. $hex .'"></i> ' . @$NameThatColour->name($hex)['name'];
+        endforeach;
+
+        return $field;
+
+    }
+
+    public function load_tints( $field )
+    {
+        $colour = new Utilities\Colour;
+        $tints = $colour->tints();
+
+        $field['choices'] = [];
+
+        foreach($tints as $slug => $hex):
+            if($slug):
+                $field['choices'][$slug] = ucfirst($slug);
+
+            else:
+                $field['choices'][0] = 'None';
+            endif;
+        endforeach;
+
+        return $field;
     }
 
     public function load_fontawesome_regular_icons( $field )

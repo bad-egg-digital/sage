@@ -1,8 +1,13 @@
 .card {
   position: relative;
   margin: 0.5em;
+  flex: 0 0 calc(100% - 1em);
 
   &-wrap {
+    display: flex;
+    flex-wrap: wrap;
     margin: -0.5em;
   }
 }
+
+
