@@ -1,0 +1,15 @@
+@use "../variables/breakpoints";
+
+@each $label, $value in breakpoints.$breakpoints {
+  .min-#{$label} {
+    @media (min-width: $value) {
+      display: none;
+    }
+  }
+
+  .max-#{$label} {
+    @media (max-width: ($value - 0.0625)) {
+      display: none;
+    }
+  }
+}

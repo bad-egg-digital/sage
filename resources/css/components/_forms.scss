@@ -1,0 +1,290 @@
+@use "../global/fonts";
+@use "../global/variables/breakpoints";
+@use "../global/variables/colours";
+
+textarea {
+  min-height: 10.375em;
+}
+
+input,
+textarea {
+  color: colours.$grey;
+  background: white;
+  font-weight: 400;
+  font-size: 1em;
+  font-family: fonts.$font;
+  width: 100%;
+  padding: 0.875em 1em;
+  margin: 0 0 1em;
+  // border-radius: 0.125em;
+  border: 0.0625em solid rgba(colours.$black, 0.1);
+  outline: none;
+  transition: all 300ms ease;
+
+  &::placeholder {
+    color: colours.$grey-light;
+  }
+
+  &:focus {
+    box-shadow: 0 0.25em 0.5em rgba(colours.$black, 0.1);
+  }
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  padding: 0;
+  margin: 0;
+  width: auto;
+
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+select {
+  width: 100%;
+}
+
+.field-wrap {
+  flex: 1 1 calc(100% - 1em);
+  margin: 0 0.5em;
+  transition: all 300ms ease;
+
+  p {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  label {
+    flex: 0 0 100%;
+    max-width: 100%;
+    width: 100%;
+    order: -1;
+    margin: 0;
+  }
+
+  textarea,
+  input {
+    flex: 1 1 100%;
+    margin: 0;
+  }
+
+  /* stylelint-disable selector-class-pattern */
+  .mce_inline_error {
+    flex: 0 0 100%;
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    font-family: fonts.$font;
+  }
+  /* stylelint-enable selector-class-pattern */
+
+  @media (min-width: breakpoints.$screen-sm) {
+    &.half {
+      flex: 0 0 calc(50% - 1em);
+      max-width: calc(50% - 1em);
+      width: calc(50% - 1em);
+    }
+  }
+}
+
+.form-footer {
+  p {
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  button,
+  .button,
+  input[type="submit"] {
+    margin: 0;
+  }
+
+  .wpcf7-list-item {
+    margin: 0;
+    user-select: none;
+  }
+
+  .form-footer-button {
+    flex: 1 1 100%;
+    display: block;
+    margin: 2em 0 0;
+  }
+
+  @media (min-width: breakpoints.$screen-sm) {
+    display: flex;
+    flex-wrap: wrap;
+
+    .form-footer-button {
+      flex: 0 0 8.5em;
+      max-width: 8.5em;
+      width: 8.5em;
+      margin: 0 0 0 2em;
+      text-align: right;
+    }
+
+    .form-footer-text {
+      flex: 1 1 5em;
+      margin: auto;
+
+      p {
+        display: block;
+      }
+    }
+  }
+}
+
+.section-form {
+  button {
+    margin: 1em 0 0;
+  }
+
+  span.label {
+    font-weight: 700;
+  }
+
+  .textarea-wrap {
+    span.label {
+      display: none;
+    }
+  }
+
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1em -0.5em 0;
+    position: relative;
+
+    .wpcf7 {
+      .screen-reader-response {
+        display: none;
+      }
+
+      &-spinner {
+        position: absolute;
+        z-index: 1;
+        top: calc(50% - 12px);
+        left: calc(50% - 12px);
+      }
+
+      &-not-valid-tip {
+        background: colours.$error;
+        color: colours.$white;
+        padding: 0.5em 1em;
+        border-radius: 0 0 0.5em 0.5em;
+        font-weight: 700;
+      }
+
+      &-response-output {
+        margin: 1em 0.5em 0;
+        max-width: calc(100% - 1em);
+        width: calc(100% - 1em);
+        flex: 0 0 calc(100% - 1em);
+        text-align: center;
+        color: colours.$white;
+        font-family: fonts.$font;
+        font-weight: 700;
+        background: colours.$black;
+        border: 0.125em solid colours.$white;
+        padding: 0.5em 1em;
+        border-radius: 0.5em;
+      }
+
+      &-display-none {
+        display: none;
+      }
+
+      &-checkbox {
+        label {
+          display: block;
+          padding: 0 0 0 1.75em;
+          margin: 0;
+          font-weight: 700;
+        }
+
+        input[type="checkbox"] {
+          position: absolute;
+          z-index: 1;
+          top: 0;
+          left: 0;
+          appearance: none;
+          display: block;
+          width: 1.25em;
+          height: 1.25em;
+          border: 0.125em solid colours.$black;
+          background: transparent;
+          color: currentcolor;
+
+          &::before {
+            content: "\f00c";
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            left: 0.125em;
+            font-family: "Font Awesome 6 Free", serif;
+            font-weight: 900;
+            opacity: 0;
+            transition: all 300ms ease;
+          }
+
+          &:checked {
+            &::before {
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+
+    &.submitting {
+      .field-wrap:not(.form-footer) {
+        opacity: 0.1;
+      }
+
+      .form-footer {
+        .form-footer-text {
+          opacity: 0.1;
+        }
+
+        .form-footer-button input {
+          opacity: 0.1;
+        }
+      }
+    }
+
+    &.sent {
+      .wpcf7-response-output {
+        background: colours.$success;
+        border-color: colours.$white;
+      }
+    }
+
+    &.invalid {
+      .wpcf7-response-output {
+        background: colours.$error;
+        border-color: colours.$white;
+      }
+    }
+
+    .ajax-loader {
+      position: absolute;
+      z-index: 1;
+      top: calc(50% - 12px);
+      right: calc(50% - 12px);
+      display: block;
+      margin: 0;
+    }
+  }
+
+  &.knockout {
+    form {
+      .wpcf7 {
+        &-checkbox {
+          input[type="checkbox"] {
+            border-color: colours.$white;
+          }
+        }
+      }
+    }
+  }
+}

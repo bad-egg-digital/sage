@@ -1,0 +1,113 @@
+@use "../variables/colours";
+@use "../variables/spacing";
+
+.brand {
+  display: block;
+  width: spacing.$brandWidth;
+  height: spacing.$brandHeight;
+
+  svg,
+  img {
+    display: block;
+    width: spacing.$brandWidth;
+    height: spacing.$brandHeight;
+  }
+
+  .knockout & {
+    @media screen {
+      .fill-primary {
+        fill: colours.$white;
+      }
+
+      .fill-grey {
+        fill: rgba(colours.$white, 0.8);
+      }
+    }
+  }
+}
+
+.container {
+  width: 90%;
+  margin: auto;
+
+  &-large { max-width: spacing.$containerLarge; }
+  &-medium { max-width: spacing.$containerMedium; }
+  &-small { max-width: spacing.$containerSmall; }
+  &-narrow { max-width: spacing.$containerNarrow; }
+}
+
+.section {
+  padding: spacing.$sectionMedium 0;
+
+  &-small { padding: spacing.$sectionSmall 0; }
+  &-medium { padding: spacing.$sectionMedium 0; }
+  &-large { padding: spacing.$sectionLarge 0; }
+
+  &-zero-top { padding-top: 0; }
+  &-zero-bottom { padding-bottom: 0; }
+}
+
+.inner {
+  padding: spacing.$innerMedium;
+
+  &-small { padding: spacing.$innerSmall; }
+  &-large { padding: spacing.$innerLarge; }
+
+  &-zero-x {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  &-zero-y {
+    padding-top: 0;
+    padding-top: 0;
+  }
+}
+
+.rounded {
+  border-radius: spacing.$borderRadius;
+
+  &-top {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &-bottom {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+  }
+}
+
+.border {
+  border-style: solid;
+  border-width: spacing.$borderWidth;
+
+  &-thin { border-width: 0.0625em; }
+  &-regular { border-width: spacing.$borderWidth; }
+  &-thick { border-width: spacing.$borderThick; }
+  &-thicker { border-width: spacing.$borderThicker; }
+
+  &-top {
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+  }
+
+  &-right {
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+  }
+
+  &-bottom {
+    border-top-width: 0;
+    border-right-width: 0;
+    border-left-width: 0;
+  }
+
+  &-left {
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+  }
+}

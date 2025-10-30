@@ -1,0 +1,13 @@
+@use "../mixins/generate-button-classes";
+@use "../mixins/generate-colour-classes";
+@use "../variables/colours";
+
+::selection {
+  color: colours.$white;
+  background: colours.$primary;
+}
+
+@each $color, $hex in colours.$colors {
+  @include generate-colour-classes.generate_colour_classes($color, $hex);
+  @include generate-button-classes.generate_button_colors($color, $hex);
+}
