@@ -1,3 +1,5 @@
+@use "../variables/colours";
+
 @use "sass:color";
 
 @mixin generate_button_colors($name, $hex) {
@@ -10,13 +12,13 @@
 
   @each $button in $buttons {
     #{$button}.#{$name} {
-      color: $white;
+      color: colours.$white;
       background: $hex;
       border-color: $hex;
 
       &:hover,
       &:focus {
-        color: $white;
+        color: colours.$white;
         background: color.adjust($hex, $lightness: 10%);
         border-color: color.adjust($hex, $lightness: 10%);
       }

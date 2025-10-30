@@ -1,3 +1,5 @@
+@use "text-contrast";
+
 @use "sass:color";
 
 @mixin generate_colour_classes($name, $hex) {
@@ -18,7 +20,7 @@
       background-color: $hex;
 
       ::selection {
-        @include text_contrast(color.invert($hex));
+        @include text-contrast.text_contrast(color.invert($hex));
         background: color.invert($hex);
       }
     }

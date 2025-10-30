@@ -1,23 +1,26 @@
+@use "../variables/colours";
+@use "../variables/spacing";
+
 .brand {
   display: block;
-  width: $brandWidth;
-  height: $brandHeight;
+  width: spacing.$brandWidth;
+  height: spacing.$brandHeight;
 
   svg,
   img {
     display: block;
-    width: $brandWidth;
-    height: $brandHeight;
+    width: spacing.$brandWidth;
+    height: spacing.$brandHeight;
   }
 
   .knockout & {
     @media screen {
       .fill-primary {
-        fill: $white;
+        fill: colours.$white;
       }
 
       .fill-grey {
-        fill: rgba($white, 0.8);
+        fill: rgba(colours.$white, 0.8);
       }
     }
   }
@@ -27,28 +30,28 @@
   width: 90%;
   margin: auto;
 
-  &-large { max-width: $containerLarge; }
-  &-medium { max-width: $containerMedium; }
-  &-small { max-width: $containerSmall; }
-  &-narrow { max-width: $containerNarrow; }
+  &-large { max-width: spacing.$containerLarge; }
+  &-medium { max-width: spacing.$containerMedium; }
+  &-small { max-width: spacing.$containerSmall; }
+  &-narrow { max-width: spacing.$containerNarrow; }
 }
 
 .section {
-  padding: $sectionMedium 0;
+  padding: spacing.$sectionMedium 0;
 
-  &-small { padding: $sectionSmall 0; }
-  &-medium { padding: $sectionMedium 0; }
-  &-large { padding: $sectionLarge 0; }
+  &-small { padding: spacing.$sectionSmall 0; }
+  &-medium { padding: spacing.$sectionMedium 0; }
+  &-large { padding: spacing.$sectionLarge 0; }
 
   &-zero-top { padding-top: 0; }
   &-zero-bottom { padding-bottom: 0; }
 }
 
 .inner {
-  padding: $innerMedium;
+  padding: spacing.$innerMedium;
 
-  &-small { padding: $innerSmall; }
-  &-large { padding: $innerLarge; }
+  &-small { padding: spacing.$innerSmall; }
+  &-large { padding: spacing.$innerLarge; }
 
   &-zero-x {
     padding-left: 0;
@@ -62,7 +65,7 @@
 }
 
 .rounded {
-  border-radius: $borderRadius;
+  border-radius: spacing.$borderRadius;
 
   &-top {
     border-bottom-right-radius: 0;
@@ -77,12 +80,12 @@
 
 .border {
   border-style: solid;
-  border-width: $borderWidth;
+  border-width: spacing.$borderWidth;
 
   &-thin { border-width: 0.0625em; }
-  &-regular { border-width: $borderWidth; }
-  &-thick { border-width: $borderThick; }
-  &-thicker { border-width: $borderThicker; }
+  &-regular { border-width: spacing.$borderWidth; }
+  &-thick { border-width: spacing.$borderThick; }
+  &-thicker { border-width: spacing.$borderThicker; }
 
   &-top {
     border-right-width: 0;

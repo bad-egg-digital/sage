@@ -1,4 +1,6 @@
-@each $label, $value in $breakpoints {
+@use "../variables/breakpoints";
+
+@each $label, $value in breakpoints.$breakpoints {
   .min-#{$label} {
     @media (min-width: $value) {
       display: none;
