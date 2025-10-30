@@ -1,8 +1,11 @@
 {
-  "__generated__": "⚠️ This file is generated. Do not edit.",
+  "__preprocessed__": "This file is used to build the theme.json file in the `public/build/assets` directory. The built artifact includes Tailwind's colors, fonts, and font sizes.",
   "$schema": "https://schemas.wp.org/trunk/theme.json",
-  "version": 2,
+  "version": 3,
   "settings": {
+    "layout": {
+      "contentSize": "48rem"
+    },
     "background": {
       "backgroundImage": true
     },
@@ -24,16 +27,10 @@
     },
     "spacing": {
       "padding": true,
-      "units": [
-        "px",
-        "%",
-        "em",
-        "rem",
-        "vw",
-        "vh"
-      ]
+      "units": ["px", "%", "em", "rem", "vw", "vh"]
     },
     "typography": {
+      "defaultFontSizes": false,
       "customFontSize": false
     }
   }
