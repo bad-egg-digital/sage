@@ -1,0 +1,14 @@
+@use "../global/variables/colours";
+
+#mce-responses {
+  .response {
+    padding: 0 0 1em;
+    margin: 0 0 1em;
+    font-size: 0.875em;
+    border-bottom: 1px solid colours.$grey-lighter;
+  }
+}
+
+.knockout #mce-responses .response {
+  border-bottom-color: rgba(colours.$white, 0.3);
+}

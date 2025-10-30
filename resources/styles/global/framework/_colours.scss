@@ -1,9 +1,0 @@
-::selection {
-  color: $white;
-  background: $primary;
-}
-
-@each $color, $hex in $colors {
-  @include generate_colour_classes($color, $hex);
-  @include generate_button_colors($color, $hex);
-}

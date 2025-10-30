@@ -6,25 +6,56 @@
 
 namespace App;
 
-use function Roots\bundle;
+use Illuminate\Support\Facades\Vite;
 
 /**
- * Register the theme assets.
+ * Inject styles into the block editor.
+ *
+ * @return array
+ */
+add_filter('block_editor_settings_all', function ($settings) {
+    $style = Vite::asset('resources/css/editor.scss');
+
+    $settings['styles'][] = [
+        'css' => "@import url('{$style}')",
+    ];
+
+    return $settings;
+});
+
+/**
+ * Inject scripts into the block editor.
  *
  * @return void
  */
-add_action('wp_enqueue_scripts', function () {
-    bundle('app')->enqueue();
-}, 100);
+add_filter('admin_head', function () {
+    if (! get_current_screen()?->is_block_editor()) {
+        return;
+    }
+
+    $dependencies = json_decode(Vite::content('editor.deps.json'));
+
+    foreach ($dependencies as $dependency) {
+        if (! wp_script_is($dependency)) {
+            wp_enqueue_script($dependency);
+        }
+    }
+
+    echo Vite::withEntryPoints([
+        'resources/js/editor.js',
+    ])->toHtml();
+});
 
 /**
- * Register the theme assets with the block editor.
+ * Use the generated theme.json file.
  *
- * @return void
+ * @return string
  */
-add_action('enqueue_block_editor_assets', function () {
-    bundle('editor')->enqueue();
-}, 100);
+add_filter('theme_file_path', function ($path, $file) {
+    return $file === 'theme.json'
+        ? public_path('build/assets/theme.json')
+        : $path;
+}, 10, 2);
 
 /**
  * Register the initial theme setup.

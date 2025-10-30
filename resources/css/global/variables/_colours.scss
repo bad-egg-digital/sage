@@ -1,0 +1,105 @@
+@use "sass:color";
+
+//== Status
+$success: #39b54a;
+$error: #be1e2d;
+$alert: #eed202;
+
+//== Brand Colours
+$primary: #337ab7;
+$secondary: #5bc0de;
+$tertiary: color.invert($primary);
+$quaternary: color.invert($secondary);
+
+//== Primary Tints
+$primary-darkest: color.adjust($primary, $lightness: -30%);
+$primary-darker: color.adjust($primary, $lightness: -20%);
+$primary-dark: color.adjust($primary, $lightness: -10%);
+$primary-light: color.adjust($primary, $lightness: 10%);
+$primary-lighter: color.adjust($primary, $lightness: 20%);
+$primary-lightest: color.adjust($primary, $lightness: 30%);
+
+//== Secondary Tints
+$secondary-darkest: color.adjust($secondary, $lightness: -30%);
+$secondary-darker: color.adjust($secondary, $lightness: -20%);
+$secondary-dark: color.adjust($secondary, $lightness: -10%);
+$secondary-light: color.adjust($secondary, $lightness: 10%);
+$secondary-lighter: color.adjust($secondary, $lightness: 20%);
+$secondary-lightest: color.adjust($secondary, $lightness: 30%);
+
+//== Tertiary Tints
+$tertiary-darkest: color.adjust($tertiary, $lightness: -30%);
+$tertiary-darker: color.adjust($tertiary, $lightness: -20%);
+$tertiary-dark: color.adjust($tertiary, $lightness: -10%);
+$tertiary-light: color.adjust($tertiary, $lightness: 10%);
+$tertiary-lighter: color.adjust($tertiary, $lightness: 20%);
+$tertiary-lightest: color.adjust($tertiary, $lightness: 30%);
+
+//== quaternary Tints
+$quaternary-darkest: color.adjust($quaternary, $lightness: -30%);
+$quaternary-darker: color.adjust($quaternary, $lightness: -20%);
+$quaternary-dark: color.adjust($quaternary, $lightness: -10%);
+$quaternary-light: color.adjust($quaternary, $lightness: 10%);
+$quaternary-lighter: color.adjust($quaternary, $lightness: 20%);
+$quaternary-lightest: color.adjust($quaternary, $lightness: 30%);
+
+//== Shades
+$white:               white;
+$grey-lightest:       color.adjust(black, $lightness: 95%);
+$grey-lighter:        color.adjust(black, $lightness: 80%);
+$grey-light:          color.adjust(black, $lightness: 70%);
+$grey:                color.adjust(black, $lightness: 50%);
+$grey-dark:           color.adjust(black, $lightness: 40%);
+$grey-darker:         color.adjust(black, $lightness: 20%);
+$grey-darkest:        color.adjust(black, $lightness: 05%);
+$black:               black;
+
+//## Colour Array (used in generating colour classes).
+$colors: (
+  // shades
+  "black":     $black,
+  "grey-darkest": $grey-darkest,
+  "grey-darker": $grey-darker,
+  "grey-dark": $grey-dark,
+  "grey-light": $grey-light,
+  "grey-lighter": $grey-lighter,
+  "grey-lightest": $grey-lightest,
+  "white":     $white,
+  // status
+  "error":      $error,
+  "success":    $success,
+  "alert":      $alert,
+  // brand
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "tertiary":   $tertiary,
+  "quaternary":   $quaternary,
+  // primary tints
+  "primary-darkest":  $primary-darkest,
+  "primary-darker":   $primary-darker,
+  "primary-dark":     $primary-dark,
+  "primary-light":    $primary-light,
+  "primary-lighter":  $primary-lighter,
+  "primary-lightest": $primary-lightest,
+  // secondary tints
+  "secondary-darkest":  $secondary-darkest,
+  "secondary-darker":   $secondary-darker,
+  "secondary-dark":     $secondary-dark,
+  "secondary-light":    $secondary-light,
+  "secondary-lighter":  $secondary-lighter,
+  "secondary-lightest": $secondary-lightest,
+  // tertiary tints
+  "tertiary-darkest":  $tertiary-darkest,
+  "tertiary-darker":   $tertiary-darker,
+  "tertiary-dark":     $tertiary-dark,
+  "tertiary-light":    $tertiary-light,
+  "tertiary-lighter":  $tertiary-lighter,
+  "tertiary-lightest": $tertiary-lightest,
+  // quaternary tints
+  "quaternary-darkest":  $quaternary-darkest,
+  "quaternary-darker":   $quaternary-darker,
+  "quaternary-dark":     $quaternary-dark,
+  "quaternary-light":    $quaternary-light,
+  "quaternary-lighter":  $quaternary-lighter,
+  "quaternary-lightest": $quaternary-lightest,
+);
