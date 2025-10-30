@@ -1,19 +1,21 @@
+@use "../global/variables/colours";
+
 .wpcf7 .screen-reader-response {
   display: none;
 }
 
 .wpcf7-response-output {
-  @extend p;
-  @extend .container;
-  @extend .container-narrow;
+  @extend p !optional;
+  @extend .container !optional;
+  @extend .container-narrow !optional;
 
   padding: 1em 0 0;
   margin-top: 2em;
-  border: 1px solid $grey-light;
+  border: 1px solid colours.$grey-light;
   border-width: 1px 0 0;
 
   .knockout & {
-    border-color: rgba($white, 0.3);
+    border-color: rgba(colours.$white, 0.3);
   }
 }
 

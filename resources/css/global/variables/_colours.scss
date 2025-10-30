@@ -8,8 +8,8 @@ $alert: #eed202;
 //== Brand Colours
 $primary: #337ab7;
 $secondary: #5bc0de;
-$tertiary: invert($primary);
-$quaternary: invert($secondary);
+$tertiary: color.invert($primary);
+$quaternary: color.invert($secondary);
 
 //== Primary Tints
 $primary-darkest: color.adjust($primary, $lightness: -30%);

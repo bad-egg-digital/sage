@@ -1,26 +1,26 @@
 // Global Variables, Mixins, and Framework
-@import "global/variables";
-@import "global/mixins";
-@import "global/fonts";
-@import "global/typography";
-@import "global/framework";
+@use "global/variables";
+@use "global/mixins";
+@use "global/fonts";
+@use "global/typography";
+@use "global/framework";
 
 // Third Party Plugins
-@import "plugins/contact-form-7";
-@import "plugins/mce";
+@use "plugins/contact-form-7";
+@use "plugins/mce";
 
 // Sections
-@import "sections/header";
-@import "sections/footer";
+@use "sections/header";
+@use "sections/footer";
 
 // Components
-@import "components/forms";
-@import "components/button";
-@import "components/card";
+@use "components/forms";
+@use "components/button";
+@use "components/card";
 
 // Blocks
-@import "blocks/BadExample";
+@use "blocks/BadExample";
 
 // Page Styles
-@import "views/page";
+@use "views/page";
 

@@ -1,28 +1,32 @@
+@use "../global/fonts";
+@use "../global/variables/breakpoints";
+@use "../global/variables/colours";
+
 textarea {
   min-height: 10.375em;
 }
 
 input,
 textarea {
-  color: $grey;
+  color: colours.$grey;
   background: white;
   font-weight: 400;
   font-size: 1em;
-  font-family: $font;
+  font-family: fonts.$font;
   width: 100%;
   padding: 0.875em 1em;
   margin: 0 0 1em;
   // border-radius: 0.125em;
-  border: 0.0625em solid rgba($black, 0.1);
+  border: 0.0625em solid rgba(colours.$black, 0.1);
   outline: none;
   transition: all 300ms ease;
 
   &::placeholder {
-    color: $grey-light;
+    color: colours.$grey-light;
   }
 
   &:focus {
-    box-shadow: 0 0.25em 0.5em rgba($black, 0.1);
+    box-shadow: 0 0.25em 0.5em rgba(colours.$black, 0.1);
   }
 }
 
@@ -71,11 +75,11 @@ select {
     max-width: 100%;
     width: 100%;
     margin: 0;
-    font-family: $font;
+    font-family: fonts.$font;
   }
   /* stylelint-enable selector-class-pattern */
 
-  @media (min-width: $screen-sm) {
+  @media (min-width: breakpoints.$screen-sm) {
     &.half {
       flex: 0 0 calc(50% - 1em);
       max-width: calc(50% - 1em);
@@ -107,7 +111,7 @@ select {
     margin: 2em 0 0;
   }
 
-  @media (min-width: $screen-sm) {
+  @media (min-width: breakpoints.$screen-sm) {
     display: flex;
     flex-wrap: wrap;
 
@@ -164,8 +168,8 @@ select {
       }
 
       &-not-valid-tip {
-        background: $error;
-        color: $white;
+        background: colours.$error;
+        color: colours.$white;
         padding: 0.5em 1em;
         border-radius: 0 0 0.5em 0.5em;
         font-weight: 700;
@@ -177,11 +181,11 @@ select {
         width: calc(100% - 1em);
         flex: 0 0 calc(100% - 1em);
         text-align: center;
-        color: $white;
-        font-family: $font;
+        color: colours.$white;
+        font-family: fonts.$font;
         font-weight: 700;
-        background: $black;
-        border: 0.125em solid $white;
+        background: colours.$black;
+        border: 0.125em solid colours.$white;
         padding: 0.5em 1em;
         border-radius: 0.5em;
       }
@@ -207,7 +211,7 @@ select {
           display: block;
           width: 1.25em;
           height: 1.25em;
-          border: 0.125em solid $black;
+          border: 0.125em solid colours.$black;
           background: transparent;
           color: currentcolor;
 
@@ -250,15 +254,15 @@ select {
 
     &.sent {
       .wpcf7-response-output {
-        background: $success;
-        border-color: $white;
+        background: colours.$success;
+        border-color: colours.$white;
       }
     }
 
     &.invalid {
       .wpcf7-response-output {
-        background: $error;
-        border-color: $white;
+        background: colours.$error;
+        border-color: colours.$white;
       }
     }
 
@@ -277,7 +281,7 @@ select {
       .wpcf7 {
         &-checkbox {
           input[type="checkbox"] {
-            border-color: $white;
+            border-color: colours.$white;
           }
         }
       }
