@@ -14,7 +14,8 @@ class CssClasses {
 
         $classes = [
             'section',
-            'section-' . str_replace('acf/', '', $props['name']),
+            'section-' . $props['name'],
+            // 'section-' . str_replace('acf/', '', $props['name']),
             'bg-' . $this->colourTint([
                 'colour' => @$props['bg_colour'],
                 'tint' => @$props['bg_tint'],

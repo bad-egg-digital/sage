@@ -3,33 +3,6 @@
     "title": "Clone: Background Settings",
     "fields": [
         {
-            "key": "field_672d3ba78bc40",
-            "label": "Background Type",
-            "name": "bg_type",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "20",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "0": "Solid Colour",
-                "image": "Still Photo",
-                "video": "Looping Video"
-            },
-            "default_value": 0,
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
             "key": "field_67325dd23234e",
             "label": "Background Colour",
             "name": "bg_colour",
@@ -39,26 +12,33 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "20",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
             "choices": {
-                "primary": "<i class=\"fas fa-circle\" style=\"color: #7A74A6\"><\/i> Kimberly",
-                "secondary": "<i class=\"fas fa-circle\" style=\"color: #9C729E\"><\/i> Trendy Pink",
-                "tertiary": "<i class=\"fas fa-circle\" style=\"color: #B8728B\"><\/i> Turkish Rose",
-                "quaternary": "<i class=\"fas fa-circle\" style=\"color: #5875A0\"><\/i> Waikawa Gray",
-                "quinary": "<i class=\"fas fa-circle\" style=\"color: #4298B7\"><\/i> Boston Blue",
+                "primary": "<i class=\"fas fa-circle\" style=\"color: #002448\"><\/i> Prussian Blue",
+                "secondary": "<i class=\"fas fa-circle\" style=\"color: #fc533e\"><\/i> Sunset Orange",
+                "tertiary": "<i class=\"fas fa-circle\" style=\"color: #fdd400\"><\/i> Gold",
+                "quaternary": "<i class=\"fas fa-circle\" style=\"color: #7d89d1\"><\/i> Moody Blue",
+                "quinary": "<i class=\"fas fa-circle\" style=\"color: #ffdab4\"><\/i> Frangipani",
+                "0": "<i class=\"fas fa-circle\" style=\"color: #FFFFFF\"><\/i> White",
                 "black": "<i class=\"fas fa-circle\" style=\"color: #000000\"><\/i> Black",
-                "0": "<i class=\"fas fa-circle\" style=\"color: #FFFFFF\"><\/i> White"
+                "quaternary-white": "<i class=\"fas fa-circle text-gradient text-gradient-quaternary-white\"><\/i> Moody Blue to White",
+                "quinary-white": "<i class=\"fas fa-circle text-gradient text-gradient-quinary-white\"><\/i> Frangipani to White",
+                "white-quaternary": "<i class=\"fas fa-circle text-gradient text-gradient-white-quaternary\"><\/i> White to Moody Blue",
+                "white-quinary": "<i class=\"fas fa-circle text-gradient text-gradient-white-quinary\"><\/i> White to Frangipani"
             },
             "default_value": 0,
             "return_format": "value",
             "multiple": 0,
             "allow_null": 0,
+            "allow_in_bindings": 1,
             "ui": 1,
             "ajax": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
         },
         {
             "key": "field_67325e213234f",
@@ -70,7 +50,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "20",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -87,9 +67,12 @@
             "return_format": "value",
             "multiple": 0,
             "allow_null": 0,
+            "allow_in_bindings": 1,
             "ui": 1,
             "ajax": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
         },
         {
             "key": "field_67350f526abf1",
@@ -101,7 +84,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "20",
+                "width": "",
                 "class": "",
                 "id": ""
             },
@@ -116,413 +99,9 @@
             "allow_null": 0,
             "ui": 0,
             "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_67325e3432350",
-            "label": "Opacity",
-            "name": "bg_opacity",
-            "aria-label": "",
-            "type": "range",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_672d3ba78bc40",
-                        "operator": "!=",
-                        "value": "0"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "20",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 30,
-            "min": 5,
-            "max": 100,
-            "step": 5,
-            "prepend": "",
-            "append": "%"
-        },
-        {
-            "key": "field_6734b234f9c47",
-            "label": "Pattern Edge",
-            "name": "pattern",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "20",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "0": "Disabled",
-                "top": "Top",
-                "bottom": "Bottom",
-                "both": "Both"
-            },
-            "default_value": 0,
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_6734b2daf9c4b",
-            "label": "Top Pattern",
-            "name": "pattern_top",
-            "aria-label": "",
-            "type": "group",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_6734b234f9c47",
-                        "operator": "==",
-                        "value": "top"
-                    }
-                ],
-                [
-                    {
-                        "field": "field_6734b234f9c47",
-                        "operator": "==",
-                        "value": "both"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "40",
-                "class": "",
-                "id": ""
-            },
-            "layout": "block",
-            "sub_fields": [
-                {
-                    "key": "field_673514b45e977",
-                    "label": "Colour",
-                    "name": "colour",
-                    "aria-label": "",
-                    "type": "select",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "50",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "primary": "<i class=\"fas fa-circle\" style=\"color: #7A74A6\"><\/i> Kimberly",
-                        "secondary": "<i class=\"fas fa-circle\" style=\"color: #9C729E\"><\/i> Trendy Pink",
-                        "tertiary": "<i class=\"fas fa-circle\" style=\"color: #B8728B\"><\/i> Turkish Rose",
-                        "quaternary": "<i class=\"fas fa-circle\" style=\"color: #5875A0\"><\/i> Waikawa Gray",
-                        "quinary": "<i class=\"fas fa-circle\" style=\"color: #4298B7\"><\/i> Boston Blue",
-                        "black": "<i class=\"fas fa-circle\" style=\"color: #000000\"><\/i> Black",
-                        "0": "<i class=\"fas fa-circle\" style=\"color: #FFFFFF\"><\/i> White"
-                    },
-                    "default_value": false,
-                    "return_format": "",
-                    "multiple": 0,
-                    "allow_null": 0,
-                    "ui": 1,
-                    "ajax": 0,
-                    "placeholder": ""
-                },
-                {
-                    "key": "field_673514d85e978",
-                    "label": "Tint",
-                    "name": "tint",
-                    "aria-label": "",
-                    "type": "select",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "50",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "lightest": "Lightest",
-                        "lighter": "Lighter",
-                        "light": "Light",
-                        "0": "None",
-                        "dark": "Dark",
-                        "darker": "Darker",
-                        "darkest": "Darkest"
-                    },
-                    "default_value": 0,
-                    "return_format": "value",
-                    "multiple": 0,
-                    "allow_null": 0,
-                    "ui": 0,
-                    "ajax": 0,
-                    "placeholder": ""
-                }
-            ]
-        },
-        {
-            "key": "field_673514f15e979",
-            "label": "Bottom Pattern",
-            "name": "pattern_bottom",
-            "aria-label": "",
-            "type": "group",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "40",
-                "class": "",
-                "id": ""
-            },
-            "layout": "block",
-            "sub_fields": [
-                {
-                    "key": "field_673514f15e97a",
-                    "label": "Colour",
-                    "name": "colour",
-                    "aria-label": "",
-                    "type": "select",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "50",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "primary": "<i class=\"fas fa-circle\" style=\"color: #7A74A6\"><\/i> Kimberly",
-                        "secondary": "<i class=\"fas fa-circle\" style=\"color: #9C729E\"><\/i> Trendy Pink",
-                        "tertiary": "<i class=\"fas fa-circle\" style=\"color: #B8728B\"><\/i> Turkish Rose",
-                        "quaternary": "<i class=\"fas fa-circle\" style=\"color: #5875A0\"><\/i> Waikawa Gray",
-                        "quinary": "<i class=\"fas fa-circle\" style=\"color: #4298B7\"><\/i> Boston Blue",
-                        "black": "<i class=\"fas fa-circle\" style=\"color: #000000\"><\/i> Black",
-                        "0": "<i class=\"fas fa-circle\" style=\"color: #FFFFFF\"><\/i> White"
-                    },
-                    "default_value": false,
-                    "return_format": "value",
-                    "multiple": 0,
-                    "allow_null": 0,
-                    "ui": 1,
-                    "ajax": 0,
-                    "placeholder": ""
-                },
-                {
-                    "key": "field_673514f15e97b",
-                    "label": "Tint",
-                    "name": "tint",
-                    "aria-label": "",
-                    "type": "select",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_673514f15e97a",
-                                "operator": "!=",
-                                "value": "black"
-                            }
-                        ],
-                        [
-                            {
-                                "field": "field_673514f15e97a",
-                                "operator": "!=",
-                                "value": "0"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "50",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "lightest": "Lightest",
-                        "lighter": "Lighter",
-                        "light": "Light",
-                        "0": "None",
-                        "dark": "Dark",
-                        "darker": "Darker",
-                        "darkest": "Darkest"
-                    },
-                    "default_value": 0,
-                    "return_format": "value",
-                    "multiple": 0,
-                    "allow_null": 0,
-                    "ui": 0,
-                    "ajax": 0,
-                    "placeholder": ""
-                }
-            ]
-        },
-        {
-            "key": "field_672d3b128bc39",
-            "label": "Background Image",
-            "name": "bg_image",
-            "aria-label": "",
-            "type": "image",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_672d3ba78bc40",
-                        "operator": "!=",
-                        "value": "0"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "id",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": "",
-            "preview_size": "medium"
-        },
-        {
-            "key": "field_672d3b228bc3a",
-            "label": "Background Video",
-            "name": "bg_video",
-            "aria-label": "",
-            "type": "group",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_672d3ba78bc40",
-                        "operator": "==",
-                        "value": "video"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "layout": "block",
-            "sub_fields": [
-                {
-                    "key": "field_672d3b428bc3b",
-                    "label": "Extra Small",
-                    "name": "xs",
-                    "aria-label": "",
-                    "type": "file",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "20",
-                        "class": "",
-                        "id": ""
-                    },
-                    "return_format": "array",
-                    "library": "all",
-                    "min_size": "",
-                    "max_size": "",
-                    "mime_types": "mp4"
-                },
-                {
-                    "key": "field_672d3b678bc3c",
-                    "label": "Small",
-                    "name": "sm",
-                    "aria-label": "",
-                    "type": "file",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "20",
-                        "class": "",
-                        "id": ""
-                    },
-                    "return_format": "array",
-                    "library": "all",
-                    "min_size": "",
-                    "max_size": "",
-                    "mime_types": "mp4"
-                },
-                {
-                    "key": "field_672d3b728bc3d",
-                    "label": "Medium",
-                    "name": "md",
-                    "aria-label": "",
-                    "type": "file",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "20",
-                        "class": "",
-                        "id": ""
-                    },
-                    "return_format": "array",
-                    "library": "all",
-                    "min_size": "",
-                    "max_size": "",
-                    "mime_types": "mp4"
-                },
-                {
-                    "key": "field_672d3b7a8bc3e",
-                    "label": "Large",
-                    "name": "lg",
-                    "aria-label": "",
-                    "type": "file",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "20",
-                        "class": "",
-                        "id": ""
-                    },
-                    "return_format": "array",
-                    "library": "all",
-                    "min_size": "",
-                    "max_size": "",
-                    "mime_types": "mp4"
-                },
-                {
-                    "key": "field_672d3b838bc3f",
-                    "label": "Extra Large",
-                    "name": "xl",
-                    "aria-label": "",
-                    "type": "file",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "20",
-                        "class": "",
-                        "id": ""
-                    },
-                    "return_format": "array",
-                    "library": "all",
-                    "min_size": "",
-                    "max_size": "",
-                    "mime_types": "mp4"
-                }
-            ]
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
         }
     ],
     "location": [
@@ -543,5 +122,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1733505903
+    "modified": 1748194684
 }

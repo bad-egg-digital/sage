@@ -1,12 +1,28 @@
 <?php
 
 namespace App\Admin;
+use Blocks\Content;
 
 class Blocks
 {
     public function __construct()
     {
+        add_filter( 'block_categories_all' ,   [$this, 'categories']);
         add_action('allowed_block_types_all', [$this, 'blacklist'], 100, 2);
+    }
+
+    public function categories( $categories )
+    {
+
+        // Adding a new category.
+        $categories = array_merge([
+            [
+                'slug'  => 'badegg',
+                'title' => __('Provided by Bad Egg Digital'),
+            ],
+        ], $categories);
+
+        return $categories;
     }
 
     public function blacklist()
@@ -129,6 +145,10 @@ class Blocks
             'core/html',
             'core/social-links',
         ];
+
+        $Content = new Content\Content();
+
+        $blacklist = array_diff($blacklist, $Content->inner_blocks());
 
         return array_values( array_diff( $blocks, $blacklist ) );
     }

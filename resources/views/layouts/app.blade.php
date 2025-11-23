@@ -17,19 +17,24 @@
         {{ __('Skip to content', 'sage') }}
       </a>
 
-      @include('sections.header')
+      @include('sections.header.header')
 
-      <main id="main" class="main">
-        @yield('content')
-      </main>
+      <div class="wrapper">
+        <main id="main" class="main">
+          @yield('content')
+        </main>
 
-      @hasSection('sidebar')
-        <aside class="sidebar">
-          @yield('sidebar')
-        </aside>
-      @endif
+        @hasSection('sidebar')
+          <aside class="sidebar">
+            @yield('sidebar')
+          </aside>
+        @endif
 
-      @include('sections.footer')
+        @include('sections.footer.footer')
+      </div>
+
+      @include('partials.menu-off-canvas')
+
     </div>
 
     @php(do_action('get_footer'))

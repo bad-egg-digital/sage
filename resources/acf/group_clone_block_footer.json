@@ -1,5 +1,5 @@
 {
-    "key": "group_block_footer",
+    "key": "group_clone_block_footer",
     "title": "Clone: Block Footer",
     "fields": [
         {
@@ -7,7 +7,7 @@
             "label": "Footer",
             "name": "",
             "aria-label": "",
-            "type": "tab",
+            "type": "accordion",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -16,7 +16,8 @@
                 "class": "",
                 "id": ""
             },
-            "placement": "top",
+            "open": 0,
+            "multi_expand": 0,
             "endpoint": 0
         },
         {
@@ -53,7 +54,7 @@
                 "class": "",
                 "id": ""
             },
-            "layout": "table",
+            "layout": "block",
             "pagination": 0,
             "min": 0,
             "max": 2,
@@ -85,6 +86,54 @@
                     "parent_repeater": "field_67659b7502137"
                 }
             ]
+        },
+        {
+            "key": "field_682fb9ff58080",
+            "label": "Alignment",
+            "name": "footer_alignment",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "centre": "Centre",
+                "left": "Left",
+                "right": "Right"
+            },
+            "default_value": "centre",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_6828dac95eb68",
+            "label": "Footer (end)",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 0,
+            "multi_expand": 0,
+            "endpoint": 1
         }
     ],
     "location": [
@@ -105,5 +154,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1734712326
+    "modified": 1747958307
 }
