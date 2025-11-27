@@ -15,6 +15,7 @@ class Dynamic
         add_filter('acf/load_field/name=fontawesome_regular',   [ $this, 'load_fontawesome_regular_icons' ]);
         add_filter('acf/load_field/name=fontawesome_solid',     [ $this, 'load_fontawesome_solid_icons'   ]);
         add_filter('acf/load_field/name=fontawesome_brands',    [ $this, 'load_fontawesome_brand_icons'   ]);
+        add_action('acf/input/admin_footer',                    [$this, 'colour_ui'] );
     }
 
     public function load_colours( $field )
@@ -98,5 +99,43 @@ class Dynamic
 
         return $choices;
     }
+
+    public function colour_ui()
+    { ?>
+
+        <script type="text/javascript">
+            console.log("Script loaded from sage/app/ACF/Dynamic.php");
+
+            (function($) {
+
+                function my_custom_escaping_method( original_value){
+                    return original_value;
+                }
+
+                acf.add_filter('select2_escape_markup', function( escaped_value, original_value, $select, settings, field, instance ){
+                    console.log(field.data('name'));
+
+                    const whitelist = [
+                        'colour',
+                        'bg_colour',
+                        'angle_colour',
+                        'fontawesome_brands',
+                    ];
+
+                    // do something to the original_value to override the default escaping, then return it.
+                    // this value should still have some kind of escaping for security, but you may wish to allow specific HTML.
+                    if (whitelist.includes(field.data( 'name' ))) {
+                        return my_custom_escaping_method( original_value );
+                    }
+
+                    // return
+                    return escaped_value;
+                });
+
+            })(jQuery);
+
+        </script>
+
+    <?php }
 }
 

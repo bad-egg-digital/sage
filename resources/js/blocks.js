@@ -1,6 +1,6 @@
-import BadExample from "./blocks/BadExample";
+// import BadExample from "./blocks/BadExample";
 
 export default function()
 {
-  BadExample();
+  // BadExample();
 }

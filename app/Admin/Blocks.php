@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Admin;
-use Blocks\Content;
+use Blocks\Editor;
 
 class Blocks
 {
@@ -146,9 +146,9 @@ class Blocks
             'core/social-links',
         ];
 
-        $Content = new Content\Content();
+        $Editor = new Editor\Editor();
 
-        $blacklist = array_diff($blacklist, $Content->inner_blocks());
+        $blacklist = array_diff($blacklist, $Editor->inner_blocks());
 
         return array_values( array_diff( $blocks, $blacklist ) );
     }

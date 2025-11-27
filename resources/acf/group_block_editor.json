@@ -1,6 +1,6 @@
 {
-    "key": "group_block_content",
-    "title": "Block: Content",
+    "key": "group_block_editor",
+    "title": "Block: Editor",
     "fields": [
         {
             "key": "field_67659ad8dc795",
@@ -92,7 +92,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/badegg-content"
+                "value": "acf\/badegg-editor"
             }
         ]
     ],

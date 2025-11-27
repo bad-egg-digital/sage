@@ -4,7 +4,7 @@
     "fields": [
         {
             "key": "field_67325dd23234e",
-            "label": "Background Colour",
+            "label": "Colour",
             "name": "bg_colour",
             "aria-label": "",
             "type": "select",
@@ -17,17 +17,8 @@
                 "id": ""
             },
             "choices": {
-                "primary": "<i class=\"fas fa-circle\" style=\"color: #002448\"><\/i> Prussian Blue",
-                "secondary": "<i class=\"fas fa-circle\" style=\"color: #fc533e\"><\/i> Sunset Orange",
-                "tertiary": "<i class=\"fas fa-circle\" style=\"color: #fdd400\"><\/i> Gold",
-                "quaternary": "<i class=\"fas fa-circle\" style=\"color: #7d89d1\"><\/i> Moody Blue",
-                "quinary": "<i class=\"fas fa-circle\" style=\"color: #ffdab4\"><\/i> Frangipani",
                 "0": "<i class=\"fas fa-circle\" style=\"color: #FFFFFF\"><\/i> White",
-                "black": "<i class=\"fas fa-circle\" style=\"color: #000000\"><\/i> Black",
-                "quaternary-white": "<i class=\"fas fa-circle text-gradient text-gradient-quaternary-white\"><\/i> Moody Blue to White",
-                "quinary-white": "<i class=\"fas fa-circle text-gradient text-gradient-quinary-white\"><\/i> Frangipani to White",
-                "white-quaternary": "<i class=\"fas fa-circle text-gradient text-gradient-white-quaternary\"><\/i> White to Moody Blue",
-                "white-quinary": "<i class=\"fas fa-circle text-gradient text-gradient-white-quinary\"><\/i> White to Frangipani"
+                "black": "<i class=\"fas fa-circle\" style=\"color: #000000\"><\/i> Black"
             },
             "default_value": 0,
             "return_format": "value",
@@ -42,7 +33,7 @@
         },
         {
             "key": "field_67325e213234f",
-            "label": "Background Tint",
+            "label": "Tint",
             "name": "bg_tint",
             "aria-label": "",
             "type": "select",
@@ -122,5 +113,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1748194684
+    "modified": 1764224358
 }

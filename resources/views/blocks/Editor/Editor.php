@@ -1,10 +1,10 @@
 <?php
 
-namespace Blocks\Content;
+namespace Blocks\Editor;
 use App\Utilities;
 use App\ACF;
 
-class Content
+class Editor
 {
     public function __construct()
     {
@@ -14,12 +14,12 @@ class Content
     public function init()
     {
         acf_register_block_type([
-            'name'              => 'badegg/content',
-            'title'             => __('Content'),
-            'description'       => __('Wordpress blocks inside a wrapper'),
+            'name'              => 'badegg-editor',
+            'title'             => __('Text Editor'),
+            'description'       => __('Long form text content with support for things like headings, lists, and images.'),
             'render_callback'   => [ $this, 'render'],
             'category'          => 'badegg',
-            'icon'              => 'columns',
+            'icon'              => 'media-document',
             'supports'          => [
                 'align' => false,
                 'jsx' => true,
@@ -67,12 +67,38 @@ class Content
           $data = array_merge($data, $block);
           $data['section_classes'] = $CssClasses->section($data);
           $data['allowed_blocks'] = $this->inner_blocks();
+          $data['template'] = $this->default_template();
           $data['block'] = $block;
 
           echo \Roots\view("blocks.$name.$name", [
               'data' => $data,
               'block' => $block,
           ])->render();
+      }
+
+      public function default_template()
+      {
+        return [
+          [
+            'core/heading',
+            [
+              'level' => 1,
+              'placeholder' => 'Heading',
+            ],
+          ],
+          [
+            'core/paragraph',
+            [
+              'placeholder' => 'You can type your own text, change the heading level, or delete it altogether. You can also type over this text.',
+            ],
+          ],
+          [
+            'core/paragraph',
+            [
+              'placeholder' => 'To adjust block settings, click the Text Editor icon floating above this block to display them in the sidebar.',
+            ],
+          ],
+        ];
       }
 
       public function inner_blocks()
