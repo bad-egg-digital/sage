@@ -46,16 +46,6 @@ add_filter('admin_head', function () {
     ])->toHtml();
 });
 
-add_action( 'enqueue_block_editor_assets', function(){
-    wp_enqueue_script(
-        'restrict-core-blocks',
-        Vite::asset('resources/js/admin/block-restrictions.js'),
-        array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-blocks', 'wp-hooks' ),
-        'v1.0.0',
-        true
-    );
-});
-
 /**
  * Use the generated theme.json file.
  *
