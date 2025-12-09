@@ -29,7 +29,7 @@
       </div>
     @endif
 
-    <div class="container{{ @$data['container_width'] ?  ' container-' . $data['container_width'] : '' }} block-content">
+    <div class="container container-{{ @$data['container_width'] ? $data['container_width'] : 'medium' }} block-content">
       @yield('block-content')
     </div>
 

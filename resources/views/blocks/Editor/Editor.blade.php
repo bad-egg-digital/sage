@@ -10,7 +10,7 @@
   ">
 
   <div class="section-{{ $block['name'] }}-inner">
-    <div class="container{{ @$data['container_width'] ?  ' container-' . $data['container_width'] : '' }} block-content wysiwyg">
+    <div class="container container-{{ @$data['container_width'] ? $data['container_width'] : 'medium' }} block-content wysiwyg">
       <InnerBlocks
         allowedBlocks="{!! esc_attr( wp_json_encode( $data['allowed_blocks'] ) ) !!}"
         template="{!! esc_attr( wp_json_encode( $data['template'] ) ) !!}"
