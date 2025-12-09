@@ -3,7 +3,7 @@ import.meta.glob([
   '../fonts/**',
 ]);
 
-import Header from './sections/header.js';
+import Header from '../views/sections/header/header.js';
 import LazyLoad from './lib/Lazy.js';
 
 LazyLoad();

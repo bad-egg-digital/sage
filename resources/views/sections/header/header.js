@@ -24,6 +24,8 @@ export default function Header() {
     const position = body.offsetTop;
     const header = document.querySelector(".site-header");
 
+    if(!header) return;
+
     if (scrolled > position + header.offsetHeight) {
       body.classList.add("scrolled");
     } else {
