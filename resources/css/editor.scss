@@ -1,4 +1,18 @@
-@use "./app";
+@use "app";
+@use "global/variables/colours";
+
+.block-editor-block-list__layout .block-editor-block-list__block:not([contenteditable=true]) {
+  &:hover:after {
+    content: '';
+    outline: 2px solid colours.$wpblue;
+    position: absolute;
+    inset: 0;
+  }
+
+  &:focus:after {
+    outline-style: dashed;
+  }
+}
 
 .editor-styles-wrapper {
   padding: 1em;
@@ -10,11 +24,14 @@
     max-width: none;
   }
 
+  .is-root-container > .wp-block:not(.block-list-appender) {
+    margin: 0;
+  }
+
   .block-list-appender {
     width: 350px;
     max-width: 90%;
     margin: 1em auto;
-    background: white;
   }
 
   &__post-title-wrapper {
@@ -44,10 +61,5 @@
       line-height: 1;
       font-weight: 400;
     }
-  }
-
-  .wp-block-post-content {
-    // background: white;
-    // box-shadow: 0 0.5rem 1rem rgba(black, 0.15);
   }
 }
