@@ -36,7 +36,7 @@
   "autoload": {
     "psr-4": {
       "App\\": "app/",
-      "Blocks\\": "resources/views/blocks"
+      "Blocks\\": "resources/views/acf-blocks"
     }
   },
   "require": {

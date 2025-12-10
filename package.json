@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@roots/vite-plugin": "^1.0.2",
+    "fast-glob": "^3.3.3",
     "laravel-vite-plugin": "^1.2.0",
     "sass": "^1.93.2",
     "vite": "^6.2.0"

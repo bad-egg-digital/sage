@@ -1,6 +1,9 @@
 import { defineConfig } from 'vite'
 import laravel from 'laravel-vite-plugin'
 import { wordpressPlugin, wordpressThemeJson } from '@roots/vite-plugin';
+import fg from 'fast-glob'
+
+const blockEntries = fg.sync('resources/views/blocks/**/{index.jsx,style.scss,editor.js,editor.scss}')
 
 export default defineConfig({
   base: '/app/themes/badegg/public/build/',
@@ -11,6 +14,7 @@ export default defineConfig({
         'resources/js/app.js',
         'resources/css/editor.scss',
         'resources/js/editor.js',
+        ...blockEntries,
       ],
       refresh: true,
       url: process.env.APP_URL,

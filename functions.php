@@ -60,7 +60,7 @@ autoload_psr4('Admin');
 autoload_psr4('Ajax');
 
 function autoload_psr4_blocks() {
-    $path = __dir__ . '/resources/views/blocks/*';
+    $path = __dir__ . '/resources/views/acf-blocks/*';
     $namespace = 'Blocks\\';
 
     foreach(glob($path, GLOB_ONLYDIR) as $directory) {

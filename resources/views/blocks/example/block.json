@@ -1,0 +1,12 @@
+{
+  "apiVersion": 3,
+  "name": "badegg/example",
+  "title": "Example",
+  "category": "badegg",
+  "icon": "cover-image",
+  "description": "This is an example of a custom Wordpress Block created using the offical method.",
+  "editorScript": "example-editor-script",
+  "editorStyle": "example-editor-style",
+  "style": "example-style",
+  "render": "resources/blocks/example/render.blade.php"
+}

@@ -70,7 +70,7 @@ class Editor
     $data['template'] = $this->default_template();
     $data['block'] = $block;
 
-    echo \Roots\view("blocks.$name.$name", [
+    echo \Roots\view("acf-blocks.$name.$name", [
       'data' => $data,
       'block' => $block,
     ])->render();
