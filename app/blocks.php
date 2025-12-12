@@ -4,7 +4,18 @@
  * Theme Blocks.
  */
 
-namespace App;
+namespace App\Blocks;
+
+// Disable all core blocks except what we need as inner blocks
+// resources/js/editor.js handles hiding the inner blocks at the top level
+add_action('allowed_block_types_all', __NAMESPACE__ . '\\list_allowed', 100, 2);
+
+// add blocks to the allowed list via filter
+add_filter('badegg_block_types_allow', function($allowed){
+    return array_merge($allowed, [
+        // 'core/categories',
+    ]);
+});
 
 // Add the badegg block category
 add_filter( 'block_categories_all' , function ( $categories ) {
@@ -25,6 +36,7 @@ add_action('init', function () {
     $blocks = glob(get_theme_file_path('resources/views/blocks/*/block.json'));
 
     foreach ($blocks as $block_json) {
+        $json = json_decode($block_json);
         $slug = basename(dirname($block_json));
 
         // Editor JS
@@ -61,7 +73,7 @@ add_action('init', function () {
             );
         }
 
-        register_block_type($block_json, [
+        $props = [
             'editor_script' => "{$slug}-editor-script",
             'editor_style'  => "{$slug}-editor-style",
             'style'         => "{$slug}-style",
@@ -79,27 +91,15 @@ add_action('init', function () {
 
                 return $content;
             }
-        ]);
+        ];
+
+        if(!@$json['render_callback']) unset($props['render_callback']);
+
+        register_block_type($block_json, $props);
     }
 });
 
-// Disable most of the core blocks
-add_action('allowed_block_types_all', function(){
-    $blocks = array_keys( \WP_Block_Type_Registry::get_instance()->get_all_registered() );
-    $blacklist = array_diff(block_blacklist(), block_whitelist());
-
-    return array_values( array_diff( $blocks, $blacklist ) );
-}, 100, 2);
-
-function block_blacklist()
-{
-    $file = file_get_contents(get_theme_file_path("resources/json/core-block-blacklist.json"));
-    $json = json_decode($file);
-
-    return $json;
-}
-
-function block_whitelist()
+function list_inner()
 {
     $file = file_get_contents(get_theme_file_path("resources/json/core-block-whitelist.json"));
     $json = json_decode($file);
@@ -107,14 +107,32 @@ function block_whitelist()
     return $json;
 }
 
-function block_all()
+function list_all()
 {
-    $enabled_blocks = array_map(function($block) {
+    $blocks = array_map(function($block) {
         $name = $block->name;
 
         return $block->name;
 
     }, \WP_Block_Type_Registry::get_instance()->get_all_registered());
 
-    return array_values($enabled_blocks);
+    return array_values($blocks);
+}
+
+function list_custom()
+{
+    return array_filter(list_all(), function($value){
+        if (str_starts_with($value, 'acf/') || str_starts_with($value, 'badegg/')) return $value;
+    });
+}
+
+function list_allowed()
+{
+    $add_allowed = [];
+
+    return array_merge(
+        list_custom(),
+        list_inner(),
+        apply_filters('badegg_block_types_allow', $add_allowed),
+    );
 }

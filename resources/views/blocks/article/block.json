@@ -1,0 +1,10 @@
+{
+  "apiVersion": 3,
+  "name": "badegg/article",
+  "title": "Article Builder",
+  "category": "badegg",
+  "description": "A wrapper to contain core blocks",
+  "editorScript": "article-editor-script",
+  "editorStyle": "article-editor-style",
+  "style": "article-style"
+}

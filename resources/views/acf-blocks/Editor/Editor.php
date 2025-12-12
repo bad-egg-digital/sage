@@ -41,7 +41,7 @@ class Editor
     $themeURL = get_template_directory_uri();
 
     if($is_preview && @$block['data']['inserter']):
-      echo '<img style="display: block; width: 100%" src="' . $themeURL . '/resources/views/blocks/' . $name . '/' . $name . '.jpg" />';
+      echo '<img style="display: block; width: 100%" src="' . $themeURL . '/resources/views/acf-blocks/' . $name . '/' . $name . '.jpg" />';
       return;
     endif;
 
