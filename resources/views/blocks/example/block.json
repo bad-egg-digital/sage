@@ -4,9 +4,12 @@
   "title": "Example",
   "category": "badegg",
   "icon": "cover-image",
-  "description": "This is an example of a custom Wordpress Block created using the offical method.",
+  "description": "This is an example of a custom native block",
   "editorScript": "example-editor-script",
   "editorStyle": "example-editor-style",
   "style": "example-style",
-  "render": "resources/blocks/example/render.blade.php"
+  "script": "example-script",
+  "supports": {
+    "html": false
+  }
 }

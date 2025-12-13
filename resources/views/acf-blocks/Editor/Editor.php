@@ -66,7 +66,7 @@ class Editor
 
     $data = array_merge($data, $block);
     $data['section_classes'] = $CssClasses->section($data);
-    $data['allowed_blocks'] = \App\block_whitelist();
+    $data['allowed_blocks'] = \App\Blocks\list_inner();
     $data['template'] = $this->default_template();
     $data['block'] = $block;
 

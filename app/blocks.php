@@ -36,64 +36,75 @@ add_action('init', function () {
     $blocks = glob(get_theme_file_path('resources/views/blocks/*/block.json'));
 
     foreach ($blocks as $block_json) {
-        $json = json_decode($block_json);
+        $json = json_decode(file_get_contents($block_json));
         $slug = basename(dirname($block_json));
+        $blockPath = "resources/views/blocks/{$slug}";
 
-        // Editor JS
-        $editor_js_path = "resources/views/blocks/{$slug}/index.jsx";
-        if (file_exists(get_theme_file_path($editor_js_path))) {
+        $viewScript = "{$blockPath}/view.js";
+        $script = "{$blockPath}/script.js";
+        $editorCSS = "{$blockPath}/editor.scss";
+        $style = "{$blockPath}/style.scss";
+
+        // editorStyle
+        if (file_exists(get_theme_file_path($editorCSS))) {
+            wp_register_style(
+                "{$slug}-editor-style",
+                \Vite::asset($editorCSS),
+                [],
+                null
+            );
+        }
+
+        // script
+        if(file_exists(get_theme_file_path($script))) {
             wp_register_script(
-                "{$slug}-editor-script",
-                \Vite::asset($editor_js_path),
-                ['wp-blocks', 'wp-element', 'wp-editor'],
+                "{$slug}-script",
+                \Vite::asset($script),
+                [],
                 null,
                 true
             );
         }
 
-        // Editor SCSS (compiled to CSS)
-        $editor_css_path = "resources/views/blocks/{$slug}/editor.scss";
-        if (file_exists(get_theme_file_path($editor_css_path))) {
+        // style
+        if (file_exists(get_theme_file_path($style))) {
             wp_register_style(
-                "{$slug}-editor-style",
-                \Vite::asset($editor_css_path),
+                "{$slug}-style",
+                \Vite::asset($style),
                 [],
                 null
             );
         }
 
-        // Frontend SCSS (compiled to CSS)
-        $style_css_path = "resources/views/blocks/{$slug}/style.scss";
-        if (file_exists(get_theme_file_path($style_css_path))) {
-            wp_register_style(
-                "{$slug}-style",
-                \Vite::asset($style_css_path),
+        // viewScript
+        if(file_exists(get_theme_file_path($viewScript))) {
+            wp_register_script(
+                "{$slug}-view-script",
+                \Vite::asset($viewScript),
                 [],
-                null
+                null,
+                true
             );
         }
 
         $props = [
-            'editor_script' => "{$slug}-editor-script",
-            'editor_style'  => "{$slug}-editor-style",
-            'style'         => "{$slug}-style",
-            'render_callback' => function ($attributes, $content, $block) {
-                $slug = basename($block->name);
-                $view = "blocks.{$slug}.render";
-
-                if (\Roots\view()->exists($view)) {
-                    return \Roots\view($view, [
-                        'attributes' => $attributes,
-                        'content' => $content,
-                        'block' => $block,
-                    ]);
-                }
-
-                return $content;
-            }
+            'editor_style'      => "{$slug}-editor-style",
+            'style'             => "{$slug}-style",
+            'script'            => "{$slug}-script",
+            'view_script'       => "{$slug}-view-script",
         ];
 
-        if(!@$json['render_callback']) unset($props['render_callback']);
+        if(!property_exists($json, 'acf') && \Roots\view()->exists("blocks.{$slug}.render")) {
+            $props['render_callback']   = function ($attributes, $content, $block) {
+                $slug = basename($block->name);
+
+                return \Roots\view("blocks.{$slug}.render", [
+                    'attributes' => $attributes,
+                    'content' => $content,
+                    'block' => $block,
+                ]);
+            };
+        }
 
         register_block_type($block_json, $props);
     }
@@ -136,3 +147,36 @@ function list_allowed()
         apply_filters('badegg_block_types_allow', $add_allowed),
     );
 }
+
+function render_acf($block, $content = '', $is_preview = false, $post_id = 0, $wp_block = false, $context = false) {
+    $slug = basename($block['name']);
+    $block['slug'] = $slug;
+
+    $blade = \Roots\view("blocks.{$slug}.render", [
+        'block' => $block,
+        'content' => $content,
+        'is_preview' => $is_preview,
+        'post_id' => $post_id,
+        'wp_block' => $wp_block,
+        'context' => $context,
+    ]);
+
+    if($blade) {
+        echo $blade;
+    } else {
+        ob_start(); ?>
+
+        <section class="section bg-error knockout">
+            <div class="container container-small align-centre wysiwyg">
+                <h2>Missing Blade Template</h2>
+                <p>(resources/views/blocks/<?= $slug ?>/render.blade.php)</p>
+            </div>
+        </section>
+
+        <?php echo ob_get_clean();
+    }
+}
+
+add_action('wp_footer', function(){
+    echo '<pre>',print_r(list_allowed()),'</pre>';
+});

@@ -1,21 +1,49 @@
 import { defineConfig } from 'vite'
 import laravel from 'laravel-vite-plugin'
 import { wordpressPlugin, wordpressThemeJson } from '@roots/vite-plugin';
-import fg from 'fast-glob'
+import fg from 'fast-glob';
+import path from 'path';
 
-const blockEntries = fg.sync('resources/views/blocks/**/{index.jsx,style.scss,editor.js,editor.scss}')
+function blockAsset(file)
+{
+  const files = fg.sync('resources/views/blocks/**/' + file);
+  let list = {};
+
+  files.forEach(file => {
+    const parts = file.split(path.sep);
+    const fileName = parts[parts.length - 1];
+    const extension = fileName.split('.').pop();
+    const blockName = parts[parts.length - 2];
+
+    list[`blocks/${blockName}/${fileName.replace('.' + extension, '')}`] = `resources/views/blocks/${blockName}/${fileName}`;
+  });
+
+  return list;
+}
+
+const editorStyle = blockAsset('editor.scss');
+const script = blockAsset('script.js');
+const viewScript = blockAsset('view.js');
+const style = blockAsset('style.scss');
 
 export default defineConfig({
   base: '/app/themes/badegg/public/build/',
   plugins: [
     laravel({
-      input: [
-        'resources/css/app.scss',
-        'resources/js/app.js',
-        'resources/css/editor.scss',
-        'resources/js/editor.js',
-        ...blockEntries,
-      ],
+      input: {
+        // 'resources/css/app.scss',
+        // 'resources/js/app.js',
+        // 'resources/css/editor.scss',
+        // 'resources/js/editor.js',
+        'css/app': 'resources/css/app.scss',
+        'js/app': 'resources/js/app.js',
+        'css/editor': 'resources/css/editor.scss',
+        'js/editor': 'resources/js/editor.js',
+        ...editorStyle,
+        ...viewScript,
+        ...script,
+        ...style,
+      },
       refresh: true,
       url: process.env.APP_URL,
     }),

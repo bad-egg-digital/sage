@@ -1,11 +1,17 @@
-import { registerBlockType } from '@wordpress/blocks';
+// block.json's editorScript, loaded only in the block editor
 
-registerBlockType('badegg/example', {
+import { registerBlockType } from '@wordpress/blocks';
+import { useBlockProps } from '@wordpress/block-editor';
+import metadata from './block.json';
+
+registerBlockType(metadata.name, {
   edit() {
+    const blockProps = useBlockProps();
+
     return (
-      <section className="block-badegg-example">
+      <section { ...blockProps }>
         <h2>Bad Egg Block Example</h2>
       </section>
     );
-  },
+  }
 });

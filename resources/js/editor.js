@@ -1,5 +1,6 @@
 import domReady from '@wordpress/dom-ready';
 import blockWhitelist from '../json/core-block-whitelist.json';
+import.meta.glob('../views/blocks/**/{index.jsx,index.js}', { eager: true })
 
 domReady(() => {
   const TEXT_EDITOR_BLOCKS = [
