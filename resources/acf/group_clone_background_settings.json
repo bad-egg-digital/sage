@@ -17,7 +17,9 @@
                 "id": ""
             },
             "choices": {
-                "0": "<i class=\"fas fa-circle\" style=\"color: #FFFFFF\"><\/i> White",
+                "0": "auto",
+                "primary": "<i class=\"fas fa-circle\" style=\"color: #dd3333\"><\/i> Punch",
+                "white": "<i class=\"fas fa-circle\" style=\"color: #FFFFFF\"><\/i> White",
                 "black": "<i class=\"fas fa-circle\" style=\"color: #000000\"><\/i> Black"
             },
             "default_value": 0,
@@ -39,7 +41,29 @@
             "type": "select",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_67325dd23234e",
+                        "operator": "!=",
+                        "value": "0"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_67325dd23234e",
+                        "operator": "!=",
+                        "value": "black"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_67325dd23234e",
+                        "operator": "!=",
+                        "value": "white"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "50",
                 "class": "",
@@ -113,5 +137,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1764224358
+    "modified": 1765746167
 }

@@ -10,7 +10,7 @@ registerBlockType(metadata.name, {
     const blockProps = useBlockProps();
 
     return (
-      <section { ...blockProps }>
+      <div { ...blockProps }>
         <div className="container">
           <InnerBlocks
             allowedBlocks={ allowedBlocks }
@@ -24,16 +24,16 @@ registerBlockType(metadata.name, {
             }
           />
         </div>
-      </section>
+      </div>
     );
   },
   save() {
     return (
-      <section { ...useBlockProps.save() }>
+      <div { ...useBlockProps.save() }>
         <div className="container">
           <InnerBlocks.Content />
         </div>
-      </section>
+      </div>
     )
   }
 });

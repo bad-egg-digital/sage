@@ -13,13 +13,13 @@ button {
 
 button,
 input[type="submit"] {
-  &.button {
+  &.btn {
     appearance: none;
   }
 }
 
 %button,
-.button {
+.btn {
   display: inline-block;
   padding: 0.5em 1.25em;
   border: 0.125em solid colours.$black;
@@ -102,10 +102,10 @@ input[type="submit"] {
   &.bigger { font-size: 1.5em; }
 }
 
-.button-wrap {
+.btn-wrap {
   margin: 1.5em -0.25em -0.25em;
 
-  .button {
+  .btn {
     margin: 0.25em;
   }
 }

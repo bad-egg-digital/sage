@@ -6,6 +6,17 @@
 
 namespace App\Blocks;
 
+add_filter('block_type_metadata', function($metadata){
+    $name = $metadata['name'];
+
+    if (str_starts_with($name, 'core/') ) {
+        unset($metadata['supports']['color']);
+        unset($metadata['supports']['typography']);
+    }
+
+    return $metadata;
+});
+
 // Disable all core blocks except what we need as inner blocks
 // resources/js/editor.js handles hiding the inner blocks at the top level
 add_action('allowed_block_types_all', __NAMESPACE__ . '\\list_allowed', 100, 2);
@@ -152,14 +163,17 @@ function render_acf($block, $content = '', $is_preview = false, $post_id = 0, $w
     $slug = basename($block['name']);
     $block['slug'] = $slug;
 
-    $blade = \Roots\view("blocks.{$slug}.render", [
-        'block' => $block,
-        'content' => $content,
-        'is_preview' => $is_preview,
-        'post_id' => $post_id,
-        'wp_block' => $wp_block,
-        'context' => $context,
-    ]);
+    $blade = \Roots\view(
+        "blocks.{$slug}.render",
+        [
+            'block' => $block,
+            'content' => $content,
+            'is_preview' => $is_preview,
+            'post_id' => $post_id,
+            'wp_block' => $wp_block,
+            'context' => $context,
+        ],
+    );
 
     if($blade) {
         echo $blade;
@@ -176,7 +190,3 @@ function render_acf($block, $content = '', $is_preview = false, $post_id = 0, $w
         <?php echo ob_get_clean();
     }
 }
-
-add_action('wp_footer', function(){
-    echo '<pre>',print_r(list_allowed()),'</pre>';
-});

@@ -5,7 +5,7 @@
 @mixin generate_button_colors($name, $hex) {
 
   $buttons: (
-    ".button",
+    ".btn",
     "button",
     "input[type=submit]",
   );

@@ -27,9 +27,10 @@
 }
 
 .container {
-  width: 90%;
+  width: calc(100% - spacing.$innerMedium * 2);
   margin: auto;
 
+  &-full { width: auto; }
   &-large { max-width: spacing.$containerLarge; }
   &-medium { max-width: spacing.$containerMedium; }
   &-small { max-width: spacing.$containerSmall; }

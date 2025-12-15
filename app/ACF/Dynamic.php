@@ -8,14 +8,15 @@ class Dynamic
 {
     public function __construct()
     {
-        add_filter('acf/load_field/name=colour',                [ $this, 'load_colours'   ]);
-        add_filter('acf/load_field/name=bg_colour',             [ $this, 'load_colours'   ]);
-        add_filter('acf/load_field/name=tint',                  [ $this, 'load_tints'   ]);
-        add_filter('acf/load_field/name=bg_tint',               [ $this, 'load_tints'   ]);
+        add_filter('acf/load_field/name=colour',                [ $this, 'load_colours' ]);
+        add_filter('acf/load_field/name=bg_colour',             [ $this, 'load_colours' ]);
+        add_filter('acf/load_field/name=tint',                  [ $this, 'load_tints' ]);
+        add_filter('acf/load_field/name=bg_tint',               [ $this, 'load_tints' ]);
+        add_filter('acf/load_field/name=container_width',       [ $this, 'container_width' ]);
         add_filter('acf/load_field/name=fontawesome_regular',   [ $this, 'load_fontawesome_regular_icons' ]);
-        add_filter('acf/load_field/name=fontawesome_solid',     [ $this, 'load_fontawesome_solid_icons'   ]);
-        add_filter('acf/load_field/name=fontawesome_brands',    [ $this, 'load_fontawesome_brand_icons'   ]);
-        add_action('acf/input/admin_footer',                    [$this, 'colour_ui'] );
+        add_filter('acf/load_field/name=fontawesome_solid',     [ $this, 'load_fontawesome_solid_icons' ]);
+        add_filter('acf/load_field/name=fontawesome_brands',    [ $this, 'load_fontawesome_brand_icons' ]);
+        add_action('acf/input/admin_footer',                    [ $this, 'colour_ui' ]);
     }
 
     public function load_colours( $field )
@@ -25,7 +26,9 @@ class Dynamic
 
         $colours = $colour->values();
 
-        $field['choices'] = [];
+        $field['choices'] = [
+            '0' => __('None', 'badegg'),
+        ];
 
         foreach($colours as $slug => $hex):
             $field['choices'][$slug] = '<i class="fas fa-circle" style="color: '. $hex .'"></i> ' . @$NameThatColour->name($hex)['name'];
@@ -47,9 +50,23 @@ class Dynamic
                 $field['choices'][$slug] = ucfirst($slug);
 
             else:
-                $field['choices'][0] = 'None';
+                $field['choices'][0] =  __('None', 'badegg');
             endif;
         endforeach;
+
+        return $field;
+    }
+
+    public function container_width( $field )
+    {
+        $field['choices'] = [
+            0 => 'Auto',
+            'narrow' => __('Narrow', 'badegg'),
+            'small'  => __('Small', 'badegg'),
+            'medium' => __('Medium', 'badegg'),
+            'large'  => __('Large', 'badegg'),
+            'full'   => __('Edge to edge', 'badegg'),
+        ];
 
         return $field;
     }

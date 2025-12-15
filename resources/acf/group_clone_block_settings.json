@@ -3,7 +3,7 @@
     "title": "Clone: Block Settings",
     "fields": [
         {
-            "key": "field_673511c31122f",
+            "key": "field_69403228d2637",
             "label": "Settings",
             "name": "",
             "aria-label": "",
@@ -21,11 +21,11 @@
             "endpoint": 0
         },
         {
-            "key": "field_680016e0fac24",
-            "label": "Anchor ID",
-            "name": "section_anchor_id",
+            "key": "field_694031b513e66",
+            "label": "",
+            "name": "settings",
             "aria-label": "",
-            "type": "text",
+            "type": "group",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -34,136 +34,117 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "#",
-            "append": ""
-        },
-        {
-            "key": "field_6800097e61765",
-            "label": "Container Width",
-            "name": "container_width",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "full": "Full Width",
-                "large": "Large",
-                "medium": "Medium",
-                "small": "Small",
-                "narrow": "Narrow"
-            },
-            "default_value": "medium",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "allow_in_bindings": 1,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
-            "create_options": 0,
-            "save_options": 0
-        },
-        {
-            "key": "field_67350eb62cdf9",
-            "label": "Top Padding",
-            "name": "padding_top",
-            "aria-label": "",
-            "type": "radio",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "choices": [
-                "On",
-                "Off"
-            ],
-            "default_value": "",
-            "return_format": "value",
-            "allow_null": 0,
-            "other_choice": 0,
-            "layout": "horizontal",
-            "save_other_choice": 0
-        },
-        {
-            "key": "field_673510c1dc830",
-            "label": "Bottom Padding",
-            "name": "padding_bottom",
-            "aria-label": "",
-            "type": "radio",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "choices": [
-                "On",
-                "Off"
-            ],
-            "default_value": "",
-            "return_format": "value",
-            "allow_null": 0,
-            "other_choice": 0,
-            "layout": "horizontal",
-            "save_other_choice": 0
-        },
-        {
-            "key": "field_6735258c2d9ff",
-            "label": "Background",
-            "name": "",
-            "aria-label": "",
-            "type": "accordion",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "open": 1,
-            "multi_expand": 1,
-            "endpoint": 0
-        },
-        {
-            "key": "field_67350aeb146ca",
-            "label": "Background",
-            "name": "background",
-            "aria-label": "",
-            "type": "clone",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "clone": [
-                "group_clone_background_settings"
-            ],
-            "display": "seamless",
             "layout": "block",
-            "prefix_label": 0,
-            "prefix_name": 0
+            "sub_fields": [
+                {
+                    "key": "field_67350eb62cdf9",
+                    "label": "Top Padding",
+                    "name": "padding_top",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": [
+                        "On",
+                        "Off"
+                    ],
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "layout": "horizontal",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_673510c1dc830",
+                    "label": "Bottom Padding",
+                    "name": "padding_bottom",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": [
+                        "On",
+                        "Off"
+                    ],
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "layout": "horizontal",
+                    "save_other_choice": 0
+                },
+                {
+                    "key": "field_6800097e61765",
+                    "label": "Container Width",
+                    "name": "container_width",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "0": "Auto",
+                        "narrow": "Narrow",
+                        "small": "Small",
+                        "medium": "Medium",
+                        "large": "Large",
+                        "full": "Edge to edge"
+                    },
+                    "default_value": 0,
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "allow_in_bindings": 1,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "create_options": 0,
+                    "save_options": 0
+                },
+                {
+                    "key": "field_67350aeb146ca",
+                    "label": "Background",
+                    "name": "background",
+                    "aria-label": "",
+                    "type": "clone",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "clone": [
+                        "group_clone_background_settings"
+                    ],
+                    "display": "seamless",
+                    "layout": "block",
+                    "prefix_label": 0,
+                    "prefix_name": 0
+                }
+            ]
         },
         {
-            "key": "field_6828da67543fc",
+            "key": "field_69403239d2638",
             "label": "Settings (end)",
             "name": "",
             "aria-label": "",
@@ -199,5 +180,6 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1764247227
+    "display_title": "",
+    "modified": 1765815052
 }

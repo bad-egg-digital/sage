@@ -40,7 +40,7 @@ class Colour
             endforeach;
         endif;
 
-        $values['0'] = '#FFFFFF';
+        $values['white'] = '#FFFFFF';
         $values['black'] = '#000000';
 
         return $values;

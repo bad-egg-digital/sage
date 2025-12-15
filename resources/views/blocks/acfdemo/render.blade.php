@@ -1,3 +1,10 @@
-<section class="wp-block-{{ $block['slug'] }}">
-  <h2>ACF Example</h2>
-</section>
+@extends('layouts.block-acf', [
+  'block' => $block,
+  'is_preview' => $is_preview,
+  'context' => $context,
+  'knockout' => true,
+])
+
+@section('block-content')
+  {!! the_field('content') !!}
+@overwrite

@@ -3,56 +3,94 @@
 namespace App\Utilities;
 
 class CssClasses {
-    public function section($props = [])
+    public function section($props = [], $name = 'unnamed', $knockout = false)
     {
-        $Colour = new Colour;
-        $hex = $Colour->name2hex(@$props['bg_colour'], @$props['bg_tint']);
+        $defaults = [
+            'padding_top' => null,
+            'padding_bottom' => null,
+            'bg_colour' => null,
+            'bg_tint' => null,
+            'contrast' => null,
+            'bg_image' => null,
+        ];
 
-        $pattern = @$props['pattern'];
-        $pattern_top = @$props['pattern_top'];
-        $pattern_bottom = @$props['pattern_bottom'];
+        $props = wp_parse_args($props, $defaults);
+
+        $Colour = new Colour;
+        $hex = $Colour->name2hex($props['bg_colour'], $props['bg_tint']);
 
         $classes = [
             'section',
-            'section-' . $props['name'],
-            // 'section-' . str_replace('acf/', '', $props['name']),
-            'bg-' . $this->colourTint([
-                'colour' => @$props['bg_colour'],
-                'tint' => @$props['bg_tint'],
-            ]),
+            'section-' . str_replace('/', '-', $name),
         ];
 
-        if($Colour->is_dark($hex) && $this->is_knockout_block($props['name']))
+        if($props['bg_colour'])
+            $classes[] = 'bg-' . $this->colourTint([
+                'colour' => $props['bg_colour'],
+                'tint' => $props['bg_tint'],
+            ]);
+
+        if(($knockout && $Colour->is_dark($hex) || $props['contrast'] == 'light'))
             $classes[] = 'knockout';
 
-        if(@$props['padding_top'])
+        if($props['padding_top'])
             $classes[] = 'section-zero-top';
 
-        if(@$props['padding_bottom'])
+        if($props['padding_bottom'])
             $classes[] = 'section-zero-bottom';
 
-        if($pattern):
-            if($pattern == 'both'):
-                $classes[] =  'pattern-top';
-                $classes[] =  'pattern-bottom';
-
-            else:
-                $classes[] = 'pattern-' . $pattern;
-
-            endif;
-
-            if(in_array($pattern, ['top', 'both']))
-                $classes[] = 'pattern-top-' . $this->colourTint($pattern_top);
-
-            if(in_array($pattern, ['bottom', 'both']))
-                $classes[] = 'pattern-bottom-' . $this->colourTint($pattern_bottom);
-
-        endif;
-
-        if(@$props['bg_image'])
+        if($props['bg_image'])
             $classes[] = "bg-watermarked";
 
-        if(@$props['className']) $args = array_merge($classes, explode(' ', $props['className']));
+        return $classes;
+    }
+
+    public function container($args = [], $bg_props = [])
+    {
+        $args = wp_parse_args($args, [
+            'width' => null,
+            'location' => null,
+            'section' => false,
+            'align' => null,
+            'wysiwyg' => false,
+        ]);
+
+        $bg_props = wp_parse_args($bg_props, [
+            'bg_colour' => null,
+            'bg_tint' => null,
+            'contrast' => null,
+        ]);
+
+        $Colour = new Colour;
+        $hex = $Colour->name2hex($bg_props['bg_colour'], $bg_props['bg_tint']);
+
+        $classes = [
+            'container',
+        ];
+
+        if($args['width'])
+            $classes[] = 'container-' . $args['width'];
+
+        if($args['location'])
+            $classes[] = $args['location'];
+
+        if($args['section'])
+            $classes[] = 'section';
+
+        if(str_contains($args['location'], 'intro'))
+            $classes[] = 'section-zero-top';
+
+        if(str_contains($args['location'], 'footer'))
+            $classes[] = 'section-zero-bottom';
+
+        if($args['wysiwyg'])
+            $classes[] = 'wysiwyg';
+
+        if($args['align'])
+            $classes[] = 'align-' . $args['align'];
+
+        if(($Colour->is_dark($hex) || $bg_props['contrast'] == 'light'))
+            $classes[] = 'knockout';
 
         return $classes;
     }
@@ -94,7 +132,7 @@ class CssClasses {
     public function is_knockout_block($name = null)
     {
         $blacklist = [
-            'bad-example',
+            'badegg/acfdemo',
         ];
 
         if(in_array($name, $blacklist)):

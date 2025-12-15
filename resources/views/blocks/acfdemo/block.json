@@ -6,12 +6,6 @@
   "description": "An example block powered by ACF",
   "keywords": ["acf", "demo"],
 
-  "editorScript": "acfdemo-editor-script",
-  "editorStyle": "acfdemo-editor-style",
-  "script": "acfdemo-script",
-  "style": "acfdemo-style",
-  "viewScript": "acfdemo-view-script",
-
   "acf": {
       "mode": "preview",
       "validate": "false",

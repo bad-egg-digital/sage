@@ -2,10 +2,6 @@
 @use "../global/variables/breakpoints";
 @use "../global/variables/colours";
 
-textarea {
-  min-height: 10.375em;
-}
-
 input,
 textarea {
   color: colours.$grey;
