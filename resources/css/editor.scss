@@ -15,7 +15,7 @@
 }
 
 .editor-styles-wrapper {
-  padding: 1em;
+  padding: 0;
   background: transparent;
 }
 
@@ -35,8 +35,11 @@
   }
 
   &__post-title-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 100;
     padding: 1rem;
-    margin: 0 0 3rem !important;
+    margin: 0 !important;
     background: white;
     box-shadow: 0 0.5rem 1rem rgba(black, 0.15);
   }
