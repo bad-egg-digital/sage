@@ -57,21 +57,8 @@ autoload_psr4('PostTypes');
 autoload_psr4('ACF');
 autoload_psr4('Utilities');
 autoload_psr4('Admin');
-autoload_psr4('Ajax');
+autoload_psr4('API');
 
-function autoload_psr4_blocks() {
-    $path = __dir__ . '/resources/views/acf-blocks/*';
-    $namespace = 'Blocks\\';
-
-    foreach(glob($path, GLOB_ONLYDIR) as $directory) {
-        $name = basename($directory);
-        $class = $namespace . $name . '\\' . $name;
-
-        new $class();
-    }
-}
-
-autoload_psr4_blocks();
 
 /*
 |--------------------------------------------------------------------------
