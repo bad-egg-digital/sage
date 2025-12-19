@@ -18,10 +18,12 @@ import {
   SelectControl,
   ToggleControl,
 } from '@wordpress/components';
+
 import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 import metadata from './block.json';
 import allowedBlocks from '../../../json/core-block-whitelist.json';
+import { containerClassNames, sectionClassNames } from '../../../js/lib/blocks/classNames';
 
 registerBlockType(metadata.name, {
   edit({ attributes, setAttributes }) {
@@ -40,18 +42,25 @@ registerBlockType(metadata.name, {
     ] = useState( [] );
 
     useEffect( () => {
-        apiFetch( { path: '/badegg/v1/blocks/container_width' } )
-            .then( ( data ) => {
-                setContainerWidthOptions( data );
-                setIsLoading( false );
-            } )
-            .catch( () => {
-                setContainerWidthOptions( [] );
-                setIsLoading( false );
-            } );
+      apiFetch( { path: '/badegg/v1/blocks/container-widths' } )
+        .then( ( data ) => {
+          setContainerWidthOptions( data );
+          setIsLoading( false );
+        } )
+        .catch( () => {
+          setContainerWidthOptions( [] );
+          setIsLoading( false );
+        } );
     }, [] );
 
-    console.log(attributes);
+    blockProps.className = sectionClassNames(
+      attributes,
+      blockProps.className,
+      [
+        'wysiwyg'
+      ]).join(' ');
+
+    console.log(blockProps.className);
 
     return (
       <div { ...blockProps }>
@@ -87,7 +96,7 @@ registerBlockType(metadata.name, {
             </PanelBody>
           </Panel>
         </InspectorControls>
-        <div className={`container container-${ attributes.container_width } align-${ attributes.alignment }`}>
+        <div className={ containerClassNames(attributes).join(' ') }>
           <InnerBlocks
             allowedBlocks={ allowedBlocks }
             defaultBlock={
@@ -106,7 +115,7 @@ registerBlockType(metadata.name, {
   save({ attributes }) {
     return (
       <div { ...useBlockProps.save() }>
-        <div className={`container container-${attributes.container_width} align-${ attributes.alignment }`}>
+        <div className={ containerClassNames(attributes).join() }>
           <InnerBlocks.Content />
         </div>
       </div>
