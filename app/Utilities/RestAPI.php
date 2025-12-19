@@ -1,8 +1,8 @@
 <?php
 
-namespace App\API;
+namespace App\Utilities;
 
-class Admin
+class RestAPI
 {
     public function __construct()
     {
@@ -11,16 +11,18 @@ class Admin
 
     public function blocks( )
     {
-        register_rest_route('badegg/v1', '/blocks/container_width', [
+        $restBase = 'badegg/v1';
+
+        register_rest_route($restBase, '/blocks/container-widths', [
             'methods' => 'GET',
-            'callback' => [ $this, 'container_width'],
+            'callback' => [ $this, 'containerWidths'],
             'permission_callback' => function(){
                 return true;
             },
         ]);
     }
 
-    public function container_width()
+    public function containerWidths()
     {
         $containerWidths = [
             [ 'label' => __('Auto', 'badegg'),          'value' => 0        ],
