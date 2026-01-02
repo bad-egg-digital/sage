@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Utilities;
+use ourcodeworld\NameThatColor\ColorInterpreter as NameThatColor;
 
 class RestAPI
 {
@@ -13,18 +14,27 @@ class RestAPI
     {
         $restBase = 'badegg/v1';
 
-        register_rest_route($restBase, '/blocks/container-widths', [
+        register_rest_route($restBase, '/blocks/config', [
             'methods' => 'GET',
-            'callback' => [ $this, 'containerWidths'],
+            'callback' => [ $this, 'config'],
             'permission_callback' => function(){
                 return true;
             },
         ]);
     }
 
+    public function config()
+    {
+        return rest_ensure_response([
+            'container' => $this->containerWidths(),
+            'colours' => $this->colours(),
+            'tints' => $this->tints(),
+        ]);
+    }
+
     public function containerWidths()
     {
-        $containerWidths = [
+        return [
             [ 'label' => __('Auto', 'badegg'),          'value' => 0        ],
             [ 'label' => __('Narrow', 'badegg'),        'value' => 'narrow' ],
             [ 'label' => __('Small', 'badegg'),         'value' => 'small'  ],
@@ -32,7 +42,39 @@ class RestAPI
             [ 'label' => __('Large', 'badegg'),         'value' => 'large'  ],
             [ 'label' => __('Edge to edge', 'badegg'),  'value' => 'full'   ],
         ];
-
-        return rest_ensure_response($containerWidths);
     }
+
+    public function colours()
+    {
+        $colour = new Colour;
+        $NameThatColour = new NameThatColor;
+
+        $palette = [];
+
+        $colours = $colour->values();
+
+        foreach($colours as $slug => $hex) {
+            $palette[] = [
+                'name' => esc_html__(@$NameThatColour->name($hex)['name'], 'badegg'),
+                'slug' => $slug,
+                'color' => $hex,
+            ];
+        }
+
+        return $palette;
+    }
+
+    public function tints()
+    {
+        return [
+            ['label' => __('Lightest',  'badegg'), 'value' => 'lightest'],
+            ['label' => __('Lighter',   'badegg'), 'value' => 'lighter' ],
+            ['label' => __('Light',     'badegg'), 'value' => 'light'   ],
+            ['label' => __('None',      'badegg'), 'value' => 0         ],
+            ['label' => __('Dark',      'badegg'), 'value' => 'dark'    ],
+            ['label' => __('Darker',    'badegg'), 'value' => 'darker'  ],
+            ['label' => __('Darkest',   'badegg'), 'value' => 'darkest' ],
+        ];
+    }
+
 }

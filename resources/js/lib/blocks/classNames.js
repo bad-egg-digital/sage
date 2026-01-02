@@ -28,6 +28,19 @@ export function sectionClassNames(attributes, defaultClasses, extraClasses = [])
   if('padding_bottom'in attributes && !attributes.padding_bottom)
     classNames.push('section-zero-bottom');
 
+  if('background_colour' in attributes && attributes.background_colour) {
+    let bg = `bg-${ attributes.background_colour }`;
+
+    if(
+      'background_tint' in attributes &&
+      attributes.background_tint != 0 &&
+      !['white', 'black'].includes(attributes.background_colour)
+    ) {
+      bg += `-${ attributes.background_tint }`;
+    }
+
+    classNames.push(bg);
+  }
 
   // combine arrays
   classNames = classNames.concat(defaultClasses).concat(extraClasses);

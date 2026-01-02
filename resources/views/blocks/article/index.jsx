@@ -17,6 +17,8 @@ import {
   PanelRow,
   SelectControl,
   ToggleControl,
+  ColorIndicator,
+  ColorPalette,
 } from '@wordpress/components';
 
 import { useState, useEffect } from '@wordpress/element';
@@ -35,20 +37,23 @@ registerBlockType(metadata.name, {
       alignment,
       padding_top,
       padding_bottom,
+      background_colour,
+      background_hex,
+      background_tint,
     } = attributes;
 
     const [
-      containerWidthOptions, setContainerWidthOptions,
+      configOptions, setConfigOptions,
     ] = useState( [] );
 
     useEffect( () => {
-      apiFetch( { path: '/badegg/v1/blocks/container-widths' } )
+      apiFetch( { path: '/badegg/v1/blocks/config' } )
         .then( ( data ) => {
-          setContainerWidthOptions( data );
+          setConfigOptions( data );
           setIsLoading( false );
         } )
         .catch( () => {
-          setContainerWidthOptions( [] );
+          setConfigOptions( [] );
           setIsLoading( false );
         } );
     }, [] );
@@ -60,7 +65,7 @@ registerBlockType(metadata.name, {
         'wysiwyg'
       ]).join(' ');
 
-    console.log(blockProps.className);
+    // console.log(attributes);
 
     return (
       <div { ...blockProps }>
@@ -76,7 +81,7 @@ registerBlockType(metadata.name, {
               <SelectControl
                 label={ __("Container Width", "badegg") }
                 value={ container_width }
-                options={ containerWidthOptions }
+                options={ configOptions.container }
                 onChange={ (value) => setAttributes({ container_width: value }) }
                 __next40pxDefaultSize={ true }
                 __nextHasNoMarginBottom={ true }
@@ -93,6 +98,46 @@ registerBlockType(metadata.name, {
                 onChange={(value) => setAttributes({ padding_bottom: value }) }
                 __nextHasNoMarginBottom
               />
+            </PanelBody>
+            <PanelBody title={ __("Background Colour", "badegg") }>
+              <ColorPalette
+                colors={ configOptions.colours }
+                value={ background_hex }
+                disableCustomColors={ true }
+                onChange={ ( value ) => {
+                  let slug, hex, selected = '';
+
+                  if(value) {
+                    selected = configOptions.colours.find(
+                      ( c ) => c.color === value
+                    );
+
+                    hex = value;
+                  }
+
+                  if(selected) {
+                    slug = selected.slug;
+                  }
+
+                  setAttributes( {
+                    background_colour: slug,
+                    background_hex: hex,
+                  });
+
+                } }
+              />
+
+              { 'background_colour' in attributes && attributes.background_colour ? (
+                <SelectControl
+                  label={ __("Tint", "badegg") }
+                  value={ background_tint }
+                  options={ configOptions.tints }
+                  onChange={ (value) => setAttributes({ background_tint: value }) }
+                  __next40pxDefaultSize={ true }
+                  __nextHasNoMarginBottom={ true }
+                />
+              ) : null }
+
             </PanelBody>
           </Panel>
         </InspectorControls>

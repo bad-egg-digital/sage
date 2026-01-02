@@ -11,7 +11,7 @@
   "attributes": {
     "container_width": {
       "type": "string",
-      "default": 0
+      "default": ""
     },
     "alignment": {
       "type": "string"
@@ -23,12 +23,24 @@
     "padding_bottom": {
       "type": "boolean",
       "default": true
+    },
+    "background_colour": {
+      "type": "string",
+      "default": ""
+    },
+    "background_hex": {
+      "type": "string",
+      "default": ""
+    },
+    "background_tint": {
+      "type": "string",
+      "default": "0"
     }
   },
   "supports": {
     "html": true,
     "color": {
-      "background": true,
+      "background": false,
       "text": false
     }
   }
