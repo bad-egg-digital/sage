@@ -103,6 +103,51 @@ add_action('init', function () {
             'style'             => "{$slug}-style",
             'script'            => "{$slug}-script",
             'view_script'       => "{$slug}-view-script",
+            'attributes'        => [
+                'container_width' => [
+                    'type' => 'string',
+                    'default' => '',
+                ],
+                'alignment' => [
+                    'type' => 'string',
+                ],
+                'padding_top' => [
+                    'type' => 'boolean',
+                    'default' => true
+                ],
+                'padding_bottom' => [
+                    'type' => 'boolean',
+                    'default' => true
+                ],
+                'background_colour' => [
+                    'type' => 'string',
+                    'default' => '',
+                ],
+                'background_hex' => [
+                    'type' => 'string',
+                    'default' => '',
+                ],
+                'background_tint' => [
+                    'type' => 'string',
+                    'default' => '0',
+                ],
+                'background_image' => [
+                    'type' => 'integer',
+                    'default' => 0,
+                ],
+                'background_url' => [
+                    'type' => 'string',
+                    'default' => '',
+                ],
+                'background_opacity' => [
+                    'type' => 'integer',
+                    'default' => 30
+                ],
+                'background_position' => [
+                    'type' => 'string',
+                    'default' => '',
+                ],
+            ],
         ];
 
         if(!property_exists($json, 'acf') && \Roots\view()->exists("blocks.{$slug}.render")) {

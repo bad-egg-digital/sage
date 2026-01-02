@@ -8,35 +8,6 @@
     "foreground": "#f58762"
   },
   "description": "A wrapper to contain core blocks",
-  "attributes": {
-    "container_width": {
-      "type": "string",
-      "default": ""
-    },
-    "alignment": {
-      "type": "string"
-    },
-    "padding_top": {
-      "type": "boolean",
-      "default": true
-    },
-    "padding_bottom": {
-      "type": "boolean",
-      "default": true
-    },
-    "background_colour": {
-      "type": "string",
-      "default": ""
-    },
-    "background_hex": {
-      "type": "string",
-      "default": ""
-    },
-    "background_tint": {
-      "type": "string",
-      "default": "0"
-    }
-  },
   "supports": {
     "html": true,
     "color": {

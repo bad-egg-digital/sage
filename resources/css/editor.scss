@@ -1,6 +1,10 @@
 @use "app";
 @use "global/variables/colours";
 
+html :where(.wp-block) {
+  max-width: none;
+}
+
 .block-editor-block-list__layout .block-editor-block-list__block:not([contenteditable=true]) {
   &:hover:after {
     content: '';

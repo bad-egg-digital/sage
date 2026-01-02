@@ -1,0 +1,15 @@
+
+
+.has-bg-image {
+  position: relative;
+
+  >.container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .badegg-block-background {
+    position: absolute;
+    inset: 0;
+  }
+}

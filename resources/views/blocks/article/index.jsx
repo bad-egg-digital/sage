@@ -2,6 +2,7 @@
 
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
+import { useSelect } from '@wordpress/data';
 
 import {
   useBlockProps,
@@ -9,6 +10,8 @@ import {
   InspectorControls,
   BlockControls,
   AlignmentToolbar,
+  MediaUpload,
+  MediaUploadCheck,
 } from '@wordpress/block-editor';
 
 import {
@@ -17,15 +20,20 @@ import {
   PanelRow,
   SelectControl,
   ToggleControl,
-  ColorIndicator,
+  RangeControl,
   ColorPalette,
+  Button,
 } from '@wordpress/components';
 
+// import { Image } from '@10up/block-components';
+
 import { useState, useEffect } from '@wordpress/element';
-import apiFetch from '@wordpress/api-fetch';
 import metadata from './block.json';
 import allowedBlocks from '../../../json/core-block-whitelist.json';
 import { containerClassNames, sectionClassNames } from '../../../js/lib/blocks/classNames';
+import AttachmentImage from '../../../js/lib/blocks/AttachmentImage';
+
+import apiFetch from '@wordpress/api-fetch';
 
 registerBlockType(metadata.name, {
   edit({ attributes, setAttributes }) {
@@ -40,6 +48,10 @@ registerBlockType(metadata.name, {
       background_colour,
       background_hex,
       background_tint,
+      background_image,
+      background_url,
+      background_position,
+      background_opacity,
     } = attributes;
 
     const [
@@ -76,7 +88,7 @@ registerBlockType(metadata.name, {
           />
         </BlockControls>
         <InspectorControls>
-          <Panel>
+          <Panel className="badegg-components-panel">
             <PanelBody title={ __("Settings", "badegg") }>
               <SelectControl
                 label={ __("Container Width", "badegg") }
@@ -87,23 +99,31 @@ registerBlockType(metadata.name, {
                 __nextHasNoMarginBottom={ true }
               />
               <ToggleControl
-                label={ __('Top Padding', 'badegg') }
+                label={ __('Top padding', 'badegg') }
                 checked={ padding_top }
                 onChange={(value) => setAttributes({ padding_top: value }) }
                 __nextHasNoMarginBottom
               />
               <ToggleControl
-                label={ __('Bottom Padding', 'badegg') }
+                label={ __('Bottom padding', 'badegg') }
                 checked={ padding_bottom }
                 onChange={(value) => setAttributes({ padding_bottom: value }) }
                 __nextHasNoMarginBottom
               />
             </PanelBody>
-            <PanelBody title={ __("Background Colour", "badegg") }>
+            <PanelBody
+              title={ __("Background", "badegg") }
+              initialOpen={ false }
+            >
+              <p style={{ textTransform: 'uppercase', fontSize: '11px' }} className="components-truncate components-text components-input-control__label">
+                { __('Colour', 'badegg') }
+              </p>
               <ColorPalette
                 colors={ configOptions.colours }
                 value={ background_hex }
+                clearable={ false }
                 disableCustomColors={ true }
+                style={{ marginBottom: '16px' }}
                 onChange={ ( value ) => {
                   let slug, hex, selected = '';
 
@@ -127,9 +147,9 @@ registerBlockType(metadata.name, {
                 } }
               />
 
-              { 'background_colour' in attributes && attributes.background_colour ? (
+              { 'background_colour' in attributes && attributes.background_colour && ![0, '0', 'white', 'black'].includes(attributes.background_colour) ? (
                 <SelectControl
-                  label={ __("Tint", "badegg") }
+                  label={ __("Background Tint", "badegg") }
                   value={ background_tint }
                   options={ configOptions.tints }
                   onChange={ (value) => setAttributes({ background_tint: value }) }
@@ -137,6 +157,57 @@ registerBlockType(metadata.name, {
                   __nextHasNoMarginBottom={ true }
                 />
               ) : null }
+
+              { background_image != 0 && (
+                <>
+                  <AttachmentImage
+                    imageId={ background_image }
+                    size="thumbnail"
+                  />
+                  <RangeControl
+                    __next40pxDefaultSize
+                    __nextHasNoMarginBottom
+                    label={ __("Opacity", "badegg") }
+                    value={ background_opacity }
+                    onChange={ ( value ) => setAttributes({ background_opacity: value }) }
+                    min={ 5 }
+                    max={ 100 }
+                  />
+                </>
+              )}
+
+              <PanelRow>
+                <MediaUploadCheck>
+                  <MediaUpload
+                    onSelect={ (media) => {
+                      setAttributes({
+                        background_image: media.id,
+                        background_url: media.url,
+                      });
+                    }}
+                    allowedTypes={ ['image'] }
+                    value={ background_image }
+                    render={ ({ open }) => (
+                      <Button
+                        onClick={ open }
+                        variant="primary"
+                      >
+                        { background_image ?  __("Replace image", "badegg") :  __("Choose image", "badegg") }
+                      </Button>
+                    )}
+                  />
+                </MediaUploadCheck>
+
+                { background_image != 0 && (
+                  <Button
+                    onClick={ () => setAttributes({ background_image: 0 }) }
+                    isDestructive
+                    variant="secondary"
+                  >
+                    { __("Remove image", "badegg") }
+                  </Button>
+                )}
+              </PanelRow>
 
             </PanelBody>
           </Panel>
@@ -154,6 +225,18 @@ registerBlockType(metadata.name, {
             }
           />
         </div>
+
+        { attributes.background_image != 0 && (
+          <div
+            className="badegg-block-background"
+            style={{
+              backgroundImage: `url(${background_url})`,
+              backgroundPosition: background_position,
+              opacity: Number(background_opacity) * 0.01,
+            }}
+          />
+        ) }
+
       </div>
     );
   },
