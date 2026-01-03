@@ -30,8 +30,9 @@ import {
 import { useState, useEffect } from '@wordpress/element';
 import metadata from './block.json';
 import allowedBlocks from '../../../json/core-block-whitelist.json';
-import { containerClassNames, sectionClassNames } from '../../../js/lib/blocks/classNames';
-import AttachmentImage from '../../../js/lib/blocks/AttachmentImage';
+import { containerClassNames, sectionClassNames } from '../../../js/blocks/lib/classNames';
+import AttachmentImage from '../../../js/blocks/components/AttachmentImage';
+import BackgroundImage from '../../../js/blocks/components/BackgroundImage';
 
 import apiFetch from '@wordpress/api-fetch';
 
@@ -52,6 +53,8 @@ registerBlockType(metadata.name, {
       background_url,
       background_position,
       background_opacity,
+      background_contrast,
+      background_fixed,
     } = attributes;
 
     const [
@@ -111,10 +114,7 @@ registerBlockType(metadata.name, {
                 __nextHasNoMarginBottom
               />
             </PanelBody>
-            <PanelBody
-              title={ __("Background", "badegg") }
-              initialOpen={ false }
-            >
+            <PanelBody title={ __("Background", "badegg") }>
               <p style={{ textTransform: 'uppercase', fontSize: '11px' }} className="components-truncate components-text components-input-control__label">
                 { __('Colour', 'badegg') }
               </p>
@@ -160,9 +160,21 @@ registerBlockType(metadata.name, {
 
               { background_image != 0 && (
                 <>
-                  <AttachmentImage
+                  {/* <AttachmentImage
                     imageId={ background_image }
                     size="thumbnail"
+                  /> */}
+                  <ToggleControl
+                    label={ __('Text Contrast', 'badegg') }
+                    checked={ background_contrast }
+                    onChange={(value) => setAttributes({ background_contrast: value }) }
+                    __nextHasNoMarginBottom
+                  />
+                  <ToggleControl
+                    label={ __('Fixed Position', 'badegg') }
+                    checked={ background_fixed }
+                    onChange={(value) => setAttributes({ background_fixed: value }) }
+                    __nextHasNoMarginBottom
                   />
                   <RangeControl
                     __next40pxDefaultSize
@@ -226,16 +238,7 @@ registerBlockType(metadata.name, {
           />
         </div>
 
-        { attributes.background_image != 0 && (
-          <div
-            className="badegg-block-background"
-            style={{
-              backgroundImage: `url(${background_url})`,
-              backgroundPosition: background_position,
-              opacity: Number(background_opacity) * 0.01,
-            }}
-          />
-        ) }
+        <BackgroundImage { ...attributes } />
 
       </div>
     );
@@ -243,7 +246,7 @@ registerBlockType(metadata.name, {
   save({ attributes }) {
     return (
       <div { ...useBlockProps.save() }>
-        <div className={ containerClassNames(attributes).join() }>
+        <div className={ containerClassNames(attributes).join(' ') }>
           <InnerBlocks.Content />
         </div>
       </div>

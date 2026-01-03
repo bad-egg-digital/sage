@@ -147,6 +147,14 @@ add_action('init', function () {
                     'type' => 'string',
                     'default' => '',
                 ],
+                'background_fixed' => [
+                    'type' => 'boolean',
+                    'default' => false,
+                ],
+                'background_contrast' => [
+                    'type' => 'boolean',
+                    'default' => false,
+                ],
             ],
         ];
 
