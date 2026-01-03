@@ -14,10 +14,8 @@ export function containerClassNames(attributes, bgProps)
   return classNames;
 }
 
-export function sectionClassNames(attributes, defaultClasses, extraClasses = [])
+export function sectionClassNames(attributes, defaultClasses = '', extraClasses = [])
 {
-  defaultClasses = defaultClasses.split(' ');
-
   let classNames = [
     'section',
   ];
