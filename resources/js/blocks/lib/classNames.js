@@ -1,4 +1,4 @@
-export function containerClassNames(attributes, bgProps)
+export function containerClassNames(attributes, extraClasses = [])
 {
 
   let classNames = [
@@ -10,6 +10,9 @@ export function containerClassNames(attributes, bgProps)
 
   if('alignment' in attributes)
     classNames.push(`align-${attributes.alignment}`);
+
+  // combine arrays
+  classNames = classNames.concat(extraClasses);
 
   return classNames;
 }
