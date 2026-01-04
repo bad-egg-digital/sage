@@ -103,59 +103,7 @@ add_action('init', function () {
             'style'             => "{$slug}-style",
             'script'            => "{$slug}-script",
             'view_script'       => "{$slug}-view-script",
-            'attributes'        => [
-                'container_width' => [
-                    'type' => 'string',
-                    'default' => '',
-                ],
-                'alignment' => [
-                    'type' => 'string',
-                ],
-                'padding_top' => [
-                    'type' => 'boolean',
-                    'default' => true
-                ],
-                'padding_bottom' => [
-                    'type' => 'boolean',
-                    'default' => true
-                ],
-                'background_colour' => [
-                    'type' => 'string',
-                    'default' => '',
-                ],
-                'background_hex' => [
-                    'type' => 'string',
-                    'default' => '',
-                ],
-                'background_tint' => [
-                    'type' => 'string',
-                    'default' => '0',
-                ],
-                'background_image' => [
-                    'type' => 'integer',
-                    'default' => 0,
-                ],
-                'background_url' => [
-                    'type' => 'string',
-                    'default' => '',
-                ],
-                'background_opacity' => [
-                    'type' => 'integer',
-                    'default' => 30
-                ],
-                'background_position' => [
-                    'type' => 'string',
-                    'default' => '',
-                ],
-                'background_fixed' => [
-                    'type' => 'boolean',
-                    'default' => false,
-                ],
-                'background_contrast' => [
-                    'type' => 'boolean',
-                    'default' => false,
-                ],
-            ],
+            'attributes'        => attributes(),
         ];
 
         if(!property_exists($json, 'acf') && \Roots\view()->exists("blocks.{$slug}.render")) {
@@ -176,8 +124,16 @@ add_action('init', function () {
 
 function list_inner()
 {
-    $file = file_get_contents(get_theme_file_path("resources/json/core-block-whitelist.json"));
+    $file = file_get_contents(get_theme_file_path("resources/json/block-core-whitelist.json"));
     $json = json_decode($file);
+
+    return $json;
+}
+
+function attributes()
+{
+    $file = file_get_contents(get_theme_file_path("resources/json/block-attributes.json"));
+    $json = json_decode($file, true);
 
     return $json;
 }
