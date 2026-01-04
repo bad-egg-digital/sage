@@ -9,7 +9,7 @@ import {
   InnerBlocks,
 } from '@wordpress/block-editor';
 
-import allowedBlocks from '../../../json/core-block-whitelist.json';
+import allowedBlocks from '../../../json/block-core-whitelist.json';
 import { containerClassNames, sectionClassNames } from '../../../js/blocks/lib/classNames';
 import BackgroundImage from '../../../js/blocks/components/BackgroundImage';
 import BlockSettings from '../../../js/blocks/components/BlockSettings';
@@ -17,7 +17,7 @@ import BlockSettings from '../../../js/blocks/components/BlockSettings';
 registerBlockType(metadata.name, {
   edit({ attributes, setAttributes }) {
     const blockProps = useBlockProps();
-    blockProps.className = sectionClassNames(attributes, blockProps.className, [ 'wysiwyg' ]).join(' ');
+    blockProps.className = sectionClassNames(attributes, blockProps.className).join(' ');
 
     return (
       <div { ...blockProps }>
@@ -26,7 +26,7 @@ registerBlockType(metadata.name, {
           setAttributes={ setAttributes }
         />
 
-        <div className={ containerClassNames(attributes).join(' ') }>
+        <div className={ containerClassNames(attributes, [ 'wysiwyg' ]).join(' ') }>
           <InnerBlocks
             allowedBlocks={ allowedBlocks }
             defaultBlock={
@@ -51,7 +51,7 @@ registerBlockType(metadata.name, {
 
     return (
       <div { ...blockProps }>
-        <div className={ containerClassNames(attributes).join(' ') }>
+        <div className={ containerClassNames(attributes, [ 'wysiwyg' ]).join(' ') }>
           <InnerBlocks.Content />
         </div>
 
