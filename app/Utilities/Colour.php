@@ -10,6 +10,8 @@ class Colour
 
         if($colour == 'black'):
             $hex = '#000000';
+        elseif($colour == 'grey'):
+            $hex = '#808080';
         elseif($colour == 'white'):
             $hex = '#FFFFFF';
         else:
@@ -27,20 +29,23 @@ class Colour
 
     public function values()
     {
-        $colours = get_field('badegg_colours', 'option');
-
         $values = [];
 
-        if($colours):
-            foreach($colours as $index => $props):
-                $index = $index + 1;
-                $hex = @$props['hex'];
+        if(function_exists('get_field')):
+            $colours = get_field('badegg_colours', 'option');
 
-                if($hex) $values[$this->latinate($index)] = $hex;
-            endforeach;
+            if($colours):
+                foreach($colours as $index => $props):
+                    $index = $index + 1;
+                    $hex = @$props['hex'];
+
+                    if($hex) $values[$this->latinate($index)] = $hex;
+                endforeach;
+            endif;
         endif;
 
         $values['white'] = '#FFFFFF';
+        $values['grey'] = '#808080';
         $values['black'] = '#000000';
 
         return $values;
@@ -49,13 +54,13 @@ class Colour
     public function tints()
     {
       return [
-        'lightest'  =>  100,
-        'lighter'   =>  66,
-        'light'     =>  33,
+        'lightest'  =>  40,
+        'lighter'   =>  25,
+        'light'     =>  10,
         '0'         =>   0,
-        'dark'      => -33,
-        'darker'    => -66,
-        'darkest'   => -100,
+        'dark'      => -10,
+        'darker'    => -25,
+        'darkest'   => -40,
       ];
     }
 
