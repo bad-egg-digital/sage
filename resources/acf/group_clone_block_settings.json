@@ -37,56 +37,6 @@
             "layout": "block",
             "sub_fields": [
                 {
-                    "key": "field_67350eb62cdf9",
-                    "label": "Top Padding",
-                    "name": "padding_top",
-                    "aria-label": "",
-                    "type": "radio",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "50",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": [
-                        "On",
-                        "Off"
-                    ],
-                    "default_value": "",
-                    "return_format": "value",
-                    "allow_null": 0,
-                    "other_choice": 0,
-                    "layout": "horizontal",
-                    "save_other_choice": 0
-                },
-                {
-                    "key": "field_673510c1dc830",
-                    "label": "Bottom Padding",
-                    "name": "padding_bottom",
-                    "aria-label": "",
-                    "type": "radio",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "50",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": [
-                        "On",
-                        "Off"
-                    ],
-                    "default_value": "",
-                    "return_format": "value",
-                    "allow_null": 0,
-                    "other_choice": 0,
-                    "layout": "horizontal",
-                    "save_other_choice": 0
-                },
-                {
                     "key": "field_6800097e61765",
                     "label": "Container Width",
                     "name": "container_width",
@@ -118,6 +68,66 @@
                     "placeholder": "",
                     "create_options": 0,
                     "save_options": 0
+                },
+                {
+                    "key": "field_67350eb62cdf9",
+                    "label": "",
+                    "name": "padding_top",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "Top Padding",
+                    "default_value": 1,
+                    "allow_in_bindings": 0,
+                    "ui_on_text": "On",
+                    "ui_off_text": "Off",
+                    "ui": 1
+                },
+                {
+                    "key": "field_673510c1dc830",
+                    "label": "",
+                    "name": "padding_bottom",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "Bottom Padding",
+                    "default_value": 1,
+                    "allow_in_bindings": 0,
+                    "ui_on_text": "On",
+                    "ui_off_text": "Off",
+                    "ui": 1
+                },
+                {
+                    "key": "field_695aa550e16d4",
+                    "label": "Background",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "message",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "new_lines": "wpautop",
+                    "esc_html": 0
                 },
                 {
                     "key": "field_67350aeb146ca",
@@ -181,5 +191,5 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1765815052
+    "modified": 1767548583
 }

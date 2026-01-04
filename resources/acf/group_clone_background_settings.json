@@ -17,9 +17,12 @@
                 "id": ""
             },
             "choices": {
-                "0": "auto",
+                "0": "None",
                 "primary": "<i class=\"fas fa-circle\" style=\"color: #dd3333\"><\/i> Punch",
+                "secondary": "<i class=\"fas fa-circle\" style=\"color: #81d742\"><\/i> Atlantis",
+                "tertiary": "<i class=\"fas fa-circle\" style=\"color: #8224e3\"><\/i> Purple Heart",
                 "white": "<i class=\"fas fa-circle\" style=\"color: #FFFFFF\"><\/i> White",
+                "grey": "<i class=\"fas fa-circle\" style=\"color: #808080\"><\/i> Gray",
                 "black": "<i class=\"fas fa-circle\" style=\"color: #000000\"><\/i> Black"
             },
             "default_value": 0,
@@ -91,10 +94,10 @@
         },
         {
             "key": "field_67350f526abf1",
-            "label": "Text Contrast",
+            "label": "",
             "name": "contrast",
             "aria-label": "",
-            "type": "select",
+            "type": "true_false",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -103,20 +106,12 @@
                 "class": "",
                 "id": ""
             },
-            "choices": {
-                "0": "Auto",
-                "dark": "Force dark text",
-                "light": "Force light text"
-            },
+            "message": "Text Contrast",
             "default_value": 0,
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
-            "create_options": 0,
-            "save_options": 0
+            "allow_in_bindings": 0,
+            "ui_on_text": "Light",
+            "ui_off_text": "Dark",
+            "ui": 1
         }
     ],
     "location": [
@@ -137,5 +132,6 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1765746167
+    "display_title": "",
+    "modified": 1767548180
 }

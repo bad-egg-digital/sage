@@ -30,17 +30,17 @@ class CssClasses {
                 'tint' => $props['bg_tint'],
             ]);
 
-        if(($knockout && $Colour->is_dark($hex) || $props['contrast'] == 'light'))
+        if(($props['contrast'] && $knockout))
             $classes[] = 'knockout';
 
-        if($props['padding_top'])
+        if(!$props['padding_top'])
             $classes[] = 'section-zero-top';
 
-        if($props['padding_bottom'])
+        if(!$props['padding_bottom'])
             $classes[] = 'section-zero-bottom';
 
         if($props['bg_image'])
-            $classes[] = "bg-watermarked";
+            $classes[] = "has-bg-image";
 
         return $classes;
     }
@@ -89,7 +89,7 @@ class CssClasses {
         if($args['align'])
             $classes[] = 'align-' . $args['align'];
 
-        if(($Colour->is_dark($hex) || $bg_props['contrast'] == 'light'))
+        if(($bg_props['contrast']))
             $classes[] = 'knockout';
 
         return $classes;
