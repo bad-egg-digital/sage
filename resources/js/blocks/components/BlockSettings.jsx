@@ -85,6 +85,7 @@ export default function BlockSettings({ attributes, setAttributes }) {
 		background_hex,
 		background_tint,
 		background_image,
+    background_url,
 		background_opacity,
 		background_contrast,
 		background_fixed,
@@ -156,24 +157,26 @@ export default function BlockSettings({ attributes, setAttributes }) {
             />
 
             { 'background_colour' in attributes && attributes.background_colour && ![0, '0', 'white', 'black'].includes(attributes.background_colour) ? (
-              <SelectControl
-                label={ __("Background Tint", "badegg") }
-                value={ background_tint }
-                options={ configOptions.tints }
-                onChange={ (value) => setAttributes({ background_tint: value }) }
-                __next40pxDefaultSize={ true }
-                __nextHasNoMarginBottom={ true }
-              />
-            ) : null }
-
-            { background_image != 0 && (
               <>
+                <SelectControl
+                  label={ __("Background Tint", "badegg") }
+                  value={ background_tint }
+                  options={ configOptions.tints }
+                  onChange={ (value) => setAttributes({ background_tint: value }) }
+                  __next40pxDefaultSize={ true }
+                  __nextHasNoMarginBottom={ true }
+                />
                 <ToggleControl
                   label={ __('Text Contrast', 'badegg') }
                   checked={ background_contrast }
                   onChange={(value) => setAttributes({ background_contrast: value }) }
                   __nextHasNoMarginBottom
                 />
+              </>
+            ) : null }
+
+            { background_image != 0 && (
+              <>
                 <ToggleControl
                   label={ __('Fixed Position', 'badegg') }
                   checked={ background_fixed }
@@ -216,7 +219,7 @@ export default function BlockSettings({ attributes, setAttributes }) {
 
               { background_image != 0 && (
                 <Button
-                  onClick={ () => setAttributes({ background_image: 0 }) }
+                  onClick={ () => setAttributes({ background_image: 0, background_url: '' }) }
                   isDestructive
                   variant="secondary"
                 >
