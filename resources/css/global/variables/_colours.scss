@@ -13,48 +13,50 @@ $secondary: #5bc0de;
 $tertiary: color.invert($primary);
 $quaternary: color.invert($secondary);
 
+//== Shades
+$white:               #FFFFFF;
+$grey:                #808080;
+$black:               #000000;
+
 //== Primary Tints
-$primary-darkest: color.adjust($primary, $lightness: -30%);
-$primary-darker: color.adjust($primary, $lightness: -20%);
-$primary-dark: color.adjust($primary, $lightness: -10%);
-$primary-light: color.adjust($primary, $lightness: 10%);
-$primary-lighter: color.adjust($primary, $lightness: 20%);
-$primary-lightest: color.adjust($primary, $lightness: 30%);
+$primary-darkest: color.adjust($primary, $lightness: -45%);
+$primary-darker: color.adjust($primary, $lightness: -30%);
+$primary-dark: color.adjust($primary, $lightness: -15%);
+$primary-light: color.adjust($primary, $lightness: 15%);
+$primary-lighter: color.adjust($primary, $lightness: 30%);
+$primary-lightest: color.adjust($primary, $lightness: 45%);
 
 //== Secondary Tints
-$secondary-darkest: color.adjust($secondary, $lightness: -30%);
-$secondary-darker: color.adjust($secondary, $lightness: -20%);
-$secondary-dark: color.adjust($secondary, $lightness: -10%);
-$secondary-light: color.adjust($secondary, $lightness: 10%);
-$secondary-lighter: color.adjust($secondary, $lightness: 20%);
-$secondary-lightest: color.adjust($secondary, $lightness: 30%);
+$secondary-darkest: color.adjust($secondary, $lightness: -45%);
+$secondary-darker: color.adjust($secondary, $lightness: -30%);
+$secondary-dark: color.adjust($secondary, $lightness: -15%);
+$secondary-light: color.adjust($secondary, $lightness: 15%);
+$secondary-lighter: color.adjust($secondary, $lightness: 30%);
+$secondary-lightest: color.adjust($secondary, $lightness: 45%);
 
 //== Tertiary Tints
-$tertiary-darkest: color.adjust($tertiary, $lightness: -30%);
-$tertiary-darker: color.adjust($tertiary, $lightness: -20%);
-$tertiary-dark: color.adjust($tertiary, $lightness: -10%);
-$tertiary-light: color.adjust($tertiary, $lightness: 10%);
-$tertiary-lighter: color.adjust($tertiary, $lightness: 20%);
-$tertiary-lightest: color.adjust($tertiary, $lightness: 30%);
+$tertiary-darkest: color.adjust($tertiary, $lightness: -45%);
+$tertiary-darker: color.adjust($tertiary, $lightness: -30%);
+$tertiary-dark: color.adjust($tertiary, $lightness: -15%);
+$tertiary-light: color.adjust($tertiary, $lightness: 15%);
+$tertiary-lighter: color.adjust($tertiary, $lightness: 30%);
+$tertiary-lightest: color.adjust($tertiary, $lightness: 45%);
 
 //== quaternary Tints
-$quaternary-darkest: color.adjust($quaternary, $lightness: -30%);
-$quaternary-darker: color.adjust($quaternary, $lightness: -20%);
-$quaternary-dark: color.adjust($quaternary, $lightness: -10%);
-$quaternary-light: color.adjust($quaternary, $lightness: 10%);
-$quaternary-lighter: color.adjust($quaternary, $lightness: 20%);
-$quaternary-lightest: color.adjust($quaternary, $lightness: 30%);
+$quaternary-darkest: color.adjust($quaternary, $lightness: -45%);
+$quaternary-darker: color.adjust($quaternary, $lightness: -30%);
+$quaternary-dark: color.adjust($quaternary, $lightness: -15%);
+$quaternary-light: color.adjust($quaternary, $lightness: 15%);
+$quaternary-lighter: color.adjust($quaternary, $lightness: 30%);
+$quaternary-lightest: color.adjust($quaternary, $lightness: 45%);
 
-//== Shades
-$white:               white;
-$grey-lightest:       color.adjust(black, $lightness: 95%);
-$grey-lighter:        color.adjust(black, $lightness: 80%);
-$grey-light:          color.adjust(black, $lightness: 70%);
-$grey:                color.adjust(black, $lightness: 50%);
-$grey-dark:           color.adjust(black, $lightness: 40%);
-$grey-darker:         color.adjust(black, $lightness: 20%);
-$grey-darkest:        color.adjust(black, $lightness: 05%);
-$black:               black;
+//== six shades of grey
+$grey-darkest:        color.adjust(grey, $lightness: -40%);
+$grey-darker:         color.adjust(grey, $lightness: -25%);
+$grey-dark:           color.adjust(grey, $lightness: -10%);
+$grey-light:          color.adjust(grey, $lightness: 10%);
+$grey-lighter:        color.adjust(grey, $lightness: 25%);
+$grey-lightest:       color.adjust(grey, $lightness: 40%);
 
 //## Colour Array (used in generating colour classes).
 $colors: (

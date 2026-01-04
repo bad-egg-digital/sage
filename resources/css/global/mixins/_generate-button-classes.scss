@@ -24,7 +24,7 @@
       }
     }
 
-    #{$button}.#{$name}.inverted {
+    #{$button}.#{$name}.outline {
       color: $hex;
       background: transparent;
       border-color: $hex;
