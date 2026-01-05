@@ -1,6 +1,7 @@
 export default function LazyLoadInit()
 {
   document.addEventListener('DOMContentLoaded', LazyLoad());
+  document.addEventListener('DOMContentLoaded', LazyBG());
 }
 
 function LazyLoad() {
@@ -19,6 +20,31 @@ function LazyLoad() {
           }
 
           lazyImage.classList.remove('lazy');
+          lazyImageObserver.unobserve(lazyImage);
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage);
+    });
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+}
+
+function LazyBG() {
+
+  var lazyImages = [].slice.call(document.querySelectorAll('.lazy-bg'));
+
+  if ('IntersectionObserver' in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target;
+          lazyImage.computedStyleMap.backgroundImage = `url(${lazyImage.dataset.bg})`;
+
+          lazyImage.classList.remove('lazy-bg');
           lazyImageObserver.unobserve(lazyImage);
         }
       });
