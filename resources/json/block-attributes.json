@@ -31,8 +31,16 @@
       "default": 0
   },
   "background_url": {
-      "type": "string",
-      "default": ""
+    "type": "string",
+    "default": ""
+  },
+  "background_url_lazy": {
+    "type": "string",
+    "default": ""
+  },
+  "background_lazy": {
+    "type": "boolean",
+    "default": true
   },
   "background_opacity": {
       "type": "integer",
@@ -40,7 +48,7 @@
   },
   "background_position": {
       "type": "string",
-      "default": ""
+      "default": "center center"
   },
   "background_fixed": {
       "type": "boolean",

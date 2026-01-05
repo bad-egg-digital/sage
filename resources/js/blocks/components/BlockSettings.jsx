@@ -1,5 +1,3 @@
-import { useSelect } from '@wordpress/data';
-
 /**
  * BlockSettings
  *
@@ -12,6 +10,7 @@ import { useSelect } from '@wordpress/data';
  */
 
 import { __ } from '@wordpress/i18n';
+import { select } from '@wordpress/data';
 import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 
@@ -85,7 +84,8 @@ export default function BlockSettings({ attributes, setAttributes }) {
 		background_hex,
 		background_tint,
 		background_image,
-    background_url,
+    background_lazy,
+    background_size,
 		background_opacity,
 		background_contrast,
 		background_fixed,
@@ -159,7 +159,7 @@ export default function BlockSettings({ attributes, setAttributes }) {
             { 'background_colour' in attributes && attributes.background_colour && ![0, '0', 'white', 'black'].includes(attributes.background_colour) ? (
               <>
                 <SelectControl
-                  label={ __("Background Tint", "badegg") }
+                  label={ __("Tint", "badegg") }
                   value={ background_tint }
                   options={ configOptions.tints }
                   onChange={ (value) => setAttributes({ background_tint: value }) }
@@ -183,6 +183,12 @@ export default function BlockSettings({ attributes, setAttributes }) {
                   onChange={(value) => setAttributes({ background_fixed: value }) }
                   __nextHasNoMarginBottom
                 />
+                <ToggleControl
+                  label={ __('Lazy Loaded', 'badegg') }
+                  checked={ background_lazy }
+                  onChange={(value) => setAttributes({ background_lazy: value }) }
+                  __nextHasNoMarginBottom
+                />
                 <RangeControl
                   __next40pxDefaultSize
                   __nextHasNoMarginBottom
@@ -199,10 +205,21 @@ export default function BlockSettings({ attributes, setAttributes }) {
               <MediaUploadCheck>
                 <MediaUpload
                   onSelect={ (media) => {
-                    setAttributes({
+
+                    let bgAttributes = {
                       background_image: media.id,
                       background_url: media.url,
-                    });
+                      background_url_lazy: '',
+                    };
+
+                    const image = select('core').getEntityRecord('postType', 'attachment', media.id);
+
+                    if(image && image.media_details) {
+                      bgAttributes.background_url_lazy = image.media_details.sizes.lazy.source_url;
+                      bgAttributes.background_url = image.media_details.sizes.hero.source_url;
+                    }
+
+                    setAttributes( bgAttributes );
                   }}
                   allowedTypes={ ['image'] }
                   value={ background_image }
@@ -219,7 +236,11 @@ export default function BlockSettings({ attributes, setAttributes }) {
 
               { background_image != 0 && (
                 <Button
-                  onClick={ () => setAttributes({ background_image: 0, background_url: '' }) }
+                  onClick={ () => setAttributes({
+                      background_image: 0,
+                      background_url: '',
+                      background_url_lazy: '',
+                  }) }
                   isDestructive
                   variant="secondary"
                 >
