@@ -22,6 +22,7 @@ import {
 	ToggleControl,
 	RangeControl,
 	ColorPalette,
+  FocalPointPicker,
 	Button,
 	Spinner,
 } from '@wordpress/components';
@@ -84,8 +85,9 @@ export default function BlockSettings({ attributes, setAttributes }) {
 		background_hex,
 		background_tint,
 		background_image,
+    background_url,
     background_lazy,
-    background_size,
+    background_position,
 		background_opacity,
 		background_contrast,
 		background_fixed,
@@ -189,6 +191,14 @@ export default function BlockSettings({ attributes, setAttributes }) {
                   onChange={(value) => setAttributes({ background_lazy: value }) }
                   __nextHasNoMarginBottom
                 />
+                <FocalPointPicker
+                  url={ background_url }
+                  value={ background_position }
+                  onDragStart={ (value) => setAttributes({ background_position: value }) }
+                  onDrag={ (value) => setAttributes({ background_position: value }) }
+                  onChange={ (value) => setAttributes({ background_position: value }) }
+                  __nextHasNoMarginBottom
+                />
                 <RangeControl
                   __next40pxDefaultSize
                   __nextHasNoMarginBottom
@@ -204,23 +214,11 @@ export default function BlockSettings({ attributes, setAttributes }) {
             <PanelRow>
               <MediaUploadCheck>
                 <MediaUpload
-                  onSelect={ (media) => {
-
-                    let bgAttributes = {
-                      background_image: media.id,
-                      background_url: media.url,
-                      background_url_lazy: '',
-                    };
-
-                    const image = select('core').getEntityRecord('postType', 'attachment', media.id);
-
-                    if(image && image.media_details) {
-                      bgAttributes.background_url_lazy = image.media_details.sizes.lazy.source_url;
-                      bgAttributes.background_url = image.media_details.sizes.hero.source_url;
-                    }
-
-                    setAttributes( bgAttributes );
-                  }}
+                  onSelect={ (media) => setAttributes({
+                    background_image: media.id,
+                    background_url: media.sizes.hero.url,
+                    background_url_lazy: media.sizes.lazy.url,
+                  })}
                   allowedTypes={ ['image'] }
                   value={ background_image }
                   render={ ({ open }) => (

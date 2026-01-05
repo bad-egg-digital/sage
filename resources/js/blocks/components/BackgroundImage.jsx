@@ -9,7 +9,7 @@ import { select } from '@wordpress/data';
  * @param {string} props.background_url The desired full size url.
  * @param {string} props.background_url_lazy Tiny lazy url.
  * @param {boolean} props.background_lazy Whether or not to lazy load the background image.
- * @param {string} props.background_position The background-position property.
+ * @param {object} props.background_position x and y coordinates as decimals from 0 to 1.
  * @param {boolean} props.background_fixed Toggle for background-attachment: fixed.
  * @param {number} props.background_opacity The opacity value applied to the image.
  * @returns {*} React JSX
@@ -26,7 +26,7 @@ export default function BackgroundImage({
   if (background_url) {
     let styles = {
       backgroundImage: `url(${background_url})`,
-      backgroundPosition: background_position,
+      backgroundPosition: `${ background_position.x * 100}% ${ background_position.y * 100}%`,
       backgroundSize: 'cover',
       backgroundAttachment: background_fixed ? 'fixed' : 'scroll',
       opacity: Number(background_opacity) * 0.01,

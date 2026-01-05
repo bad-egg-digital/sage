@@ -30,8 +30,15 @@ img {
   max-width: 100%;
   height: auto;
   transition: all 300ms ease;
+}
 
-  &.lazy {
-    filter: blur(0.25em);
-  }
+img.lazy,
+.lazy-bg,
+.lazy-loaded {
+  transition: all 300ms ease;
+}
+
+img.lazy,
+.lazy-bg {
+  filter: blur(0.25em);
 }

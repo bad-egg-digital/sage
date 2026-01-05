@@ -7,7 +7,33 @@ class RestAPI
 {
     public function __construct()
     {
+        add_filter( 'wp_prepare_attachment_for_js', [$this, 'image_sizes'], 10, 3 );
         add_action( 'rest_api_init', [$this, 'blocks']);
+    }
+
+    public function image_sizes( $response, $attachment, $meta )
+    {
+        if ( empty( $response['sizes'] ) || empty( $meta['sizes'] ) ) {
+            return $response;
+        }
+
+        $custom_sizes = [ 'hero', 'lazy' ];
+
+        foreach ( $custom_sizes as $size ) {
+            if ( ! empty( $meta['sizes'][ $size ] ) ) {
+                $response['sizes'][ $size ] = [
+                    'url'         => wp_get_attachment_image_url( $attachment->ID, $size ),
+                    'width'       => $meta['sizes'][ $size ]['width'],
+                    'height'      => $meta['sizes'][ $size ]['height'],
+                    'orientation' =>
+                        $meta['sizes'][ $size ]['height'] > $meta['sizes'][ $size ]['width']
+                            ? 'portrait'
+                            : 'landscape',
+                ];
+            }
+        }
+
+        return $response;
     }
 
     public function blocks( )
@@ -76,5 +102,4 @@ class RestAPI
             ['label' => __('Darkest',   'badegg'), 'value' => 'darkest' ],
         ];
     }
-
 }

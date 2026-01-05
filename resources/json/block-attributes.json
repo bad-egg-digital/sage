@@ -47,8 +47,11 @@
       "default": 30
   },
   "background_position": {
-      "type": "string",
-      "default": "center center"
+      "type": "object",
+      "default": {
+        "x": 0.5,
+        "y": 0.5
+      }
   },
   "background_fixed": {
       "type": "boolean",

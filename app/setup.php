@@ -167,7 +167,10 @@ function cors() {
 
 }
 
-$image_srcset = new Utilities\ImageSrcset;
-$image_srcset->add(['name' => 'hero', 'width' => 1920, 'height' => 1080]);
-add_image_size('lazy', 50, 50);
-add_image_size('hero', 1920, 1080, true);
+add_action('after_setup_theme', function(){
+  $image_srcset = new Utilities\ImageSrcset;
+  $image_srcset->add(['name' => 'hero', 'width' => 1920, 'height' => 1080]);
+  add_image_size('lazy', 50, 50);
+  add_image_size('hero', 1920, 1080, true);
+});
+
