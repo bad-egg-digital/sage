@@ -47,7 +47,7 @@ registerBlockType(metadata.name, {
   },
   save({ attributes }) {
     const blockProps = useBlockProps.save();
-    blockProps.className = sectionClassNames(attributes, blockProps.className, [ 'wysiwyg' ] ).join(' ');
+    blockProps.className = sectionClassNames(attributes, blockProps.className ).join(' ');
 
     return (
       <div { ...blockProps }>
