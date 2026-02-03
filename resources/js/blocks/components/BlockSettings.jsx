@@ -150,32 +150,37 @@ export default function BlockSettings({ attributes, setAttributes }) {
                   slug = selected.slug;
                 }
 
-                setAttributes( {
+                let colourAttributes = {
                   background_colour: slug,
                   background_hex: hex,
-                });
+                };
+
+                if(!slug || [0, '0', 'white', 'black'].includes(slug)) {
+                  colourAttributes.background_tint = '0';
+                }
+
+                setAttributes( colourAttributes );
 
               } }
             />
 
             { 'background_colour' in attributes && attributes.background_colour && ![0, '0', 'white', 'black'].includes(attributes.background_colour) ? (
-              <>
-                <SelectControl
-                  label={ __("Tint", "badegg") }
-                  value={ background_tint }
-                  options={ configOptions.tints }
-                  onChange={ (value) => setAttributes({ background_tint: value }) }
-                  __next40pxDefaultSize={ true }
-                  __nextHasNoMarginBottom={ true }
-                />
-                <ToggleControl
-                  label={ __('Text Contrast', 'badegg') }
-                  checked={ background_contrast }
-                  onChange={(value) => setAttributes({ background_contrast: value }) }
-                  __nextHasNoMarginBottom
-                />
-              </>
+              <SelectControl
+                label={ __("Tint", "badegg") }
+                value={ background_tint }
+                options={ configOptions.tints }
+                onChange={ (value) => setAttributes({ background_tint: value }) }
+                __next40pxDefaultSize={ true }
+                __nextHasNoMarginBottom={ true }
+              />
             ) : null }
+
+            <ToggleControl
+              label={ __('Text Contrast', 'badegg') }
+              checked={ background_contrast }
+              onChange={(value) => setAttributes({ background_contrast: value }) }
+              __nextHasNoMarginBottom
+            />
 
             { background_image != 0 && (
               <>
