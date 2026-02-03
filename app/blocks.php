@@ -6,6 +6,51 @@
 
 namespace App\Blocks;
 
+/**
+ * Disable block styles in frontend
+ */
+
+add_filter( 'should_load_separate_core_block_assets', '__return_false', 99 );
+add_filter( 'wp_img_tag_add_auto_sizes', '__return_false');
+add_action( 'init', __NAMESPACE__ . '\\remove_action_block_inline' );
+add_action( 'admin_init', __NAMESPACE__ . '\\admin_block_cleanup' );
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\disable_frontend_inline_css', 20);
+add_action( 'template_redirect', __NAMESPACE__ . '\\delete_block_support_inline_css' );
+
+function remove_action_block_inline()
+{
+    remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
+    remove_action( 'wp_enqueue_scripts', 'wp_enqueue_block_support_styles');
+    remove_action( 'wp_footer', 'wp_enqueue_global_styles', 1 );
+    remove_action( 'wp_body_open', 'wp_global_styles_render_svg_filters' );
+}
+
+function admin_block_cleanup()
+{
+    remove_action( 'enqueue_block_editor_assets', 'wp_enqueue_editor_block_directory_assets' );
+}
+
+function disable_frontend_inline_css()
+{
+    wp_dequeue_style( 'wp-block-library' );
+    wp_dequeue_style( 'wp-block-library-theme' );
+    wp_dequeue_style( 'classic-theme-styles' );
+}
+
+function delete_block_support_inline_css ()
+{
+	ob_start( function ( $html ) {
+		return preg_replace(
+			'#<style id=[\'"]core-block-supports-inline-css[\'"][^>]*>.*?</style>#s',
+			'',
+			$html
+		);
+	} );
+}
+
+/**
+ * Add block categories
+ */
 add_filter('block_type_metadata', function($metadata){
     $name = $metadata['name'];
 
