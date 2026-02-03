@@ -1,4 +1,7 @@
 [
+  "core/media-text",
+  "core/details",
+  "core/quote",
   "acf/badegg-editor",
   "badegg/article"
 ]

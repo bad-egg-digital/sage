@@ -26,6 +26,11 @@
   }
 }
 
+figure {
+  margin: 0;
+  padding: 0;
+}
+
 .container {
   width: calc(100% - spacing.$innerMedium * 2);
   margin: auto;

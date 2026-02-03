@@ -2,8 +2,6 @@
   "core/separator",
   "core/spacer",
 
-  "core/cover",
-  "core/file",
   "core/gallery",
   "core/image",
   "core/media-text",
@@ -18,9 +16,8 @@
   "core/list-item",
   "core/missing",
   "core/paragraph",
-  "core/preformatted",
-  "core/pullquote",
   "core/quote",
+  "core/pullquote",
   "core/table",
   "core/verse"
 ]

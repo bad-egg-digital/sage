@@ -69,6 +69,7 @@ function unset_core_supports($metadata){
     if (str_starts_with($name, 'core/') ) {
         unset($metadata['supports']['color']);
         unset($metadata['supports']['typography']);
+        unset($metadata['supports']['border']);
     }
 
     return $metadata;
