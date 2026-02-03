@@ -9,13 +9,28 @@ namespace App\Blocks;
 /**
  * Disable block styles in frontend
  */
-
 add_filter( 'should_load_separate_core_block_assets', '__return_false', 99 );
-add_filter( 'wp_img_tag_add_auto_sizes', '__return_false');
+add_filter( 'wp_img_tag_add_auto_sizes', '__return_false' );
 add_action( 'init', __NAMESPACE__ . '\\remove_action_block_inline' );
-add_action( 'admin_init', __NAMESPACE__ . '\\admin_block_cleanup' );
-add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\disable_frontend_inline_css', 20);
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\disable_frontend_inline_css', 20 );
 add_action( 'template_redirect', __NAMESPACE__ . '\\delete_block_support_inline_css' );
+
+/**
+ * block editor back end tweaks
+ *  - Disable all core blocks except what we need as inner blocks
+ *  - resources/js/editor.js handles hiding the inner blocks at the top level
+ */
+add_action( 'allowed_block_types_all', __NAMESPACE__ . '\\list_allowed', 100, 2 );
+add_action( 'admin_init', __NAMESPACE__ . '\\admin_block_cleanup' );
+add_filter( 'block_type_metadata', __NAMESPACE__ . '\\unset_core_supports' );
+
+/**
+ * Custom blocks
+ */
+add_filter( 'block_categories_all' , __NAMESPACE__ . '\\add_categories' );
+add_filter( 'badegg_block_types_allow', __NAMESPACE__ . '\\allowed_list' );
+add_action( 'init', __NAMESPACE__ . '\\auto_register' );
+
 
 function remove_action_block_inline()
 {
@@ -48,10 +63,7 @@ function delete_block_support_inline_css ()
 	} );
 }
 
-/**
- * Add block categories
- */
-add_filter('block_type_metadata', function($metadata){
+function unset_core_supports($metadata){
     $name = $metadata['name'];
 
     if (str_starts_with($name, 'core/') ) {
@@ -60,21 +72,16 @@ add_filter('block_type_metadata', function($metadata){
     }
 
     return $metadata;
-});
+}
 
-// Disable all core blocks except what we need as inner blocks
-// resources/js/editor.js handles hiding the inner blocks at the top level
-add_action('allowed_block_types_all', __NAMESPACE__ . '\\list_allowed', 100, 2);
 
-// add blocks to the allowed list via filter
-add_filter('badegg_block_types_allow', function($allowed){
+function allowed_list($allowed){
     return array_merge($allowed, [
         // 'core/categories',
     ]);
-});
+}
 
-// Add the badegg block category
-add_filter( 'block_categories_all' , function ( $categories ) {
+function add_categories( $categories ) {
 
         // Adding a new category.
         $categories = array_merge([
@@ -85,10 +92,9 @@ add_filter( 'block_categories_all' , function ( $categories ) {
         ], $categories);
 
         return $categories;
-});
+}
 
-// Auto register WP blocks
-add_action('init', function () {
+function auto_register() {
     $blocks = glob(get_theme_file_path('resources/views/blocks/*/block.json'));
 
     foreach ($blocks as $block_json) {
@@ -165,7 +171,7 @@ add_action('init', function () {
 
         register_block_type($block_json, $props);
     }
-});
+}
 
 function list_inner()
 {
