@@ -21,6 +21,7 @@ export default function BackgroundImage({
   background_position = 'center',
   background_fixed = false,
   background_opacity = 70,
+  disableLazyBG = false,
 }) {
 
   if (background_url) {
@@ -37,7 +38,7 @@ export default function BackgroundImage({
       style: styles,
     };
 
-    if(background_lazy) {
+    if(background_lazy && !disableLazyBG) {
       attributes['data-bg'] = background_url;
       attributes.style.backgroundImage = `url(${background_url_lazy})`;
       attributes.className += ' lazy-bg';
