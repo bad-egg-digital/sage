@@ -29,7 +29,7 @@ export function sectionClassNames(attributes, defaultClasses = '', extraClasses 
   if('padding_bottom'in attributes && !attributes.padding_bottom)
     classNames.push('section-zero-bottom');
 
-  if('background_colour' in attributes && attributes.background_colour) {
+  if('background_hex' in attributes && attributes.background_hex) {
     let bg = `bg-${ attributes.background_colour }`;
 
     if(
