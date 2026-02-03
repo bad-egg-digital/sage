@@ -17,4 +17,11 @@ domReady(() => {
       'badegg/restrict-parent-blocks',
       restrictEditorParentBlocks
   );
+
+  // find blocks styles
+  wp.blocks.getBlockTypes().forEach((block) => {
+      if (_.isArray(block['styles'])) {
+          console.log('editor.js ' + block.name, _.pluck(block['styles'], 'name'));
+      }
+  });
 });
