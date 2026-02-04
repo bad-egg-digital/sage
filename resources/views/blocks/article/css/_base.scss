@@ -1,0 +1,21 @@
+@use "sass:math";
+
+@use "../../../../css/global/variables/breakpoints";
+@use "../../../../css/global/variables/spacing";
+@use "../../../../css/global/variables/colours";
+@use "../../../../css/global/fonts";
+
+.wp-block-badegg-article {
+  container-name: BadEggArticle;
+  container-type: inline-size;
+
+  > .container > [class^="wp-block-"]:not(.wp-block-heading) {
+    margin: spacing.$innerLarge auto;
+  }
+
+  .is-layout-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: spacing.$gap;
+  }
+}
