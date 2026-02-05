@@ -1,0 +1,8 @@
+@use "../../../css/global/variables/spacing";
+
+.wp-block-badegg-article {
+  .wp-block-pullquote {
+    padding: 0;
+    margin: spacing.$innerLarge auto;
+  }
+}
