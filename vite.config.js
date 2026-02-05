@@ -6,7 +6,7 @@ import path from 'path';
 
 function blockAsset(file)
 {
-  const files = fg.sync('resources/views/blocks/**/' + file);
+  const files = fg.sync(`resources/views/blocks/**/${file}`, { deep: 2 });
   let list = {};
 
   files.forEach(file => {
@@ -31,10 +31,6 @@ export default defineConfig({
   plugins: [
     laravel({
       input: {
-        // 'resources/css/app.scss',
-        // 'resources/js/app.js',
-        // 'resources/css/editor.scss',
-        // 'resources/js/editor.js',
         'css/app': 'resources/css/app.scss',
         'js/app': 'resources/js/app.js',
         'css/editor': 'resources/css/editor.scss',
