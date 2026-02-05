@@ -35,6 +35,7 @@ add_action( 'init', __NAMESPACE__ . '\\auto_register' );
  * Core Blocks
  */
 add_filter( 'render_block_core/details', __NAMESPACE__ . '\\core_details_modified', 10, 2 );
+add_filter( 'render_block_core/image', __NAMESPACE__ . '\\core_image_modified', 10, 2 );
 
 
 function remove_action_block_inline()
@@ -263,4 +264,52 @@ function core_details_modified($content, $block)
     $content = str_replace('</details>', '</div></details>', $content);
 
     return $content;
+}
+
+function core_image_modified($content, $block)
+{
+    $imageID = @$block['attrs']['id'];
+    $lazy = wp_get_attachment_image_src($imageID, 'lazy');
+    $large = wp_get_attachment_image_src($imageID, '2048x2048');
+
+    $dom = new \DomDocument();
+    $dom->strictErrorChecking = false;
+    @$dom->loadHTML($content);
+    @$images = $dom->getElementsByTagName('img');
+
+    // create lightbox link node
+    $link = $dom->createElement('a');
+    $link->setAttribute('class', 'badegg-lightbox');
+    $link->setAttribute('target', '_blank');
+    $link->setAttribute('role', 'button');
+    $link->setAttribute('tabindex', '0');
+    $link->setAttribute('aria-label', __('expand image', 'badegg'));
+
+    foreach($images as $image) {
+        // define new image attributes
+        $src = $image->getAttribute('src');
+        $srcset = $image->getAttribute('srcset');
+        $class = $image->getAttribute('class');
+
+        // set image attributes
+        $image->setAttribute('src', $lazy[0]);
+        $image->setAttribute('srcset', '');
+        $image->setAttribute('data-src', $src);
+        $image->setAttribute('data-srcset', $srcset);
+        $image->setAttribute('class', $class . ' lazy');
+
+        // clone lightbox link
+        $linkClone = $link->cloneNode();
+
+        // set lightbox link attributes
+        $linkClone->setAttribute('href', $large[0]);
+
+        // replace image with lightbox link
+        $image->parentNode->replaceChild($linkClone, $image);
+
+        // append original image to lightbox link
+        $linkClone->appendChild($image);
+    }
+
+    return $dom->saveHTML();
 }
