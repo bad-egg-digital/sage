@@ -268,14 +268,19 @@ function core_details_modified($content, $block)
 
 function core_image_modified($content, $block)
 {
-    $imageID = @$block['attrs']['id'];
-    $lazy = wp_get_attachment_image_src($imageID, 'lazy');
-    $large = wp_get_attachment_image_src($imageID, '2048x2048');
-
     $dom = new \DomDocument();
     $dom->strictErrorChecking = false;
     @$dom->loadHTML($content);
-    @$images = $dom->getElementsByTagName('img');
+
+    $images = @$dom->getElementsByTagName('img');
+    $figures = @$dom->getElementsByTagName('figure');
+
+    if(!$figures) return $content;
+
+    // get image data
+    $imageID = @$block['attrs']['id'];
+    $lazy = wp_get_attachment_image_src($imageID, 'lazy');
+    $large = wp_get_attachment_image_src($imageID, '2048x2048');
 
     // create lightbox link node
     $link = $dom->createElement('a');
@@ -311,5 +316,6 @@ function core_image_modified($content, $block)
         $linkClone->appendChild($image);
     }
 
-    return $dom->saveHTML();
+    return $dom->saveHTML($figures[0]);
+
 }
