@@ -32,6 +32,11 @@ img {
   transition: all 300ms ease;
 }
 
+video {
+  max-width: 100%;
+  height: auto;
+}
+
 img.lazy,
 .lazy-bg,
 .lazy-loaded {

@@ -31,6 +31,11 @@ add_filter( 'block_categories_all' , __NAMESPACE__ . '\\add_categories' );
 add_filter( 'badegg_block_types_allow', __NAMESPACE__ . '\\allowed_list' );
 add_action( 'init', __NAMESPACE__ . '\\auto_register' );
 
+/**
+ * Core Blocks
+ */
+add_filter( 'render_block_core/details', __NAMESPACE__ . '\\core_details_modified', 10, 2 );
+
 
 function remove_action_block_inline()
 {
@@ -250,4 +255,12 @@ function render_acf($block, $content = '', $is_preview = false, $post_id = 0, $w
 
         <?php echo ob_get_clean();
     }
+}
+
+function core_details_modified($content, $block)
+{
+    $content = str_replace('</summary>', '</summary><div class="wp-block-details__inner inner inner-zero-x wysiwyg">', $content);
+    $content = str_replace('</details>', '</div></details>', $content);
+
+    return $content;
 }

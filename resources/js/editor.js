@@ -12,16 +12,20 @@ domReady(() => {
     return settings
   }
 
-  wp.hooks.addFilter(
-      'blocks.registerBlockType',
-      'badegg/restrict-parent-blocks',
-      restrictEditorParentBlocks
-  );
+  const coreInnerBlocks = (settings, name) => {
+    if (['core/media-text', 'core/details', 'core/quote'].includes(name)) {
 
-  // find blocks styles
-  wp.blocks.getBlockTypes().forEach((block) => {
-      if (_.isArray(block['styles'])) {
-          console.log('editor.js ' + block.name, _.pluck(block['styles'], 'name'));
-      }
-  });
+      settings.allowedBlocks = [
+        'core/paragraph',
+        'core/heading',
+        'core/list',
+      ];
+    }
+
+    return settings;
+  }
+
+  wp.hooks.addFilter( 'blocks.registerBlockType', 'badegg/restrict-parent-blocks', restrictEditorParentBlocks );
+  wp.hooks.addFilter( 'blocks.registerBlockType', 'badegg/core-inner-blocks', coreInnerBlocks );
+
 });

@@ -7,17 +7,16 @@
   "core/media-text",
   "core/audio",
   "core/video",
+  "core/embed",
 
   "core/footnotes",
   "core/heading",
   "core/list",
-  "core/code",
   "core/details",
   "core/list-item",
   "core/missing",
   "core/paragraph",
   "core/quote",
   "core/pullquote",
-  "core/table",
   "core/verse"
 ]
