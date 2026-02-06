@@ -5,7 +5,8 @@ import.meta.glob([
 
 import Header from '../views/sections/header/header.js';
 import LazyLoad from './lib/Lazy.js';
+import BadEggLightbox from './lib/BadEggLightbox';
 
-LazyLoad();
 Header();
-
+LazyLoad();
+BadEggLightbox();
