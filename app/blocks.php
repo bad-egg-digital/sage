@@ -268,6 +268,8 @@ function core_details_modified($content, $block)
 
 function core_image_modified($content, $block)
 {
+    if(!$content) return '';
+
     $dom = new \DomDocument();
     $dom->strictErrorChecking = false;
     @$dom->loadHTML($content);
