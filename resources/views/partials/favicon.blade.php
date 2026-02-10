@@ -2,5 +2,5 @@
 <link rel="icon" type="image/svg+xml" href="{{ Vite::asset('resources/images/favicon/favicon.svg') }}" />
 <link rel="shortcut icon" href="{{ Vite::asset('resources/images/favicon/favicon.ico') }}" />
 <link rel="apple-touch-icon" sizes="180x180" href="{{ Vite::asset('resources/images/favicon/apple-touch-icon.png') }}" />
-<meta name="apple-mobile-web-app-title" content="{!! $title !!}" />
+<meta name="apple-mobile-web-app-title" content="{!! $siteName !!}" />
 <link rel="manifest" href="{{ Vite::asset('resources/images/favicon/site.webmanifest') }}" />
