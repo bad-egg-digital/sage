@@ -164,8 +164,13 @@ function cors() {
     if(WP_ENV == 'development'):
         header( 'Access-Control-Allow-Origin: *' );
     endif;
-
 }
+
+add_action('wp_head', function(){
+    if(file_exists(get_theme_file_path('resources/images/favicon/site.webmanifest'))) {
+        echo \Roots\view("partials.favicon")->render();
+    }
+});
 
 add_action('after_setup_theme', function(){
     $image_srcset = new Utilities\ImageSrcset;
