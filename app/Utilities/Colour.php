@@ -32,7 +32,7 @@ class Colour
         $values = [];
 
         if(function_exists('get_field')):
-            $colours = get_field('badegg_colours', 'option');
+            $colours = @get_field('badegg_colours', 'option');
 
             if($colours):
                 foreach($colours as $index => $props):
