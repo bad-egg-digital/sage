@@ -17,7 +17,8 @@
                 "id": ""
             },
             "placement": "top",
-            "endpoint": 0
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_67658e49aba4f",
@@ -58,7 +59,10 @@
                     "default_value": "",
                     "enable_opacity": 0,
                     "return_format": "string",
-                    "parent_repeater": "field_67658e49aba4f"
+                    "parent_repeater": "field_67658e49aba4f",
+                    "custom_palette_source": "",
+                    "palette_colors": "",
+                    "show_color_wheel": true
                 },
                 {
                     "key": "field_67658fba41889",
@@ -167,6 +171,7 @@
                         "id": ""
                     },
                     "layout": "block",
+                    "parent_repeater": "field_67658e49aba4f",
                     "sub_fields": [
                         {
                             "key": "field_676590414188c",
@@ -184,7 +189,10 @@
                             },
                             "default_value": "",
                             "enable_opacity": 0,
-                            "return_format": "string"
+                            "return_format": "string",
+                            "custom_palette_source": "",
+                            "palette_colors": "",
+                            "show_color_wheel": true
                         },
                         {
                             "key": "field_676590684188d",
@@ -202,7 +210,10 @@
                             },
                             "default_value": "",
                             "enable_opacity": 0,
-                            "return_format": "string"
+                            "return_format": "string",
+                            "custom_palette_source": "",
+                            "palette_colors": "",
+                            "show_color_wheel": true
                         },
                         {
                             "key": "field_6765907f4188e",
@@ -220,7 +231,10 @@
                             },
                             "default_value": "",
                             "enable_opacity": 0,
-                            "return_format": "string"
+                            "return_format": "string",
+                            "custom_palette_source": "",
+                            "palette_colors": "",
+                            "show_color_wheel": true
                         },
                         {
                             "key": "field_676590924188f",
@@ -238,7 +252,10 @@
                             },
                             "default_value": "",
                             "enable_opacity": 0,
-                            "return_format": "string"
+                            "return_format": "string",
+                            "custom_palette_source": "",
+                            "palette_colors": "",
+                            "show_color_wheel": true
                         },
                         {
                             "key": "field_6765909941890",
@@ -256,7 +273,10 @@
                             },
                             "default_value": "",
                             "enable_opacity": 0,
-                            "return_format": "string"
+                            "return_format": "string",
+                            "custom_palette_source": "",
+                            "palette_colors": "",
+                            "show_color_wheel": true
                         },
                         {
                             "key": "field_6765909f41891",
@@ -274,10 +294,12 @@
                             },
                             "default_value": "",
                             "enable_opacity": 0,
-                            "return_format": "string"
+                            "return_format": "string",
+                            "custom_palette_source": "",
+                            "palette_colors": "",
+                            "show_color_wheel": true
                         }
-                    ],
-                    "parent_repeater": "field_67658e49aba4f"
+                    ]
                 }
             ]
         },
@@ -296,7 +318,8 @@
                 "id": ""
             },
             "placement": "top",
-            "endpoint": 0
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_67659cb08081e",
@@ -372,7 +395,8 @@
                 "id": ""
             },
             "placement": "top",
-            "endpoint": 0
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_676594615ead2",
@@ -390,6 +414,27 @@
             },
             "default_value": "",
             "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_698b36010d055",
+            "label": "Font Awesome Kit ID",
+            "name": "badegg_integrations_fontawesome_kit",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "The internet's icon library + toolkit. Used by millions of designers, devs, & content creators. Open-source. Always free. Always awesome. <a href=\"https:\/\/fontawesome.com\/\" target=\"_blank\" rel=\"noopener nofollow noindex\">Visit website<\/a>",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 1,
             "placeholder": "",
             "prepend": "",
             "append": ""
@@ -413,5 +458,6 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1734712625
+    "display_title": "",
+    "modified": 1770736471
 }

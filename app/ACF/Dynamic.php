@@ -108,9 +108,7 @@ class Dynamic
             '0' => '<i class="fa-solid"></i> <span>Please select an icon</span>',
         ];
 
-        foreach($icons as $slug => $props):
-            if(in_array($slug, range(0,9))) continue;
-
+        foreach($icons as $slug):
             $choices[$slug] = '<i class="fa-'.$set.' fa-'.$slug.'" style="color: #2271b1;"></i> <span>' . (ucwords(str_replace('-', ' ', $slug))) . '</span>';
         endforeach;
 

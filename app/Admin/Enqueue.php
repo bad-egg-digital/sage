@@ -13,9 +13,9 @@ class Enqueue
     {
         wp_enqueue_style(
             'fontawesome',
-            'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css',
+            'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css',
             false,
-            '6.5.2',
+            '7.0.1',
             'all'
         );
     }
