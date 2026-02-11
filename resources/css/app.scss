@@ -17,8 +17,8 @@
 @use "components/BadEggLightbox";
 
 // Sections
-@use "sections/header";
-@use "sections/footer";
+@use "../views/sections/header/header";
+@use "../views/sections/footer/footer";
 
 // Page Styles
 @use "views/page";
