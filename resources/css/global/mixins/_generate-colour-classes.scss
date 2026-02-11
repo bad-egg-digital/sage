@@ -1,4 +1,5 @@
 @use "text-contrast";
+@use "../variables/colours";
 
 @use "sass:color";
 
@@ -22,6 +23,16 @@
       ::selection {
         @include text-contrast.text_contrast(color.invert($hex));
         background: color.invert($hex);
+        @if($name == "white") {
+          color: colours.$white;
+          background: colours.$primary;
+        } @else if($name == "black") {
+          color: colours.$white;
+          background: colours.$primary-lighter;
+        } @else {
+          @include text-contrast.text_contrast(color.invert($hex));
+          background: color.invert($hex);
+        }
       }
     }
   }
