@@ -34,7 +34,12 @@ figure {
   width: calc(100% - variables.$innerMedium * 2);
   margin: auto;
 
+  @media (min-width: variables.$screen-md) {
+    width: calc(100% - variables.$innerLarge * 2);
+  }
+
   &-full { width: auto; }
+  &-larger { max-width: variables.$containerLarger; }
   &-large { max-width: variables.$containerLarge; }
   &-medium { max-width: variables.$containerMedium; }
   &-small { max-width: variables.$containerSmall; }
