@@ -1,8 +1,31 @@
 @use "../../../css/global/variables/spacing";
 
 .wp-block-badegg-article {
+  position: relative;
+
   .wp-block-pullquote {
     padding: 0;
     margin: spacing.$innerLarge auto;
+  }
+
+  .badegg-article-select-parent {
+    appearance: none;
+    display: block;
+    position: absolute;
+    inset: 0;
+    background: transparent;
+    border: none;
+  }
+
+  .block-editor-block-list {
+    &__layout {
+      > *:first-child {
+        margin-top: 0;
+      }
+
+      > *:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 }

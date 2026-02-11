@@ -5,7 +5,7 @@ export function containerClassNames(attributes, extraClasses = [])
     'container',
   ];
 
-  if('container_width' in attributes)
+  if('container_width' in attributes && !['', '0'].includes(attributes.container_width))
     classNames.push(`container-${attributes.container_width}`);
 
   if('alignment' in attributes)

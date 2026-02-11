@@ -15,18 +15,28 @@ import BackgroundImage from '../../../js/blocks/components/BackgroundImage';
 import BlockSettings from '../../../js/blocks/components/BlockSettings';
 
 registerBlockType(metadata.name, {
-  edit({ attributes, setAttributes }) {
+  edit({ attributes, setAttributes, clientId }) {
     const blockProps = useBlockProps();
-    blockProps.className = sectionClassNames(attributes, blockProps.className).join(' ');
+
+    blockProps.className = containerClassNames(attributes, [ 'wysiwyg' ]).join(' ');
 
     return (
-      <div { ...blockProps }>
+      <div className={ sectionClassNames(attributes, 'wp-block-badegg-article').join(' ') }>
         <BlockSettings
           attributes={ attributes }
           setAttributes={ setAttributes }
         />
 
-        <div className={ containerClassNames(attributes, [ 'wysiwyg' ]).join(' ') }>
+        <button
+          className="badegg-article-select-parent"
+          onClick={() => {
+            wp.data.dispatch('core/block-editor').selectBlock(clientId);
+          }}
+        >
+          <span className="visually-hidden">Select Block</span>
+        </button>
+
+        <div { ...blockProps }>
           <InnerBlocks
             allowedBlocks={ allowedBlocks }
             defaultBlock={
@@ -47,11 +57,11 @@ registerBlockType(metadata.name, {
   },
   save({ attributes }) {
     const blockProps = useBlockProps.save();
-    blockProps.className = sectionClassNames(attributes, blockProps.className ).join(' ');
+    blockProps.className = containerClassNames(attributes, [ 'wysiwyg' ]).join(' ');
 
     return (
-      <div { ...blockProps }>
-        <div className={ containerClassNames(attributes, [ 'wysiwyg' ]).join(' ') }>
+      <div className={ sectionClassNames(attributes, 'wp-block-badegg-article').join(' ') }>
+        <div { ...blockProps }>
           <InnerBlocks.Content />
         </div>
 
