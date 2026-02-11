@@ -282,6 +282,7 @@ function core_image_modified($content, $block)
     // get image data
     $imageID = @$block['attrs']['id'];
     $lazy = wp_get_attachment_image_src($imageID, 'lazy');
+    $specifiedSize = @wp_get_attachment_image_src($imageID, $block['sizeSlug']);
     $large = wp_get_attachment_image_src($imageID, '2048x2048');
 
     // create lightbox link node
@@ -305,6 +306,11 @@ function core_image_modified($content, $block)
         $image->setAttribute('data-srcset', $srcset);
         $image->setAttribute('class', $class . ' lazy');
 
+        if($specifiedSize) {
+            $image->setAttribute('width', $specifiedSize[1]);
+            $image->setAttribute('height', $specifiedSize[2]);
+        }
+
         // clone lightbox link
         $linkClone = $link->cloneNode();
 
@@ -319,5 +325,4 @@ function core_image_modified($content, $block)
     }
 
     return $dom->saveHTML($figures[0]);
-
 }
