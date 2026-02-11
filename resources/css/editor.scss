@@ -1,5 +1,5 @@
 @use "app";
-@use "global/variables/colours";
+@use "global/variables";
 
 html :where(.wp-block) {
   max-width: none;
@@ -8,7 +8,7 @@ html :where(.wp-block) {
 .block-editor-block-list__layout .block-editor-block-list__block:not([contenteditable=true]) {
   &:hover:after {
     content: '';
-    outline: 2px solid colours.$wpblue;
+    outline: 2px solid variables.$wpblue;
     position: absolute;
     inset: 0;
   }
@@ -36,7 +36,7 @@ html :where(.wp-block) {
 }
 
 .editor-styles-wrapper {
-  background: colours.$grey-lightest;
+  background: variables.$grey-lightest;
 
   .block-list-appender {
     width: 350px;

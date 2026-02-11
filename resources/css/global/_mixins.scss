@@ -1,4 +1,4 @@
-@use "mixins/linear-gradient";
-@use "mixins/text-contrast";
-@use "mixins/generate-colour-classes";
-@use "mixins/generate-button-classes";
+@forward "mixins/linear-gradient";
+@forward "mixins/text-contrast";
+@forward "mixins/generate-colour-classes";
+@forward "mixins/generate-button-classes";

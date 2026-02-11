@@ -1,25 +1,25 @@
 // Global Variables, Mixins, and Framework
-@use "global/variables";
-@use "global/mixins";
-@use "global/fonts";
-@use "global/typography";
-@use "global/framework";
+@forward "global/variables";
+@forward "global/mixins";
+@forward "global/fonts";
+@forward "global/typography";
+@forward "global/framework";
 
 // Third Party Plugins
-@use "plugins/contact-form-7";
-@use "plugins/mce";
+@forward "plugins/contact-form-7";
+@forward "plugins/mce";
 
 // Components
-@use "components/block";
-@use "components/forms";
-@use "components/button";
-@use "components/card";
-@use "components/BadEggLightbox";
+@forward "components/block";
+@forward "components/forms";
+@forward "components/button";
+@forward "components/card";
+@forward "components/BadEggLightbox";
 
 // Sections
-@use "../views/sections/header/header";
-@use "../views/sections/footer/footer";
+@forward "../views/sections/header/header";
+@forward "../views/sections/footer/footer";
 
 // Page Styles
-@use "views/page";
+@forward "views/page";
 

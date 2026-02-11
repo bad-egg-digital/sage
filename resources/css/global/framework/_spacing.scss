@@ -1,26 +1,25 @@
-@use "../variables/colours";
-@use "../variables/spacing";
+@use "../variables";
 
 .brand {
   display: block;
-  width: spacing.$brandWidth;
-  height: spacing.$brandHeight;
+  width: variables.$brandWidth;
+  height: variables.$brandHeight;
 
   svg,
   img {
     display: block;
-    width: spacing.$brandWidth;
-    height: spacing.$brandHeight;
+    width: variables.$brandWidth;
+    height: variables.$brandHeight;
   }
 
   .knockout & {
     @media screen {
       .fill-primary {
-        fill: colours.$white;
+        fill: variables.$white;
       }
 
       .fill-grey {
-        fill: rgba(colours.$white, 0.8);
+        fill: rgba(variables.$white, 0.8);
       }
     }
   }
@@ -32,32 +31,32 @@ figure {
 }
 
 .container {
-  width: calc(100% - spacing.$innerMedium * 2);
+  width: calc(100% - variables.$innerMedium * 2);
   margin: auto;
 
   &-full { width: auto; }
-  &-large { max-width: spacing.$containerLarge; }
-  &-medium { max-width: spacing.$containerMedium; }
-  &-small { max-width: spacing.$containerSmall; }
-  &-narrow { max-width: spacing.$containerNarrow; }
+  &-large { max-width: variables.$containerLarge; }
+  &-medium { max-width: variables.$containerMedium; }
+  &-small { max-width: variables.$containerSmall; }
+  &-narrow { max-width: variables.$containerNarrow; }
 }
 
 .section {
-  padding: spacing.$sectionMedium 0;
+  padding: variables.$sectionMedium 0;
 
-  &-small { padding: spacing.$sectionSmall 0; }
-  &-medium { padding: spacing.$sectionMedium 0; }
-  &-large { padding: spacing.$sectionLarge 0; }
+  &-small { padding: variables.$sectionSmall 0; }
+  &-medium { padding: variables.$sectionMedium 0; }
+  &-large { padding: variables.$sectionLarge 0; }
 
   &-zero-top { padding-top: 0; }
   &-zero-bottom { padding-bottom: 0; }
 }
 
 .inner {
-  padding: spacing.$innerMedium;
+  padding: variables.$innerMedium;
 
-  &-small { padding: spacing.$innerSmall; }
-  &-large { padding: spacing.$innerLarge; }
+  &-small { padding: variables.$innerSmall; }
+  &-large { padding: variables.$innerLarge; }
 
   &-zero-x {
     padding-left: 0;
@@ -71,7 +70,7 @@ figure {
 }
 
 .rounded {
-  border-radius: spacing.$borderRadius;
+  border-radius: variables.$borderRadius;
 
   &-top {
     border-bottom-right-radius: 0;
@@ -86,12 +85,12 @@ figure {
 
 .border {
   border-style: solid;
-  border-width: spacing.$borderWidth;
+  border-width: variables.$borderWidth;
 
   &-thin { border-width: 0.0625em; }
-  &-regular { border-width: spacing.$borderWidth; }
-  &-thick { border-width: spacing.$borderThick; }
-  &-thicker { border-width: spacing.$borderThicker; }
+  &-regular { border-width: variables.$borderWidth; }
+  &-thick { border-width: variables.$borderThick; }
+  &-thicker { border-width: variables.$borderThicker; }
 
   &-top {
     border-right-width: 0;

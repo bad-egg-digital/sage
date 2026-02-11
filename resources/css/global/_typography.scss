@@ -1,7 +1,4 @@
-@use "variables/fonts";
-@use "variables/breakpoints";
-@use "variables/colours";
-@use "variables/spacing";
+@use "variables";
 
 .wysiwyg {
   > *:first-child {
@@ -19,9 +16,9 @@ h3,
 h4,
 h5,
 h6 {
-  color: colours.$primary;
+  color: variables.$primary;
   font-weight: 700;
-  font-family: fonts.$font;
+  font-family: variables.$font;
   line-height: 1.1em;
   margin: 1.5em 0 0.25em;
   padding: 0;
@@ -32,7 +29,7 @@ h6 {
 
   @media screen {
     .knockout & {
-      color: colours.$white;
+      color: variables.$white;
     }
   }
 }
@@ -48,7 +45,7 @@ h3 { font-size: 1.25em; }
 h4,
 h5 { font-size: 1.15em; }
 
-@media (min-width: breakpoints.$screen-sm) {
+@media (min-width: variables.$screen-sm) {
   h1 { font-size: 2.5em; }
   h2 { font-size: 2em; }
   h3 { font-size: 1.5em; }
@@ -63,8 +60,8 @@ p,
 li,
 td,
 label {
-  color: colours.$grey-darker;
-  font-family: fonts.$font;
+  color: variables.$grey-darker;
+  font-family: variables.$font;
   font-weight: 400;
   line-height: 1.5em;
   margin: 0 0 0.8em;
@@ -72,30 +69,30 @@ label {
 
   @media screen {
     .knockout & {
-      color: colours.$white;
+      color: variables.$white;
     }
   }
 }
 
 a {
-  color: colours.$primary;
+  color: variables.$primary;
   text-decoration: none;
   outline: none;
   transition: all 300ms ease;
 
   &:hover,
   &:focus {
-    color: colours.$primary-dark;
+    color: variables.$primary-dark;
     text-decoration: none;
   }
 
   @media screen {
     .knockout & {
-      color: colours.$white;
+      color: variables.$white;
 
       &:hover,
       &:focus {
-        color: colours.$primary-light;
+        color: variables.$primary-light;
       }
     }
   }
@@ -131,12 +128,12 @@ ol {
 hr {
   margin: 2em auto;
   height: 0;
-  border: 0 solid colours.$grey-light;
-  border-width: spacing.$borderThin 0 0;
+  border: 0 solid variables.$grey-light;
+  border-width: variables.$borderThin 0 0;
 
   @media screen {
     .knockout & {
-      border-color: colours.$white;
+      border-color: variables.$white;
     }
   }
 }

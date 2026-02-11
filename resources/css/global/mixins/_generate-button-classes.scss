@@ -1,4 +1,4 @@
-@use "../variables/colours";
+@use "../variables";
 
 @use "sass:color";
 
@@ -12,13 +12,13 @@
 
   @each $button in $buttons {
     #{$button}.#{$name} {
-      color: colours.$white;
+      color: variables.$white;
       background: $hex;
       border-color: $hex;
 
       &:hover,
       &:focus {
-        color: colours.$white;
+        color: variables.$white;
         background: color.adjust($hex, $lightness: 10%);
         border-color: color.adjust($hex, $lightness: 10%);
       }
