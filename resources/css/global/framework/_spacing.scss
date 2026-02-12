@@ -34,8 +34,12 @@ figure {
   width: calc(100% - variables.$innerMedium * 2);
   margin: auto;
 
-  @media (min-width: variables.$screen-md) {
-    width: calc(100% - variables.$innerLarge * 2);
+  @container (min-width: #{variables.$screen-md}) {
+    width: calc(100% - variables.$innerLarge * 3);
+  }
+
+  @container (min-width: #{variables.$screen-lg}) {
+    width: calc(100% - variables.$innerLarge * 4);
   }
 
   &-full { width: auto; }
@@ -49,29 +53,64 @@ figure {
 .section {
   padding: variables.$sectionMedium 0;
 
-  &-small { padding: variables.$sectionSmall 0; }
-  &-medium { padding: variables.$sectionMedium 0; }
-  &-large { padding: variables.$sectionLarge 0; }
+  &-small {  padding: variables.$sectionSmall  unset; }
+  &-medium { padding: variables.$sectionMedium unset; }
+  &-large {  padding: variables.$sectionLarge  unset; }
 
-  &-zero-top { padding-top: 0; }
-  &-zero-bottom { padding-bottom: 0; }
+  @container (min-width: #{variables.$screen-md}) {
+    padding: (variables.$sectionMedium * 1.5) unset;
+
+    &-small { padding: (variables.$sectionSmall * 1.5) unset; }
+    &-medium { padding: (variables.$sectionMedium * 1.5) unset; }
+    &-large { padding: (variables.$sectionLarge * 1.5) unset; }
+  }
+
+  @container (min-width: #{variables.$screen-lg}) {
+    padding: (variables.$sectionMedium * 2) 0;
+
+    &-small { padding: (variables.$sectionSmall * 2) 0; }
+    &-medium { padding: (variables.$sectionMedium * 2) 0; }
+    &-large { padding: (variables.$sectionLarge * 2) 0; }
+  }
+
+  &-zero-top {    padding-top:    unset; }
+  &-zero-bottom { padding-bottom: unset; }
 }
 
 .inner {
   padding: variables.$innerMedium;
 
-  &-small { padding: variables.$innerSmall; }
-  &-large { padding: variables.$innerLarge; }
+  &-largest {  padding: variables.$innerLargest;  }
+  &-larger {   padding: variables.$innerLarger;   }
+  &-large {    padding: variables.$innerLarge;    }
+  &-small {    padding: variables.$innerSmall;    }
+  &-smaller {  padding: variables.$innerSmaller;  }
+  &-smallest { padding: variables.$innerSmallest; }
 
-  &-zero-x {
-    padding-left: 0;
-    padding-right: 0;
+  @container (min-width: #{variables.$screen-md}) {
+    padding: (variables.$innerMedium * 1.5);
+
+    &-largest {  padding: (variables.$innerLargest * 1.25);  }
+    &-larger {   padding: (variables.$innerLarger * 1.25);   }
+    &-large {    padding: (variables.$innerLarge * 1.25);    }
+    &-small {    padding: (variables.$innerSmall * 1.25);    }
+    &-smaller {  padding: (variables.$innerSmaller * 1.25);  }
+    &-smallest { padding: (variables.$innerSmallest * 1.25); }
   }
 
-  &-zero-y {
-    padding-top: 0;
-    padding-top: 0;
+  @container (min-width: #{variables.$screen-lg}) {
+    padding: (variables.$innerMedium * 2);
+
+    &-largest {  padding: (variables.$innerLargest * 1.5);  }
+    &-larger {   padding: (variables.$innerLarger * 1.5);   }
+    &-large {    padding: (variables.$innerLarge * 1.5);    }
+    &-small {    padding: (variables.$innerSmall * 1.5);    }
+    &-smaller {  padding: (variables.$innerSmaller * 1.5);  }
+    &-smallest { padding: (variables.$innerSmallest * 1.5); }
   }
+
+  &-zero-x { padding-left: unset; padding-right: unset; }
+  &-zero-y { padding-top:  unset; padding-top:   unset; }
 }
 
 .rounded {
