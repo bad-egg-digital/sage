@@ -1,7 +1,6 @@
 <?php
 
 namespace App\PostTypes;
-use App\View\Composers;
 
 class Post
 {
@@ -10,9 +9,9 @@ class Post
         /*
          * Default Post Type Disable
          */
-        add_action( 'register_post_post_type_args', [ $this, 'disable' ], 10, 2 );
-        add_action( 'init', [ $this, 'unregister_tag' ]);
-        add_action( 'init', [ $this, 'unregister_category' ]);
+        add_filter( 'register_post_type_args', [$this, 'disable'], 0, 2);
+        add_filter( 'register_taxonomy_args', [$this, 'disable'], 0, 2);
+        add_action( 'init', [ $this, 'unregister_tax' ]);
 
         /*
          * Default Post Type Customisations
@@ -22,9 +21,17 @@ class Post
         // add_filter( 'pre_post_link', [$this, 'permalink'], 10, 3);
     }
 
-    function disable($args, $postType)
+    function disable($args, $type)
     {
-        $args['public'] = false;
+        $types = [
+            'post',
+            'post_tag',
+            'category',
+        ];
+
+        if(in_array($type, $types)) {
+            $args['public'] = false;
+        }
 
         return $args;
     }
@@ -39,14 +46,11 @@ class Post
         $wp_admin_bar->remove_node( 'new-post' );
     }
 
-    function unregister_category()
+    function unregister_tax()
     {
-        unregister_taxonomy_for_object_type('category', 'post');
-    }
-
-    function unregister_tag()
-    {
-        unregister_taxonomy_for_object_type('post_tag', 'post');
+        foreach(['post_tag', 'category'] as $tax) {
+            unregister_taxonomy_for_object_type($tax, 'post');
+        }
     }
 
     public function labels($labels)
