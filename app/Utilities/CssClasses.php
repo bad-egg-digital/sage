@@ -61,7 +61,7 @@ class CssClasses {
             'contrast' => null,
         ]);
 
-        $Colour = new Colour;
+        $Colour = new Utilities\Colour;
         $hex = $Colour->name2hex($bg_props['bg_colour'], $bg_props['bg_tint']);
 
         $classes = [
