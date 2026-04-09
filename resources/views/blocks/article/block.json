@@ -8,6 +8,12 @@
     "foreground": "#f58762"
   },
   "description": "A wrapper to contain core blocks",
+  "attributes": {
+    "sidebar": {
+      "type": "boolean",
+      "default": false
+    }
+  },
   "supports": {
     "html": true,
     "color": {

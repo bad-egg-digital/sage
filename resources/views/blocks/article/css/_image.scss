@@ -2,12 +2,6 @@
 @use "../../../../css/global/variables/spacing";
 
 .wp-block-badegg-article {
-  figure {
-    img {
-      display: block;
-    }
-  }
-
   .wp-block-image {
     &.is-style-rounded {
       img {
