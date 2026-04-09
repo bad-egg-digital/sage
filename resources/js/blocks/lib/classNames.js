@@ -43,6 +43,10 @@ export function sectionClassNames(attributes, defaultClasses = '', extraClasses 
     classNames.push(bg);
   }
 
+  if('sidebar' in attributes && attributes.sidebar) {
+    classNames.push('has-sidebar');
+  }
+
   if('background_image' in attributes && attributes.background_image != '0')
     classNames.push('has-bg-image');
 

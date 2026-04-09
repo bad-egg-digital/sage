@@ -15,16 +15,21 @@ import { select } from '@wordpress/data';
  * @returns {*} React JSX
  */
 export default function BackgroundImage({
+  background_image,
+  background_image_width,
+  background_image_height,
   background_url,
   background_url_lazy,
   background_lazy,
   background_position = 'center',
   background_fixed = false,
+  background_filter = false,
   background_opacity = 70,
+  background_contrast = false,
   disableLazyBG = false,
 }) {
 
-  if (background_url) {
+  if (background_image) {
     let styles = {
       backgroundImage: `url(${background_url})`,
       backgroundPosition: `${ background_position.x * 100}% ${ background_position.y * 100}%`,
@@ -34,14 +39,29 @@ export default function BackgroundImage({
     }
 
     let attributes = {
-      className: 'badegg-block-background',
+      className: 'badegg-block-background bg-image bg-srcset',
       style: styles,
+      'data-id': background_image,
+      'data-name': 'hero',
+      'data-width': background_image_width,
+      'data-height': background_image_height,
     };
 
+    if(background_filter) {
+      let bgFilter = ' bg-filter-';
+
+      if(background_contrast) {
+        bgFilter += 'screen';
+      } else {
+        bgFilter += 'multiply';
+      }
+
+      attributes.className += bgFilter;
+    }
+
     if(background_lazy && !disableLazyBG) {
-      attributes['data-bg'] = background_url;
       attributes.style.backgroundImage = `url(${background_url_lazy})`;
-      attributes.className += ' lazy-bg';
+      attributes.className += ' lazy';
     }
 
     return (
