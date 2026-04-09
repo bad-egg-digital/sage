@@ -96,6 +96,10 @@ function add_categories( $categories ) {
                 'slug'  => 'badegg',
                 'title' => __('Provided by Bad Egg Digital'),
             ],
+            [
+                'slug' => 'badegg-projects',
+                'title' => __('Project Blocks'),
+            ],
         ], $categories);
 
         return $categories;
@@ -106,6 +110,11 @@ function auto_register() {
 
     foreach ($blocks as $block_json) {
         $json = json_decode(file_get_contents($block_json));
+
+        if(!class_exists('ACF') && property_exists($json, 'acf')) continue;
+
+        if(@$json->disabled) continue;
+
         $slug = basename(dirname($block_json));
         $blockPath = "resources/views/blocks/{$slug}";
 
@@ -161,7 +170,6 @@ function auto_register() {
             'style'             => "{$slug}-style",
             'script'            => "{$slug}-script",
             'view_script'       => "{$slug}-view-script",
-            'attributes'        => attributes(),
         ];
 
         if(!property_exists($json, 'acf') && \Roots\view()->exists("blocks.{$slug}.render")) {
@@ -176,6 +184,10 @@ function auto_register() {
             };
         }
 
+        if(!property_exists($json, 'acf')) {
+            $props['attributes'] = attributes((array)@$json->attributes);
+        }
+
         register_block_type($block_json, $props);
     }
 }
@@ -188,12 +200,14 @@ function list_inner()
     return $json;
 }
 
-function attributes()
+function attributes($atts = [])
 {
     $file = file_get_contents(get_theme_file_path("resources/json/block-attributes.json"));
     $json = json_decode($file, true);
 
-    return $json;
+    $atts = wp_parse_args($atts, $json);
+
+    return $atts;
 }
 
 function list_all()

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Utilities;
-use BadEggCup\Utilities;
+use BadEggCup\Tools;
 use ourcodeworld\NameThatColor\ColorInterpreter as NameThatColor;
 
 class RestAPI
@@ -73,19 +73,22 @@ class RestAPI
 
     public function colours()
     {
-        $Colour = new Utilities\Colour;
-        $NameThatColour = new NameThatColor;
-
         $palette = [];
 
-        $colours = $Colour->values();
+        if(class_exists('\BadEggCup\Tools\Colour')) {
+            $Colour = new Tools\Colour;
+            $NameThatColour = new NameThatColor;
 
-        foreach($colours as $slug => $hex) {
-            $palette[] = [
-                'name' => esc_html__(@$NameThatColour->name($hex)['name'], 'badegg'),
-                'slug' => $slug,
-                'color' => $hex,
-            ];
+
+            $colours = $Colour->values();
+
+            foreach($colours as $slug => $hex) {
+                $palette[] = [
+                    'name' => esc_html__(@$NameThatColour->name($hex)['name'], 'badegg'),
+                    'slug' => $slug,
+                    'color' => $hex,
+                ];
+            }
         }
 
         return $palette;

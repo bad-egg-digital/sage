@@ -14,7 +14,7 @@
 
     <div id="app">
       <a class="sr-only focus:not-sr-only" href="#main">
-        {{ __('Skip to content', 'sage') }}
+        {{ __('Skip to content', 'badegg') }}
       </a>
 
       @include('sections.header.header')
@@ -34,7 +34,6 @@
       </div>
 
       @include('partials.menu-off-canvas')
-
     </div>
 
     @php(do_action('get_footer'))

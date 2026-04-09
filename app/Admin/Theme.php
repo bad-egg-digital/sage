@@ -8,7 +8,7 @@ class Theme
 {
     public function __construct()
     {
-        add_action( 'after_setup_theme', [$this, 'DynamicPalette'] );
+        // add_action( 'after_setup_theme', [$this, 'DynamicPalette'] );
     }
 
     public function DynamicPalette()

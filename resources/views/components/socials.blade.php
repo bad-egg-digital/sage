@@ -2,9 +2,9 @@
   <ul class="socials nolist">
     @foreach($socials as $social)
       <li>
-        <a href="{{ get_field('url', $social) }}" rel="noopener nofollow noreferrer me" target="_blank">
-          <i class="fa-brands fa-{{ get_field('fontawesome_brands', $social) }}"></i>
-          <span class="visually-hidden">{{ get_the_title($social) }}</span>
+        <a href="{{ $social['link'] }}" rel="noopener nofollow noreferrer me" target="_blank">
+          <i>{!! $social['svg'] !!}</i>
+          <span class="visually-hidden">{{ $social['icon'] }}</span>
         </a>
       </li>
     @endforeach

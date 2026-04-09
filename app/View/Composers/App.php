@@ -4,6 +4,7 @@ namespace App\View\Composers;
 
 use Roots\Acorn\View\Composer;
 use App\Utilities;
+use BadEggCup\Tools;
 
 class App extends Composer
 {
@@ -27,7 +28,7 @@ class App extends Composer
     public function with()
     {
         return [
-            'Colour' => new Utilities\Colour,
+            'Colour' => new Tools\Colour,
             'VideoSrcset' => new Utilities\VideoSrcset,
             'ImageSrcset' => new Utilities\ImageSrcset,
             'siteName' => $this->siteName(),

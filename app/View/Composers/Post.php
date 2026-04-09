@@ -31,7 +31,7 @@ class Post extends Composer
                 return get_the_title($home);
             }
 
-            return __('Latest Posts', 'sage');
+            return __('Latest Posts', 'badegg');
         }
 
         if (is_archive()) {
@@ -41,13 +41,13 @@ class Post extends Composer
         if (is_search()) {
             return sprintf(
                 /* translators: %s is replaced with the search query */
-                __('Search Results for %s', 'sage'),
+                __('Search Results for %s', 'badegg'),
                 get_search_query()
             );
         }
 
         if (is_404()) {
-            return __('Not Found', 'sage');
+            return __('Not Found', 'badegg');
         }
 
         return get_the_title();
@@ -60,8 +60,18 @@ class Post extends Composer
     {
         return wp_link_pages([
             'echo' => 0,
-            'before' => '<p>'.__('Pages:', 'sage'),
+            'before' => '<p>'.__('Pages:', 'badegg'),
             'after' => '</p>',
         ]);
+    }
+
+    public function metaTitle(): string
+    {
+        return get_post_meta(get_the_ID(), '_genesis_title', true);
+    }
+
+    public function metaDescription(): string
+    {
+        return get_post_meta(get_the_ID(), '_genesis_description', true);
     }
 }

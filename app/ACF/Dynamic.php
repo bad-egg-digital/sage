@@ -2,29 +2,28 @@
 
 namespace App\ACF;
 use ourcodeworld\NameThatColor\ColorInterpreter as NameThatColor;
-use App\Utilities;
+use BadEggCup\Tools;
 
 class Dynamic
 {
     public function __construct()
     {
-        add_filter('acf/load_field/name=colour',                [ $this, 'load_colours' ]);
-        add_filter('acf/load_field/name=bg_colour',             [ $this, 'load_colours' ]);
-        add_filter('acf/load_field/name=tint',                  [ $this, 'load_tints' ]);
-        add_filter('acf/load_field/name=bg_tint',               [ $this, 'load_tints' ]);
-        add_filter('acf/load_field/name=container_width',       [ $this, 'container_width' ]);
-        add_filter('acf/load_field/name=fontawesome_regular',   [ $this, 'load_fontawesome_regular_icons' ]);
-        add_filter('acf/load_field/name=fontawesome_solid',     [ $this, 'load_fontawesome_solid_icons' ]);
-        add_filter('acf/load_field/name=fontawesome_brands',    [ $this, 'load_fontawesome_brand_icons' ]);
-        add_action('acf/input/admin_footer',                    [ $this, 'colour_ui' ]);
+        if (class_exists('ACF')) {
+            add_filter('acf/load_field/name=colour',                [ $this, 'load_colours' ]);
+            add_filter('acf/load_field/name=bg_colour',             [ $this, 'load_colours' ]);
+            add_filter('acf/load_field/name=tint',                  [ $this, 'load_tints' ]);
+            add_filter('acf/load_field/name=bg_tint',               [ $this, 'load_tints' ]);
+            add_filter('acf/load_field/name=container_width',       [ $this, 'container_width' ]);
+            add_action('acf/input/admin_footer',                    [ $this, 'htmlSelectOption' ]);
+        }
     }
 
     public function load_colours( $field )
     {
-        $colour = new Utilities\Colour;
+        $Colour = new Tools\Colour;
         $NameThatColour = new NameThatColor;
 
-        $colours = $colour->values();
+        $colours = $Colour->values();
 
         $field['choices'] = [
             '0' => __('None', 'badegg'),
@@ -40,8 +39,8 @@ class Dynamic
 
     public function load_tints( $field )
     {
-        $colour = new Utilities\Colour;
-        $tints = $colour->tints();
+        $Colour = new Tools\Colour;
+        $tints = $Colour->tints();
 
         $field['choices'] = [];
 
@@ -71,55 +70,13 @@ class Dynamic
         return $field;
     }
 
-    public function load_fontawesome_regular_icons( $field )
-    {
-        $field['choices'] = [];
-        $field['choices'] = $this->fontawesome_choices('regular');
-
-        return $field;
-    }
-
-    public function load_fontawesome_solid_icons( $field )
-    {
-        $field['choices'] = [];
-        $field['choices'] = $this->fontawesome_choices('solid');
-
-        return $field;
-    }
-
-    public function load_fontawesome_brand_icons( $field )
-    {
-        $field['choices'] = [];
-        $field['choices'] = $this->fontawesome_choices('brands');
-
-        return $field;
-    }
-
-    public function fontawesome_choices($set = 'solid')
-    {
-        $path = get_stylesheet_directory() . '/resources/json/font-awesome-' . $set . '.json';
-
-        $json = @file_get_contents($path);
-
-        if(!$json) return false;
-        $icons = json_decode($json, true);
-
-        $choices = [
-            '0' => '<i class="fa-solid"></i> <span>Please select an icon</span>',
-        ];
-
-        foreach($icons as $slug):
-            $choices[$slug] = '<i class="fa-'.$set.' fa-'.$slug.'" style="color: #2271b1;"></i> <span>' . (ucwords(str_replace('-', ' ', $slug))) . '</span>';
-        endforeach;
-
-        return $choices;
-    }
-
-    public function colour_ui()
+    public function htmlSelectOption()
     { ?>
 
         <script type="text/javascript">
+            <?php if(WP_ENV == 'development'): ?>
             console.log("Script loaded from sage/app/ACF/Dynamic.php");
+            <?php endif; ?>
 
             (function($) {
 
@@ -133,10 +90,6 @@ class Dynamic
                     const whitelist = [
                         'colour',
                         'bg_colour',
-                        'angle_colour',
-                        'fontawesome_brands',
-                        'fontawesome_regular',
-                        'fontawesome_solid',
                     ];
 
                     // do something to the original_value to override the default escaping, then return it.
