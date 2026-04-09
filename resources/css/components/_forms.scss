@@ -1,29 +1,39 @@
-@use "../global/variables/fonts";
-@use "../global/variables/breakpoints";
-@use "../global/variables/colours";
+@use "../global/variables";
 
 input,
 textarea {
-  color: colours.$grey;
+  color: variables.$grey;
   background: white;
   font-weight: 400;
   font-size: 1em;
-  font-family: fonts.$font;
+  font-family: variables.$font;
   width: 100%;
   padding: 0.875em 1em;
-  margin: 0 0 1em;
   // border-radius: 0.125em;
-  border: 0.0625em solid rgba(colours.$black, 0.1);
+  border: 1px solid variables.$grey-light;
   outline: none;
   transition: all 300ms ease;
 
+  &[type=submit] {
+    width: auto;
+  }
+
+  @media (min-width: variables.$screen-md) {
+    font-size: 1.25em;
+  }
+
   &::placeholder {
-    color: colours.$grey-light;
+    color: variables.$grey-lighter;
   }
 
   &:focus {
-    box-shadow: 0 0.25em 0.5em rgba(colours.$black, 0.1);
+    box-shadow: 0 0.25em 0.5em rgba(variables.$black, 0.1);
   }
+}
+
+textarea {
+  min-height: 5em;
+  field-sizing: content;
 }
 
 input[type="radio"],
@@ -44,7 +54,6 @@ select {
 .field-wrap {
   flex: 1 1 calc(100% - 1em);
   margin: 0 0.5em;
-  transition: all 300ms ease;
 
   p {
     display: flex;
@@ -71,11 +80,11 @@ select {
     max-width: 100%;
     width: 100%;
     margin: 0;
-    font-family: fonts.$font;
+    font-family: variables.$font;
   }
   /* stylelint-enable selector-class-pattern */
 
-  @media (min-width: breakpoints.$screen-sm) {
+  @media (min-width: variables.$screen-sm) {
     &.half {
       flex: 0 0 calc(50% - 1em);
       max-width: calc(50% - 1em);
@@ -107,7 +116,7 @@ select {
     margin: 2em 0 0;
   }
 
-  @media (min-width: breakpoints.$screen-sm) {
+  @media (min-width: variables.$screen-sm) {
     display: flex;
     flex-wrap: wrap;
 
@@ -164,8 +173,8 @@ select {
       }
 
       &-not-valid-tip {
-        background: colours.$error;
-        color: colours.$white;
+        background: variables.$error;
+        color: variables.$white;
         padding: 0.5em 1em;
         border-radius: 0 0 0.5em 0.5em;
         font-weight: 700;
@@ -177,11 +186,11 @@ select {
         width: calc(100% - 1em);
         flex: 0 0 calc(100% - 1em);
         text-align: center;
-        color: colours.$white;
-        font-family: fonts.$font;
+        color: variables.$white;
+        font-family: variables.$font;
         font-weight: 700;
-        background: colours.$black;
-        border: 0.125em solid colours.$white;
+        background: variables.$black;
+        border: 0.125em solid variables.$white;
         padding: 0.5em 1em;
         border-radius: 0.5em;
       }
@@ -207,7 +216,7 @@ select {
           display: block;
           width: 1.25em;
           height: 1.25em;
-          border: 0.125em solid colours.$black;
+          border: 0.125em solid variables.$black;
           background: transparent;
           color: currentcolor;
 
@@ -220,7 +229,7 @@ select {
             font-family: "Font Awesome 6 Free", serif;
             font-weight: 900;
             opacity: 0;
-            transition: all 300ms ease;
+            transition: opacity 300ms ease;
           }
 
           &:checked {
@@ -250,15 +259,15 @@ select {
 
     &.sent {
       .wpcf7-response-output {
-        background: colours.$success;
-        border-color: colours.$white;
+        background: variables.$success;
+        border-color: variables.$white;
       }
     }
 
     &.invalid {
       .wpcf7-response-output {
-        background: colours.$error;
-        border-color: colours.$white;
+        background: variables.$error;
+        border-color: variables.$white;
       }
     }
 
@@ -277,7 +286,7 @@ select {
       .wpcf7 {
         &-checkbox {
           input[type="checkbox"] {
-            border-color: colours.$white;
+            border-color: variables.$white;
           }
         }
       }

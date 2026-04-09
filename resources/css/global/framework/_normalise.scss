@@ -3,10 +3,20 @@
 * {
   box-sizing: border-box;
   backface-visibility: hidden; // removes jagged edges on rotated elements
+
+  &:focus-visible {
+    outline: 0.125rem solid variables.$black;
+    outline-offset: 0.125rem;
+
+    .knockout & {
+      outline-color: variables.$white;
+    }
+  }
 }
 
 html {
   font-size: 16px;
+  scroll-behavior: smooth;
 }
 
 body,
@@ -37,13 +47,17 @@ video {
   height: auto;
 }
 
-img.lazy,
-.lazy-bg,
-.lazy-loaded {
-  transition: all 300ms ease;
+.lazy {
+  filter: blur(0.25em);
+  transition: all 300ms ease 200ms;
+  background-color: variables.$white;
+
+  .knockout & {
+    background-color: variables.$black;
+  }
 }
 
-img.lazy,
-.lazy-bg {
-  filter: blur(0.25em);
+.lazy-svg-loaded,
+.lazy-loaded {
+  transition: all 300ms ease 200ms;
 }

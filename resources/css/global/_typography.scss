@@ -16,15 +16,31 @@ h3,
 h4,
 h5,
 h6 {
-  color: variables.$primary;
+  color: variables.$secondary-darkest;
   font-weight: 700;
   font-family: variables.$font;
   line-height: 1.1em;
-  margin: 1.5em 0 0.25em;
+  margin: 1.5em 0 0.5em;
   padding: 0;
 
-  &.section-title {
-    margin-top: 0;
+  &.mini {
+    font-size: 1em;
+    margin: 0 0 0.25em;
+
+    @media (min-width: variables.$screen-md) {
+      font-size: 1.25em;
+    }
+  }
+
+  &.section-title { margin-top: 0; }
+  &.has-subtitle { margin-bottom: 0.25em; }
+
+  &.subhead {
+    margin-top: 0.125em;
+
+    &-big {
+      @extend h1;
+    }
   }
 
   @media screen {
@@ -45,8 +61,8 @@ h3 { font-size: 1.25em; }
 h4,
 h5 { font-size: 1.15em; }
 
-@media (min-width: variables.$screen-sm) {
-  h1 { font-size: 2.5em; }
+@media (min-width: variables.$screen-md) {
+  h1 { font-size: 2.25em; }
   h2 { font-size: 2em; }
   h3 { font-size: 1.5em; }
 
@@ -74,25 +90,36 @@ label {
   }
 }
 
+p {
+  @media (min-width: variables.$screen-md) {
+    font-size: 1.125em;
+  }
+
+  @media (min-width: variables.$screen-lg) {
+    font-size: 1.25em;
+  }
+}
+
 a {
-  color: variables.$primary;
+  color: variables.$tertiary;
   text-decoration: none;
   outline: none;
-  transition: all 300ms ease;
+  transition: color 300ms ease;
 
   &:hover,
   &:focus {
-    color: variables.$primary-dark;
-    text-decoration: none;
+    color: variables.$tertiary;
+    text-decoration: underline;
   }
 
   @media screen {
     .knockout & {
-      color: variables.$white;
+      color: variables.$tertiary-lighter;
 
       &:hover,
       &:focus {
-        color: variables.$primary-light;
+        color: variables.$tertiary-lighter;
+        text-decoration: underline;
       }
     }
   }

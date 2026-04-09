@@ -53,16 +53,16 @@ figure {
 .section {
   padding: variables.$sectionMedium 0;
 
-  &-small {  padding: variables.$sectionSmall  unset; }
-  &-medium { padding: variables.$sectionMedium unset; }
-  &-large {  padding: variables.$sectionLarge  unset; }
+  &-small {  padding: variables.$sectionSmall  0; }
+  &-medium { padding: variables.$sectionMedium 0; }
+  &-large {  padding: variables.$sectionLarge  0; }
 
   @container (min-width: #{variables.$screen-md}) {
-    padding: (variables.$sectionMedium * 1.5) unset;
+    padding: (variables.$sectionMedium * 1.5) 0;
 
-    &-small { padding: (variables.$sectionSmall * 1.5) unset; }
-    &-medium { padding: (variables.$sectionMedium * 1.5) unset; }
-    &-large { padding: (variables.$sectionLarge * 1.5) unset; }
+    &-small { padding: (variables.$sectionSmall * 1.5) 0; }
+    &-medium { padding: (variables.$sectionMedium * 1.5) 0; }
+    &-large { padding: (variables.$sectionLarge * 1.5) 0; }
   }
 
   @container (min-width: #{variables.$screen-lg}) {
@@ -75,6 +75,33 @@ figure {
 
   &-zero-top {    padding-top:    unset; }
   &-zero-bottom { padding-bottom: unset; }
+}
+
+.section-m {
+  margin: variables.$sectionMedium 0;
+
+  &-small {  margin: variables.$sectionSmall  0; }
+  &-medium { margin: variables.$sectionMedium 0; }
+  &-large {  margin: variables.$sectionLarge  0; }
+
+  @container (min-width: #{variables.$screen-md}) {
+    margin: (variables.$sectionMedium * 1.5) 0;
+
+    &-small { margin: (variables.$sectionSmall * 1.5) 0; }
+    &-medium { margin: (variables.$sectionMedium * 1.5) 0; }
+    &-large { margin: (variables.$sectionLarge * 1.5) 0; }
+  }
+
+  @container (min-width: #{variables.$screen-lg}) {
+    margin: (variables.$sectionMedium * 2) 0;
+
+    &-small { margin: (variables.$sectionSmall * 2) 0; }
+    &-medium { margin: (variables.$sectionMedium * 2) 0; }
+    &-large { margin: (variables.$sectionLarge * 2) 0; }
+  }
+
+  &-zero-top {    margin-top:    unset; }
+  &-zero-bottom { margin-bottom: unset; }
 }
 
 .inner {
@@ -111,10 +138,27 @@ figure {
 
   &-zero-x { padding-left: unset; padding-right: unset; }
   &-zero-y { padding-top:  unset; padding-top:   unset; }
+
+  &-top { padding-left: unset; padding-right: unset; padding-bottom: unset; }
+  &-right { padding-left: unset; padding-top: unset; padding-bottom: unset; }
+  &-bottom { padding-left: unset; padding-right: unset; padding-top: unset; }
+  &-left { padding-top: unset; padding-right: unset; padding-bottom: unset; }
+
+  &-unset {
+    &-top { padding-top: unset; }
+    &-right { padding-right: unset; }
+    &-bottom {padding-bottom: unset; }
+    &-left { padding-left: unset; }
+  }
 }
 
 .rounded {
+  overflow: hidden;
   border-radius: variables.$borderRadius;
+
+  &-small {
+    border-radius: (variables.$borderRadius * 0.75);
+  }
 
   &-top {
     border-bottom-right-radius: 0;
@@ -160,3 +204,4 @@ figure {
     border-bottom-width: 0;
   }
 }
+
