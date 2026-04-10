@@ -1,4 +1,5 @@
 {
+  "disabled": false,
   "apiVersion": 3,
   "name": "badegg/example",
   "title": "Example",
